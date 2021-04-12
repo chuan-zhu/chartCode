@@ -26,7 +26,7 @@ const { Option } = Select;
 const ColorConfig = (props) => {
     let config = props.config
     console.log(props)
-    const color1= [new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+    const color1 = [new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
         offset: 1,
         color: "#7EAAF9" // 0% 处的颜色
     }, {
@@ -87,7 +87,7 @@ const ColorConfig = (props) => {
         offset: 0,
         color: "#2D2D2D" // 100% 处的颜色
     }], false)],
-    
+
     const [form] = Form.useForm();
     /**
      * 表单变化，调用父组件派发方法
