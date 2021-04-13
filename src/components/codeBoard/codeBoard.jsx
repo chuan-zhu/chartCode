@@ -1,7 +1,6 @@
-import React, { Component, useState } from 'react'
-import { Row, Col, Button, Drawer } from 'antd'
+import React from 'react'
 import AceEditor from "react-ace";
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 const CodeBoard = (props) => {

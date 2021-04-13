@@ -1,14 +1,7 @@
-import React, { Component, useState, useEffect } from 'react'
-import { Collapse, Form, Input, Button, Checkbox, InputNumber, Switch, Select, Col } from 'antd';
+import React from 'react'
+import { Collapse, Form, Input, InputNumber, Switch, Select } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux'
-import { unit2, unit1 } from '../../../utils/componentUtils'
-import { SketchPicker, ChromePicker } from 'react-color'
-import {
-    lefttip, toptip, positiontip, containLabeltip, axisTypetip,
-    AxisMintip, AxisMAXtip, barPositiontip
-} from '../../../utils/tipsUtils'
-import { CONFIG } from '../../../redux/action-types'
+import {axisTypetip,AxisMintip, AxisMAXtip} from '../../../utils/tipsUtils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -18,9 +11,7 @@ const layoutLittle = {
     labelCol: { span: 11 },
     wrapperCol: { span: 14 },
 };
-const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-};
+
 const { Panel } = Collapse;
 const { Option } = Select;
 

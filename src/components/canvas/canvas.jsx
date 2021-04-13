@@ -1,7 +1,5 @@
-import React, { Component, useState, useEffect } from 'react'
-import { Collapse, Form, Input, Button, Checkbox, InputNumber, Switch, Select, Col } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import ReactEcharts from 'echarts-for-react'
 import './canvas.css'
 
@@ -208,7 +206,7 @@ const Canvans = (props) => {
                 type: 'bar',
                 data: [3, 20, 25, 23, 20, 3]
             }],
-            color:['red','yellow']
+            color:["#6F9CEB", "#FEC368"]
         }
     }
     // 删除配置内容为空的值

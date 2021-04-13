@@ -19,7 +19,7 @@ import {
 
 import { title_config, legend_config,grid_config ,
   
-  xAxis_config,yAxis_config,bar_config} from './initChartConfig'
+  xAxis_config,yAxis_config,bar_config,color_config} from './initChartConfig'
 
 const initHeadTitle = ''
 
@@ -55,7 +55,7 @@ function user(state = initUser, action) {
 //
 let titleConfigs = { ...title_config }
 // const barConfigObj = Object.assign(titleConfigs, legend_config,grid_config,xAxis_config,yAxis_config)
-const barConfigObj = {title :title_config, legend:legend_config,grid:grid_config,xAxis:xAxis_config,yAxis:yAxis_config,bar:bar_config}
+const barConfigObj = {title :title_config, legend:legend_config,grid:grid_config,xAxis:xAxis_config,yAxis:yAxis_config,bar:bar_config,color:color_config}
 function barConfig(state = barConfigObj, action) {
   switch (action.type) {
     case CONFIG:

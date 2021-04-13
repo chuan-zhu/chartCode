@@ -1,9 +1,6 @@
-import React, { Component, useState, useEffect } from 'react'
-import { Collapse, Form, Input, Button, Checkbox, InputNumber, Switch, Select, Col } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux'
-import { unit2, unit1 } from '../../../utils/componentUtils'
-import { SketchPicker, ChromePicker } from 'react-color'
+import React from 'react'
+import { Form, Input,Switch } from 'antd';
+import { unit2 } from '../../../utils/componentUtils'
 import {
     lefttip, toptip, positiontip, containLabeltip,
 } from '../../../utils/tipsUtils'
@@ -12,11 +9,6 @@ const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
 };
-const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-};
-const { Panel } = Collapse;
-const { Option } = Select;
 
 /**
  * 网格配置组件，只对网格相关的配置修改，

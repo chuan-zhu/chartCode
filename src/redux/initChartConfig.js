@@ -40,7 +40,7 @@ export const legend_config = {
     legendData: []
 }
 export const grid_config = {
-   show: true,
+    show: true,
     gridLeft: '10%',
     gridTop: 60,
     gridRight: '10%',
@@ -126,25 +126,29 @@ export const yAxis_config = {
     yAxisplitLineLineStyleWidth: 1,
     yAxisplitLineLineStyleType: 'dashed',
     yAxisplitLineLineStyleOpacity: 1
-  }
-  export const bar_config = {
-    barName:'',
-    barLegendHoverLink:true,
-    barLabelShow:true,
-    barLabelPosition : 'inside',
-    barLabelDistance : 5,
-    barLabelRotate:0,
-    barLabelOffset:[20,30],
-    barLabelColor : "#fff",
-    barLabelFontSize : 12,
+}
+export const bar_config = {
+    barName: '',
+    barLegendHoverLink: true,
+    barLabelShow: true,
+    barLabelPosition: 'inside',
+    barLabelDistance: 5,
+    barLabelRotate: 0,
+    barLabelOffset: [20, 30],
+    barLabelColor: "#fff",
+    barLabelFontSize: 12,
     barLabelLineShow: false,
     barLabelLineSmooth: true,
-    barLabelLineStyleColor:"blue",
-    barLabelLineStyleWidth : 1,
+    barLabelLineStyleColor: "blue",
+    barLabelLineStyleWidth: 1,
     barLabelLineStyleYype: 'solid',
-    barItemStyleColor :null,
-    barItemStyleBorderColor : '#000',
-    barItemStyleBorderWidth : 1,
-    barWidth :null,
-    barMinHeight:null,
-  }
+    barItemStyleColor: null,
+    barItemStyleBorderColor: '#000',
+    barItemStyleBorderWidth: 1,
+    barWidth: null,
+    barMinHeight: null,
+}
+export const color_config = {
+    colorType:["define", "solid"],
+    color:["#6F9CEB", "#FEC368"]
+}
