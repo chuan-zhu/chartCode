@@ -134,7 +134,7 @@ export const bar_config = {
     barLabelPosition: 'inside',
     barLabelDistance: 5,
     barLabelRotate: 0,
-    barLabelOffset: [20, 30],
+    barLabelOffset: [10, 30],
     barLabelColor: "#fff",
     barLabelFontSize: 12,
     barLabelLineShow: false,
@@ -156,4 +156,15 @@ export const color_config = {
     linearColorDirection:'0,0,0,1',
     linearColorStart:["#7EAAF9","#FEC368","#B6A1E5","#7CC6D1"],
     linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"]
+}
+export const tooltip_config = {
+    show: true,
+    trigger : 'item',
+    triggerOn : 'mousemove|click',
+    formatterType:"string",//模板字符串  回调函数
+    formatter :'{b0}: {c0}<br />{b1}: {c1}',
+    backgroundColor :'rgba(50,50,50,0.7)',
+    borderColor : '#333',
+    borderWidth:null,
+    padding : 5
 }

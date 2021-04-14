@@ -1,4 +1,4 @@
-import React, { Component,useState } from 'react'
+import React, { Component, useState } from 'react'
 import { Row, Col, Button, Drawer } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons';
 import BarConfig from './barConfig'
@@ -10,14 +10,16 @@ const Bar = () => {
     return (
         <>
             <Row className="graph-wrap">
-                <Col span={17} id="bar" className="graph-part" >
-                    <Canvans></Canvans>
+                <Col span={17} className="graph-part bar-part" >
+                    <div id="bar">
+                        <Canvans ></Canvans>
+                    </div>
                 </Col>
                 <Col span={7} className="graph-part">
                     <BarConfig></BarConfig>
                 </Col>
             </Row>
-            <Row style={{ height: '50px',borderTop: '1px solid #1890ff' }} align="middle">
+            <Row style={{ height: '50px', borderTop: '1px solid #1890ff' }} align="middle">
                 <Col offset={17} span={7}>
                     <Button type="primary" shape="round"
                         icon={<DownloadOutlined />} block onClick={() => setShowCode(true)}> 生成代码 </Button>
@@ -30,7 +32,7 @@ const Bar = () => {
                 visible={showCode}
                 bodyStyle={{ paddingBottom: 80 }}>
                 <CodeBoard></CodeBoard>
-                </Drawer>
+            </Drawer>
         </>
     )
 

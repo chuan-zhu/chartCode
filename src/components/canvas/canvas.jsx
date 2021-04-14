@@ -276,9 +276,10 @@ const Canvans = (props) => {
         })
         return obj;
     }
-    console.log(getOption())
+    const option =  removePropertyOfNull(getOption())
+    //更新生成器代码
     return (
-        <ReactEcharts className="canvas" option={removePropertyOfNull(getOption())} />
+        <ReactEcharts className="canvas" option={option} />
     )
 
 }
