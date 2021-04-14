@@ -1,9 +1,9 @@
 import React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch, Select } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { axisTypetip, AxisMintip, AxisMAXtip } from '../../../utils/tipsUtils'
+import { axisTypetip, AxisMintip, AxisMAXtip } from '@utils/tipsUtils'
 import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
-import {formateFormData} from '../../../utils/utils'
+import {formateFormData,deBounce} from '@utils/utils'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
@@ -29,11 +29,11 @@ const YAxisConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange = () => {
+    const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('yAxis', newFormValue);
-    }
+    },1000);
     /**
      * 通过颜色选择器更改色值变量
      */

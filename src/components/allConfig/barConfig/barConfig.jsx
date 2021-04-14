@@ -1,8 +1,8 @@
 import React from 'react'
 import { Collapse, Form, Input,InputNumber, Switch, Select,  } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { barPositiontip } from '../../../utils/tipsUtils'
-import {formateFormData} from '../../../utils/utils'
+import { barPositiontip } from '@utils/tipsUtils'
+import {formateFormData,deBounce} from '@utils/utils'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
@@ -28,11 +28,11 @@ const BarConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange = () => {
+    const formChange =  deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('bar', newFormValue);
-    }
+    },1000)
     return (
         <Form
             {...layout}

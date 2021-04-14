@@ -1,11 +1,11 @@
 import React from 'react'
 import { Form, Input, InputNumber, Select } from 'antd';
-import { unit2 } from '../../../utils/componentUtils'
+import { unit2 } from '@utils/componentUtils'
 import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
 import {
     lefttip, toptip, positiontip
-} from '../../../utils/tipsUtils'
-import {formateFormData} from '../../../utils/utils'
+} from '@utils/tipsUtils'
+import {formateFormData,deBounce} from '@utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -27,11 +27,11 @@ const TitleConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange = () => {
+    const formChange =  deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('title', newFormValue);
-    }
+    },1000)
     /**
      * 通过颜色选择器更改色值变量
      */

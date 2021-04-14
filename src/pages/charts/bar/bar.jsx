@@ -2,8 +2,8 @@ import React, { Component,useState } from 'react'
 import { Row, Col, Button, Drawer } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons';
 import BarConfig from './barConfig'
-import Canvans from '../../../components/canvas/canvas'
-import CodeBoard from '../../../components/codeBoard/codeBoard'
+import Canvans from '@components/canvas/canvas'
+import CodeBoard from '@components/codeBoard/codeBoard'
 import './bar.css'
 const Bar = () => {
     let [showCode, setShowCode] = useState(false)

@@ -4,15 +4,15 @@ import { CaretRightOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux'
 
 import _ from 'lodash'
-import TitleConfig from '../../../components/allConfig/titleConfig/titleConfig'
-import LegendConfig from '../../../components/allConfig/legendConfig/legendConfig'
-import GridConfig from '../../../components/allConfig/gridConfig/gridConfig'
-import XAxisConfig from '../../../components/allConfig/xAxisConfig/xAxisConfig'
-import YAxisConfig from '../../../components/allConfig/yAxisConfig/yAxisConfig'
-import BarConfig from '../../../components/allConfig/barConfig/barConfig'
-import ColorConfig from '../../../components/allConfig/colorConfig/colorConfig'
+import TitleConfig from '@allConfig/titleConfig/titleConfig'
+import LegendConfig from '@allConfig/legendConfig/legendConfig'
+import GridConfig from '@allConfig/gridConfig/gridConfig'
+import XAxisConfig from '@allConfig/xAxisConfig/xAxisConfig'
+import YAxisConfig from '@allConfig/yAxisConfig/yAxisConfig'
+import BarConfig from '@allConfig/barConfig/barConfig'
+import ColorConfig from '@allConfig/colorConfig/colorConfig'
 
-import { CONFIG } from '../../../redux/action-types'
+import { CONFIG } from '@redux/action-types'
 
 
 const { Panel } = Collapse;

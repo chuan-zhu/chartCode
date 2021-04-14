@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Tabs } from 'antd';
-import BaseConfig from '../../../components/baseConfig/baseConfig'
+import BaseConfig from '@components/baseConfig/baseConfig'
 import BarAllConfig from './barAllConfig'
 import './barConfig.css'
 const { TabPane } = Tabs;
