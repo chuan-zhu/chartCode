@@ -1,6 +1,6 @@
 
 export const title_config = {
-    titleShow: true,
+    show: true,
     text: '标题内容',
     titleTextColor: '#333',
     titleTextFontStyle: 'normal',  //斜体，常规
@@ -151,5 +151,9 @@ export const bar_config = {
 }
 export const color_config = {
     colorType:["define", "solid"],
-    color:["#6F9CEB", "#FEC368"]
+    color:["#6F9CEB", "#FEC368"],
+    linearType:'linear',
+    linearColorDirection:'0,0,0,1',
+    linearColorStart:["#7EAAF9","#FEC368","#B6A1E5","#7CC6D1"],
+    linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"]
 }

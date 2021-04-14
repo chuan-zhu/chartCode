@@ -213,7 +213,7 @@ const ColorConfig = (props) => {
             value={ininVal()}
             onChange={(value) => handleChange(value, 'color')} tagRender={tagRender}
             tokenSeparators={[',']}></Select> */}
-          <ColorPicker updateColor={updateColor} colors={config.color}></ColorPicker>
+          <ColorPicker updateColor={updateColor} colors={config.color} field='color'></ColorPicker>
         </Form.Item>
         </>
       }
@@ -221,19 +221,19 @@ const ColorConfig = (props) => {
         // 使用自定义的色系，纯下拉框选择
         colorType[0] == 'define' && colorType[1] == 'linear' && <><Form.Item
           label="渐变类型"
-          name="linerType"
+          name="linearType"
         >
-          <Select defaultValue="0,0,0,1" style={{ width: 120 }} >
+          <Select style={{ width: 120 }} >
             <Option value="linear">线性渐变</Option>
             <Option value="radial">径向渐变</Option>
           </Select>
         </Form.Item>
           <Form.Item
             label="渐变方向"
-            name="colorDirection"
+            name="linearColorDirection"
           >
             <Select defaultValue="0,0,0,1" style={{ width: 120 }} >
-              <Option value="0,0,0,1">↑</Option>
+              <Option value='[0,0,0,1]'>↑</Option>
               <Option value="0,1,0,0">↓</Option>
               <Option value="0,0,1,0">→</Option>
               <Option value="1,0,0,0">←</Option>
@@ -247,13 +247,13 @@ const ColorConfig = (props) => {
             label="渐变色起"
             name="linearColorStart"
           >
-            <ColorPickerSingle></ColorPickerSingle>
+            <ColorPicker updateColor={updateColor} colors={config.linearColorStart} field='linearColorStart'></ColorPicker>
           </Form.Item>
           <Form.Item
             label="渐变色止"
             name="linearColorEnd"
           >
-            {/* <ColorPickerSingle updateColor ={} color={linearColorEnd}></ColorPickerSingle> */}
+             <ColorPicker updateColor={updateColor} colors={config.linearColorEnd} field='linearColorEnd'></ColorPicker>
           </Form.Item>
         </>
       }

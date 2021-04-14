@@ -58,7 +58,10 @@ const BarAllConfig = (props) => {
             className="site-collapse-custom-collapse"
             ghost
         >
-            <Panel header="标题配置" key="title" className="site-collapse-custom-panel">
+            <Panel header="标题配置" key="title" className="site-collapse-custom-panel"
+            extra={
+                <Switch size="small" defaultChecked={config.title.show} onClick={(checked, e) => showConfig(checked, e, 'title')} />
+            }>
                 <TitleConfig config={config.title} storeChange={storeChange} ></TitleConfig>
             </Panel>
 

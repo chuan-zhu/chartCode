@@ -21,7 +21,7 @@ const { Option } = Select;
  */
 const TitleConfig = (props) => {
     let config = props.config
-    console.log(props)
+    console.log("标题配置",props)
 
     const [form] = Form.useForm();
     /**
@@ -31,7 +31,7 @@ const TitleConfig = (props) => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('title', newFormValue);
-    },1000)
+    },500)
     /**
      * 通过颜色选择器更改色值变量
      */
@@ -52,7 +52,7 @@ const TitleConfig = (props) => {
                 label="标题"
                 name="text"
             >
-                <Input />
+                <Input  disabled={!config.show}/>
             </Form.Item>
             <Form.Item
                 label="标题色号"
@@ -64,19 +64,19 @@ const TitleConfig = (props) => {
                 label="标题字体"
                 name="titleTextFontFamily"
             >
-                <Input />
+                <Input  disabled={!config.show}/>
             </Form.Item>
             <Form.Item
                 label="标题字体大小"
                 name="titleTextFontSize"
             >
-                <InputNumber />
+                <InputNumber  disabled={!config.show} />
             </Form.Item>
             <Form.Item
                 label="副标题"
                 name="subtext"
             >
-                <Input />
+                <Input  disabled={!config.show}/>
             </Form.Item>
             <Form.Item
                 label="副标题色号"
@@ -88,19 +88,19 @@ const TitleConfig = (props) => {
                 label="副标题字体"
                 name="subtextFontFamily"
             >
-                <Input />
+                <Input  disabled={!config.show}/>
             </Form.Item>
             <Form.Item
                 label="副标题字体大小"
                 name="subtextFontSize"
             >
-                <InputNumber />
+                <InputNumber  disabled={!config.show}/>
             </Form.Item>
             <Form.Item
                 label="整体水平位置"
                 name="titleTextAlign"
             >
-                <Select style={{ width: 120 }}  >
+                <Select style={{ width: 120 }}  disabled={!config.show} >
                     <Option value="left">左侧</Option>
                     <Option value="center">中间</Option>
                     <Option value="right">右侧</Option>
@@ -111,7 +111,7 @@ const TitleConfig = (props) => {
                 label="整体垂直位置"
                 name="textVerticalAlign"
             >
-                <Select style={{ width: 120 }}  >
+                <Select style={{ width: 120 }}   disabled={!config.show}>
                     <Option value="top">上方</Option>
                     <Option value="center">中间</Option>
                     <Option value="bottom">底部</Option>
@@ -123,28 +123,28 @@ const TitleConfig = (props) => {
                 name="titleLeft"
                 tooltip={lefttip}
             >
-                <Input addonAfter={unit2} />
+                <Input addonAfter={unit2}  disabled={!config.show}/>
             </Form.Item>
             <Form.Item
                 label="上方位置"
                 name="titleTop"
                 tooltip={toptip}
             >
-                <Input addonAfter={unit2} />
+                <Input addonAfter={unit2} disabled={!config.show} />
             </Form.Item>
             <Form.Item
                 label="右侧位置"
                 name="titleRight"
                 tooltip={positiontip}
             >
-                <Input addonAfter={unit2} />
+                <Input addonAfter={unit2} disabled={!config.show} />
             </Form.Item>
             <Form.Item
                 label="底部位置"
                 name="titleBottom"
                 tooltip={positiontip}
             >
-                <Input addonAfter={unit2} />
+                <Input addonAfter={unit2} disabled={!config.show} />
             </Form.Item>
         </Form>
     )

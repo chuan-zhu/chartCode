@@ -1,8 +1,9 @@
 import React from 'react'
-import { Collapse, Form, Input,InputNumber, Switch, Select,  } from 'antd';
+import { Collapse, Form, Input, InputNumber, Switch, Select, } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { barPositiontip } from '@utils/tipsUtils'
-import {formateFormData,deBounce} from '@utils/utils'
+import { formateFormData, deBounce } from '@utils/utils'
+import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
@@ -28,11 +29,19 @@ const BarConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange =  deBounce(() => {
+    const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('bar', newFormValue);
-    },1000)
+    }, 500)
+    /**
+     * 通过颜色选择器更改色值变量
+     */
+    const updateColor = (field, Newcolors) => {
+        let newFormValue = form.getFieldsValue(true)
+        newFormValue[field] = Newcolors
+        props.storeChange('bar', newFormValue);
+    }
     return (
         <Form
             {...layout}
@@ -102,10 +111,7 @@ const BarConfig = (props) => {
                         name="barLabelColor"
                         {...layoutLittle}
                     >
-                        {/* <Input ></Input> */}
-                        <span style={{ background: config.barLabelColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("barLabelColor", e)}
-                            >{config.barLabelColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='barLabelColor' color={config.barLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体大小"
@@ -135,10 +141,7 @@ const BarConfig = (props) => {
                         name="barLabelLineStyleColor"
                         {...layoutLittle}
                     >
-                        {/* <Input ></Input> */}
-                        <span style={{ background: config.barLabelLineStyleColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("barLabelLineStyleColor", e)}
-                            >{config.barLabelLineStyleColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='barLabelLineStyleColor' color={config.barLabelLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="引导线宽度"
@@ -161,24 +164,11 @@ const BarConfig = (props) => {
                 </Panel>
                 <Panel header="柱子配置" key="bar" className="site-collapse-custom-panel">
                     <Form.Item
-                        label="柱体颜色"
-                        name="barItemStyleColor"
-                        {...layoutLittle}
-                    >
-                        {/* <Input></Input> */}
-                        <span style={{ background: config.barItemStyleColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("barItemStyleColor", e)}
-                            >{config.barItemStyleColor}</span>
-                    </Form.Item>
-                    <Form.Item
                         label="柱体边框颜色"
                         name="barItemStyleBorderColor"
                         {...layoutLittle}
                     >
-                        {/* <Input></Input> */}
-                        <span style={{ background: config.barItemStyleBorderColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("barItemStyleBorderColor", e)}
-                            >{config.barItemStyleBorderColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='barItemStyleBorderColor' color={config.barItemStyleBorderColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="柱体边框宽度"
@@ -208,7 +198,7 @@ const BarConfig = (props) => {
                     >
                         <Input ></Input>
                     </Form.Item>
-                    
+
                 </Panel>
             </Collapse>
         </Form>

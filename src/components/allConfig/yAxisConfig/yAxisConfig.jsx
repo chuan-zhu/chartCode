@@ -33,7 +33,7 @@ const YAxisConfig = (props) => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('yAxis', newFormValue);
-    },1000);
+    },500);
     /**
      * 通过颜色选择器更改色值变量
      */

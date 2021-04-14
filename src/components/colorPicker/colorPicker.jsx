@@ -14,13 +14,13 @@ const ColorPicker = (props) => {
     // 是否展示颜色选择器
     const [showPicker, setShowPicker] = useState(false)
     //当前选中的颜色
-    const [color, setColor] = useState("#fff");
+    const [color, setColor] = useState("#000");
     //颜色标签
     const [tags, setTags] = useState(props.colors)
     //颜色标签修改时，调用父组件更新状态
     useEffect(() => {
         // console.log('新颜色', tags)
-        props.updateColor('color', tags)
+        props.updateColor(props.field, tags)
     }, [tags]);
     // 颜色选择器选择回调，
     const handleChange = color => {

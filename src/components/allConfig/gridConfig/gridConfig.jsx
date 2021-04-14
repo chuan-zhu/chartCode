@@ -28,7 +28,7 @@ const GridConfig = (props) => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('grid', newFormValue);
-    },1000)
+    },500)
     return (
         <Form
             {...layout}

@@ -17,7 +17,7 @@ const Bar = () => {
                     <BarConfig></BarConfig>
                 </Col>
             </Row>
-            <Row style={{ height: '50px' }} align="middle">
+            <Row style={{ height: '50px',borderTop: '1px solid #1890ff' }} align="middle">
                 <Col offset={17} span={7}>
                     <Button type="primary" shape="round"
                         icon={<DownloadOutlined />} block onClick={() => setShowCode(true)}> 生成代码 </Button>
