@@ -2,6 +2,7 @@ import React from 'react'
 import { Collapse, Form, Input,InputNumber, Switch, Select,  } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { barPositiontip } from '../../../utils/tipsUtils'
+import {formateFormData} from '../../../utils/utils'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
@@ -29,6 +30,7 @@ const BarConfig = (props) => {
      */
     const formChange = () => {
         let newFormValue = form.getFieldsValue(true)
+        newFormValue = formateFormData(newFormValue)
         props.storeChange('bar', newFormValue);
     }
     return (
@@ -199,6 +201,14 @@ const BarConfig = (props) => {
                     >
                         <InputNumber ></InputNumber>
                     </Form.Item>
+                    <Form.Item
+                        label="柱体圆角"
+                        name="barBorderRadius"
+                        {...layoutLittle}
+                    >
+                        <Input ></Input>
+                    </Form.Item>
+                    
                 </Panel>
             </Collapse>
         </Form>

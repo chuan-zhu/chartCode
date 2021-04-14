@@ -1,6 +1,8 @@
-import React, {  useState, useEffect } from 'react'
-import {  Button, Switch,  Tag, message } from 'antd';
-import { CloseOutlined, SettingOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import React, {  useState } from 'react'
+import {  Switch  } from 'antd';
+
+import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
+
 import { SketchPicker } from 'react-color'
 import reactCSS from 'reactcss'
 
@@ -9,34 +11,19 @@ import reactCSS from 'reactcss'
  * @param {*} props 父组件传递的参数，包含默认颜色，配置修改回调方法
  * @returns 
  */
-const ColorPicker = (props) => {
+const ColorPickerSingle = (props) => {
     console.log(props)
     // 是否展示颜色选择器
     const [showPicker, setShowPicker] = useState(false)
-    //当前选中的颜色
-    const [color, setColor] = useState("#fff");
-    //颜色标签
-    const [tags, setTags] = useState(props.colors)
-    //颜色标签修改时，调用父组件更新状态
-    useEffect(() => {
-        // console.log('新颜色', tags)
-        props.updateColor('color', tags)
-    }, [tags]);
-    // 颜色选择器选择回调，
+    //当前选中的颜色   起始颜色如果父组件没有配置，取默认值
+    const [color, setColor] = useState( props.color ? props.color:"#fff");
+    
+    // 颜色选择器选择回调，更新色值，父组件修改状态
     const handleChange = color => {
         setColor(color.hex.toString())
+        props.updateColor(props.field, color.hex.toString())
     };
-    /**
-     * 添加颜色标签 调用父组件方法，修改颜色
-     */
-    const addColor = () => {
-        let find = tags.findIndex(item => item == color)
-        if (find == -1) {
-            setTags([...tags, color])
-        } else {
-            message.error('该色值已经存在，请不要重复添加！');
-        }
-    }
+    
     /**
      * 颜色去反
      * @param {*} OldColorValue 
@@ -78,47 +65,30 @@ const ColorPicker = (props) => {
                 bottom: '0px',
                 left: '0px',
             },
+            pickerWrap:{
+                position:'relative',
+                width:'0',
+                height:'0px'   ,
+                zIndex:20  ,  
+            },
+            picker:{
+                position:'absolute',
+            }
         },
     });
-    /**
-     * 删除颜色标签
-     * @param {*} key 
-     */
-    const handleClose = (key) => {
-        const newTags = tags.filter(tag => tag !== key);
-        setTags(newTags)
-    }
+    
     return (<>
-        {
-            // 标签展示
-            tags.map(item => {
-                return <Tag
-                    className="edit-tag"
-                    key={item}
-                    closable={true}
-                    onClose={() => handleClose(item)}
-                    color={item}
-                >
-                    <span >
-                        {item}
-                    </span>
-                </Tag>
-            })
-        }
         <div>
-
             <div style={styles.swatch} onClick={() => setShowPicker(!showPicker)}>
                 <div style={styles.color}></div>
             </div>
             <Switch size="small" checked={showPicker} checkedChildren={<CloseOutlined />} unCheckedChildren={<SettingOutlined />} onClick={(checked) => setShowPicker(checked)} />
-
-            <Button type="link" size='small' icon={<PlusCircleOutlined />} onClick={addColor}></Button>
             {
-                showPicker && <SketchPicker color={color} disableAlpha={true} onChangeComplete={handleChange}></SketchPicker>
+                showPicker && <div style={styles.pickerWrap}> <SketchPicker width="180px" color={color} disableAlpha={true} onChangeComplete={handleChange}></SketchPicker></div>
             }
         </div>
     </>
     )
 
 }
-export default ColorPicker
+export default ColorPickerSingle

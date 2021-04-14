@@ -196,6 +196,7 @@ const Canvans = (props) => {
                     color: config.bar.barItemStyleColor,
                     borderColor: config.bar.barItemStyleBorderColor,
                     borderWidth: config.bar.barItemStyleBorderWidth,
+                    borderRadius: config.bar.barBorderRadius,
                 },
                 barWidth: config.bar.barWidth,
                 barMinHeight: config.bar.barMinHeight,

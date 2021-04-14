@@ -1,9 +1,11 @@
 import React from 'react'
-import {  Form, Input,  InputNumber, Select } from 'antd';
+import { Form, Input, InputNumber, Select } from 'antd';
 import { unit2 } from '../../../utils/componentUtils'
+import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
 import {
     lefttip, toptip, positiontip
 } from '../../../utils/tipsUtils'
+import {formateFormData} from '../../../utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -18,23 +20,32 @@ const { Option } = Select;
  * @returns 
  */
 const TitleConfig = (props) => {
-    let config  =  props.config
+    let config = props.config
     console.log(props)
-   
+
     const [form] = Form.useForm();
     /**
      * 表单变化，调用父组件派发方法
      */
     const formChange = () => {
         let newFormValue = form.getFieldsValue(true)
-        props.storeChange('title',newFormValue);
+        newFormValue = formateFormData(newFormValue)
+        props.storeChange('title', newFormValue);
+    }
+    /**
+     * 通过颜色选择器更改色值变量
+     */
+    const updateColor = (field, Newcolors) => {
+        let newFormValue = form.getFieldsValue(true)
+        newFormValue[field] = Newcolors
+        props.storeChange('title', newFormValue);
     }
     return (
         <Form
             {...layout}
             name="title"
             form={form}
-            initialValues={config }
+            initialValues={config}
             onValuesChange={() => formChange()}
         >
             <Form.Item
@@ -47,10 +58,7 @@ const TitleConfig = (props) => {
                 label="标题色号"
                 name="titleTextColor"
             >
-                <span style={{ background: config.titleTextColor, padding: '5px 10px' }} 
-                // onClick={(e) => colorPickClick("titleTextColor", e)}
-                >{config.titleTextColor}</span>
-
+                <ColorPickerSingle updateColor={updateColor} field='titleTextColor' color={config.titleTextColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="标题字体"
@@ -74,10 +82,7 @@ const TitleConfig = (props) => {
                 label="副标题色号"
                 name="subtextColor"
             >
-                {/* <Input /> */}
-                <span style={{ background: config.subtextColor, padding: '5px 10px' }}
-                    // onClick={(e) => colorPickClick("subtextColor", e)}
-                    >{config.subtextColor}</span>
+                <ColorPickerSingle updateColor={updateColor} field='subtextColor' color={config.subtextColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="副标题字体"

@@ -103,7 +103,7 @@ export const yAxis_config = {
     yAxisMAX: null,
     // 轴线
     yAxisLineShow: true,
-    yAxisLineSymbol: ['none', 'arrow'],
+    yAxisLineSymbol: ["none", "arrow"],
     lineStylecolor: '#333',
     yAxisLineWidth: 1,
     yAxisLineType: 'solid',
@@ -145,6 +145,7 @@ export const bar_config = {
     barItemStyleColor: null,
     barItemStyleBorderColor: '#000',
     barItemStyleBorderWidth: 1,
+    barBorderRadius:[15, 5, 10, 0],
     barWidth: null,
     barMinHeight: null,
 }

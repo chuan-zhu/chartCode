@@ -1,7 +1,9 @@
 import React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch, Select } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import {axisTypetip,AxisMintip, AxisMAXtip} from '../../../utils/tipsUtils'
+import { axisTypetip, AxisMintip, AxisMAXtip } from '../../../utils/tipsUtils'
+import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
+import {formateFormData} from '../../../utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -30,6 +32,15 @@ const XAxisConfig = (props) => {
      */
     const formChange = () => {
         let newFormValue = form.getFieldsValue(true)
+        newFormValue = formateFormData(newFormValue)
+        props.storeChange('xAxis', newFormValue);
+    }
+    /**
+     * 通过颜色选择器更改色值变量
+     */
+    const updateColor = (field, Newcolors) => {
+        let newFormValue = form.getFieldsValue(true)
+        newFormValue[field] = Newcolors
         props.storeChange('xAxis', newFormValue);
     }
     return (
@@ -82,10 +93,7 @@ const XAxisConfig = (props) => {
                 label="轴名色号"
                 name="xAxisNameTextStyleColor"
             >
-                {/* <Input disabled={!config.show} /> */}
-                <span style={{ background: config.xAxisNameTextStyleColor, padding: '5px 10px' }}
-                    // onClick={(e) => colorPickClick("xAxisNameTextStyleColor", e)}
-                    >{config.xAxisNameTextStyleColor}</span>
+                <ColorPickerSingle updateColor={updateColor} field='xAxisNameTextStyleColor' color={config.xAxisNameTextStyleColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="轴名字体"
@@ -154,10 +162,7 @@ const XAxisConfig = (props) => {
                         name="lineStylecolor"
                         {...layoutLittle}
                     >
-                        {/* <Input disabled={!config.show} /> */}
-                        <span style={{ background: config.lineStylecolor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("lineStylecolor", e)}
-                            >{config.lineStylecolor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='lineStylecolor' color={config.lineStylecolor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="轴线宽度"
@@ -234,10 +239,7 @@ const XAxisConfig = (props) => {
                         name="xAxisLabelColor"
                         {...layoutLittle}
                     >
-                        {/* <Input disabled={!config.show} /> */}
-                        <span style={{ background: config.xAxisLabelColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("xAxisLabelColor", e)}
-                            >{config.xAxisLabelColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='xAxisLabelColor' color={config.xAxisLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体"
@@ -261,10 +263,7 @@ const XAxisConfig = (props) => {
                         name="xAxiSplitLineLineStyleColor"
                         {...layoutLittle}
                     >
-                        {/* <Input disabled={!config.show} /> */}
-                        <span style={{ background: config.xAxiSplitLineLineStyleColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("xAxiSplitLineLineStyleColor", e)}
-                            >{config.xAxiSplitLineLineStyleColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='xAxiSplitLineLineStyleColor' color={config.xAxiSplitLineLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="分隔线宽度"

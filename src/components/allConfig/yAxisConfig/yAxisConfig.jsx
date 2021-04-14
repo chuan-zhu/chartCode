@@ -1,8 +1,9 @@
 import React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch, Select } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import {axisTypetip,AxisMintip, AxisMAXtip} from '../../../utils/tipsUtils'
-
+import { axisTypetip, AxisMintip, AxisMAXtip } from '../../../utils/tipsUtils'
+import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
+import {formateFormData} from '../../../utils/utils'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
@@ -30,6 +31,15 @@ const YAxisConfig = (props) => {
      */
     const formChange = () => {
         let newFormValue = form.getFieldsValue(true)
+        newFormValue = formateFormData(newFormValue)
+        props.storeChange('yAxis', newFormValue);
+    }
+    /**
+     * 通过颜色选择器更改色值变量
+     */
+    const updateColor = (field, Newcolors) => {
+        let newFormValue = form.getFieldsValue(true)
+        newFormValue[field] = Newcolors
         props.storeChange('yAxis', newFormValue);
     }
     return (
@@ -83,10 +93,7 @@ const YAxisConfig = (props) => {
                 label="轴名色号"
                 name="yAxisNameTextStyleColor"
             >
-                {/* <Input disabled={!config.show} /> */}
-                <span style={{ background: config.yAxisNameTextStyleColor, padding: '5px 10px' }}
-                    // onClick={(e) => colorPickClick("yAxisNameTextStyleColor", e)}
-                    >{config.yAxisNameTextStyleColor}</span>
+                <ColorPickerSingle updateColor={updateColor} field='yAxisNameTextStyleColor' color={config.yAxisNameTextStyleColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="轴名字体"
@@ -155,10 +162,7 @@ const YAxisConfig = (props) => {
                         name="lineStylecolor"
                         {...layoutLittle}
                     >
-                        {/* <Input disabled={!config.show} /> */}
-                        <span style={{ background: config.lineStylecolor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("lineStylecolor", e)}
-                            >{config.lineStylecolor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='lineStylecolor' color={config.lineStylecolor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="轴线宽度"
@@ -235,10 +239,7 @@ const YAxisConfig = (props) => {
                         name="yAxisLabelColor"
                         {...layoutLittle}
                     >
-                        {/* <Input disabled={!config.show} /> */}
-                        <span style={{ background: config.yAxisLabelColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("yAxisLabelColor", e)}
-                            >{config.yAxisLabelColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='yAxisLabelColor' color={config.yAxisLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体"
@@ -262,10 +263,7 @@ const YAxisConfig = (props) => {
                         name="yAxisplitLineLineStyleColor"
                         {...layoutLittle}
                     >
-                        {/* <Input disabled={!config.show} /> */}
-                        <span style={{ background: config.yAxisplitLineLineStyleColor, padding: '5px 10px' }}
-                            // onClick={(e) => colorPickClick("yAxisplitLineLineStyleColor", e)}
-                            >{config.yAxisplitLineLineStyleColor}</span>
+                        <ColorPickerSingle updateColor={updateColor} field='yAxisplitLineLineStyleColor' color={config.yAxisplitLineLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="分隔线宽度"

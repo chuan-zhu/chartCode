@@ -4,6 +4,7 @@ import { unit2 } from '../../../utils/componentUtils'
 import {
     lefttip, toptip, positiontip, containLabeltip,
 } from '../../../utils/tipsUtils'
+import {formateFormData} from '../../../utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -25,6 +26,7 @@ const GridConfig = (props) => {
      */
     const formChange = () => {
         let newFormValue = form.getFieldsValue(true)
+        newFormValue = formateFormData(newFormValue)
         props.storeChange('grid', newFormValue);
     }
     return (

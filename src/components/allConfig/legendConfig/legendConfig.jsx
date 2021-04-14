@@ -1,10 +1,11 @@
 import React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch, Select, Col } from 'antd';
-
+import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
 import { unit2, unit1 } from '../../../utils/componentUtils'
 import {
     lefttip, toptip, positiontip,
 } from '../../../utils/tipsUtils'
+import {formateFormData} from '../../../utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -20,14 +21,21 @@ const { Option } = Select;
  */
 const LegendConfig = (props) => {
     let config = props.config
-    console.log(props)
-
     const [form] = Form.useForm();
     /**
      * 表单变化，调用父组件派发方法
      */
     const formChange = () => {
         let newFormValue = form.getFieldsValue(true)
+        newFormValue = formateFormData(newFormValue)
+        props.storeChange('legend', newFormValue);
+    }
+    /**
+  * 通过颜色选择器更改色值变量
+  */
+    const updateColor = (field, Newcolors) => {
+        let newFormValue = form.getFieldsValue(true)
+        newFormValue[field] = Newcolors
         props.storeChange('legend', newFormValue);
     }
     return (
@@ -81,10 +89,7 @@ const LegendConfig = (props) => {
                 label="文本颜色"
                 name="legendTextColor"
             >
-                {/* <input disabled={!config.show}></input> */}
-                <span style={{ background: config.legendTextColor, padding: '5px 10px' }}
-                // onClick={(e) => colorPickClick("legendTextColor", e)}
-                >{config.legendTextColor}</span>
+                <ColorPickerSingle updateColor={updateColor} field='legendTextColor' color={config.legendTextColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="字体"
