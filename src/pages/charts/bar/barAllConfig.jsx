@@ -11,7 +11,7 @@ import XAxisConfig from '@allConfig/xAxisConfig/xAxisConfig'
 import YAxisConfig from '@allConfig/yAxisConfig/yAxisConfig'
 import BarConfig from '@allConfig/barConfig/barConfig'
 import ColorConfig from '@allConfig/colorConfig/colorConfig'
-
+import TooltipConfig from '@allConfig/tooltipConfig/tooltipConfig'
 import { CONFIG } from '@redux/action-types'
 
 
@@ -52,7 +52,7 @@ const BarAllConfig = (props) => {
     return (
         <Collapse
             bordered={false}
-            // defaultActiveKey={['title', 'legend', 'grid', 4, 'xAxis', 'yAxis', 'bar']}
+            // defaultActiveKey={['title', 'legend', 'grid','tooltip', 'xAxis', 'yAxis', 'bar']}
             defaultActiveKey={['color']}
             expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
             className="site-collapse-custom-collapse"
@@ -78,8 +78,12 @@ const BarAllConfig = (props) => {
             >
                 <GridConfig config={config.grid} storeChange={storeChange} ></GridConfig>
             </Panel>
-            <Panel header="滚动展示" key="4" className="site-collapse-custom-panel">
-                <p>aaa</p>
+            <Panel header="提示信息" key="tooltip" className="site-collapse-custom-panel"
+             extra={
+                <Switch size="small" defaultChecked={config.tooltip.show} onClick={(checked, e) => showConfig(checked, e, 'tooltip')} />
+            }
+            >
+                <TooltipConfig config={config.tooltip} storeChange={storeChange}></TooltipConfig>
             </Panel>
             <Panel header="x坐标轴" key="xAxis" className="site-collapse-custom-panel"
                 extra={

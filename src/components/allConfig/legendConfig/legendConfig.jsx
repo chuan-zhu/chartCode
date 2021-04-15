@@ -5,7 +5,7 @@ import { unit2, unit1 } from '@utils/componentUtils'
 import {
     lefttip, toptip, positiontip,
 } from '@utils/tipsUtils'
-import {formateFormData,deBounce} from '@utils/utils'
+import { formateFormData, deBounce } from '@utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -25,11 +25,11 @@ const LegendConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange =  deBounce(() => {
+    const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('legend', newFormValue);
-    },500)
+    }, 500)
     /**
   * 通过颜色选择器更改色值变量
   */
@@ -89,7 +89,7 @@ const LegendConfig = (props) => {
                 label="文本颜色"
                 name="legendTextColor"
             >
-                <ColorPickerSingle updateColor={updateColor} field='legendTextColor' color={config.legendTextColor}></ColorPickerSingle>
+                <ColorPickerSingle updateColor={updateColor} field='legendTextColor' disabled={!config.show} color={config.legendTextColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="字体"

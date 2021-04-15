@@ -213,7 +213,7 @@ const ColorConfig = (props) => {
             value={ininVal()}
             onChange={(value) => handleChange(value, 'color')} tagRender={tagRender}
             tokenSeparators={[',']}></Select> */}
-          <ColorPicker updateColor={updateColor} colors={config.color} field='color'></ColorPicker>
+          <ColorPicker updateColor={updateColor} colors={config.color} disabled={!config.show} field='color'></ColorPicker>
         </Form.Item>
         </>
       }
@@ -247,13 +247,13 @@ const ColorConfig = (props) => {
             label="渐变色起"
             name="linearColorStart"
           >
-            <ColorPicker updateColor={updateColor} colors={config.linearColorStart} field='linearColorStart'></ColorPicker>
+            <ColorPicker updateColor={updateColor} colors={config.linearColorStart} disabled={!config.show} field='linearColorStart'></ColorPicker>
           </Form.Item>
           <Form.Item
             label="渐变色止"
             name="linearColorEnd"
           >
-             <ColorPicker updateColor={updateColor} colors={config.linearColorEnd} field='linearColorEnd'></ColorPicker>
+            <ColorPicker updateColor={updateColor} colors={config.linearColorEnd} disabled={!config.show} field='linearColorEnd'></ColorPicker>
           </Form.Item>
         </>
       }

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Form, Input,Switch } from 'antd';
+import { Form, Input, Switch } from 'antd';
 import { unit2 } from '@utils/componentUtils'
 import {
     lefttip, toptip, positiontip, containLabeltip,
 } from '@utils/tipsUtils'
-import {formateFormData,deBounce} from '@utils/utils'
+import { formateFormData, deBounce } from '@utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -24,11 +24,11 @@ const GridConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange =  deBounce(() => {
+    const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('grid', newFormValue);
-    },500)
+    }, 500)
     return (
         <Form
             {...layout}

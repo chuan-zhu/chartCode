@@ -9,7 +9,7 @@ import * as echarts from 'echarts'
 import './bar.css'
 const Bar = () => {
 
-    let { config: { title, legend, grid, xAxis, yAxis, bar, color } } = useSelector((state) => ({ config: state.barConfig, }));
+    let { config: { title, legend, grid, xAxis, yAxis, bar, color, tooltip } } = useSelector((state) => ({ config: state.barConfig, }));
     // 不可编辑的数组
     const data = [{
         name: "销量",
@@ -67,6 +67,16 @@ const Bar = () => {
             right: grid.gridRight,
             bottom: grid.gridBottom,
             containLabel: grid.gridContainLabel
+        }
+        const tooltipConfig = {
+            show: tooltip.show,
+            trigger: tooltip.trigger,
+            triggerOn: tooltip.triggerOn,
+            formatter: tooltip.formatter,
+            backgroundColor: tooltip.backgroundColor,
+            borderColor: tooltip.borderColor,
+            borderWidth: tooltip.borderWidth,
+            padding: tooltip.padding,
         }
         const xAxisConfig = {
             show: xAxis.show,
@@ -172,7 +182,7 @@ const Bar = () => {
             },
             splitLine: {
                 // 分割线
-                show: yAxis.yAxisplitLineShow,
+                show: yAxis.yAxiSplitLineIsShow,
                 lineStyle: {
                     color: yAxis.yAxisplitLineLineStyleColor,
                     width: yAxis.yAxisplitLineLineStyleWidth,
@@ -259,7 +269,7 @@ const Bar = () => {
         colorConfig()
         return {
             title: titleConfig,
-            tooltip: {},
+            tooltip: tooltipConfig,
             legend: legendConfig,
             grid: gridConfig,
             xAxis: xAxisConfig,
@@ -280,7 +290,7 @@ const Bar = () => {
         })
         return obj;
     }
-    const option =  removePropertyOfNull(getOption())
+    const option = removePropertyOfNull(getOption())
 
 
     let [showCode, setShowCode] = useState(false)
@@ -289,7 +299,7 @@ const Bar = () => {
             <Row className="graph-wrap">
                 <Col span={17} className="graph-part bar-part" >
                     <div id="bar">
-                        <Canvans option = {option}></Canvans>
+                        <Canvans option={option}></Canvans>
                     </div>
                 </Col>
                 <Col span={7} className="graph-part">
@@ -308,7 +318,7 @@ const Bar = () => {
                 onClose={() => setShowCode(false)}
                 visible={showCode}
                 bodyStyle={{ paddingBottom: 80 }}>
-                <CodeBoard  option = {option}></CodeBoard>
+                <CodeBoard option={option}></CodeBoard>
             </Drawer>
         </>
     )

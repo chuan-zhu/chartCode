@@ -110,18 +110,18 @@ export const yAxis_config = {
     yAxisLineOpacity: 1,
     // 刻度
     yAxisTickShow: false,
-    yAxisTickInside: true,
+    yAxisTickInside: false,
     yAxisTickLength: 5,
     // 刻度标签
     yAxisLabelShow: true,
-    yAxisLabelInside: true,
+    yAxisLabelInside: false,
     yAxisLabelRotate: 0,
     yAxisLabelMargin: 0,
     yAxisLabelColor: 'black',
     yAxisLabelFontFamily: 'sans-serif',
     yAxisLabelFontSize: 12,
     // 分割线
-    yAxisplitLineShow: true,
+    yAxiSplitLineIsShow: true,
     yAxisplitLineLineStyleColor: ['green'],
     yAxisplitLineLineStyleWidth: 1,
     yAxisplitLineLineStyleType: 'dashed',
@@ -160,10 +160,10 @@ export const color_config = {
 export const tooltip_config = {
     show: true,
     trigger : 'item',
-    triggerOn : 'mousemove|click',
+    triggerOn : 'mousemove',
     formatterType:"string",//模板字符串  回调函数
-    formatter :'{b0}: {c0}<br />{b1}: {c1}',
-    backgroundColor :'rgba(50,50,50,0.7)',
+    formatter :'{a}<br />{b}:{c}',
+    backgroundColor :'rgba(250,250,250,0.7)',
     borderColor : '#333',
     borderWidth:null,
     padding : 5

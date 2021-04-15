@@ -3,7 +3,7 @@ import { Collapse, Form, Input, InputNumber, Switch, Select } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { axisTypetip, AxisMintip, AxisMAXtip } from '@utils/tipsUtils'
 import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
-import {formateFormData,deBounce} from '@utils/utils'
+import { formateFormData, deBounce } from '@utils/utils'
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 14 },
@@ -32,8 +32,9 @@ const YAxisConfig = (props) => {
     const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
+        console.log()
         props.storeChange('yAxis', newFormValue);
-    },500);
+    }, 500);
     /**
      * 通过颜色选择器更改色值变量
      */
@@ -93,7 +94,8 @@ const YAxisConfig = (props) => {
                 label="轴名色号"
                 name="yAxisNameTextStyleColor"
             >
-                <ColorPickerSingle updateColor={updateColor} field='yAxisNameTextStyleColor' color={config.yAxisNameTextStyleColor}></ColorPickerSingle>
+                <ColorPickerSingle updateColor={updateColor} field='yAxisNameTextStyleColor'
+                    disabled={!config.show} color={config.yAxisNameTextStyleColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="轴名字体"
@@ -151,32 +153,40 @@ const YAxisConfig = (props) => {
             >
                 <Panel header="坐标轴轴线" key="axisLine" className="site-collapse-custom-panel">
                     <Form.Item
+                        label="是否展示"
+                        name="yAxisLineShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.yAxisLineShow} ></Switch>
+                    </Form.Item>
+                    <Form.Item
                         label="轴线箭头"
                         name="yAxisLineSymbol"
                         {...layoutLittle}
                     >
-                        <Input disabled={!config.show} />
+                        <Input disabled={!config.show || !config.yAxisLineShow} />
                     </Form.Item>
                     <Form.Item
                         label="轴线颜色"
                         name="lineStylecolor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='lineStylecolor' color={config.lineStylecolor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='lineStylecolor'
+                            disabled={!config.show || !config.yAxisLineShow} color={config.lineStylecolor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="轴线宽度"
                         name="yAxisLineWidth"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxisLineShow} />
                     </Form.Item>
                     <Form.Item
                         label="轴线类型"
                         name="yAxisLineType"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.yAxisLineShow} >
                             <Option value="solid">实线</Option>
                             <Option value="dashed"> 虚线</Option>
                             <Option value="dotted">点线</Option>
@@ -187,18 +197,25 @@ const YAxisConfig = (props) => {
                         name="yAxisLineOpacity"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxisLineShow} />
                     </Form.Item>
                 </Panel>
                 <Panel header="坐标轴刻度" key="axisTick" className="site-collapse-custom-panel">
+                    <Form.Item
+                        label="是否展示"
+                        name="yAxisTickShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.yAxisTickShow} ></Switch>
+                    </Form.Item>
                     <Form.Item
                         label="刻度朝向"
                         name="yAxisTickInside"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
-                            <Option value={true}>朝外</Option>
-                            <Option value={false}> 朝内</Option>
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.yAxisTickShow}  >
+                            <Option value={false}>朝外</Option>
+                            <Option value={true}> 朝内</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -206,18 +223,25 @@ const YAxisConfig = (props) => {
                         name="yAxisTickLength"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxisTickShow} />
                     </Form.Item>
                 </Panel>
                 <Panel header="坐标轴刻度标签" key="axisLabel" className="site-collapse-custom-panel">
+                    <Form.Item
+                        label="是否展示"
+                        name="yAxisLabelShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.yAxisLabelShow} ></Switch>
+                    </Form.Item>
                     <Form.Item
                         label="标签朝向"
                         name="yAxisLabelInside"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
-                            <Option value={true}>朝外</Option>
-                            <Option value={false}> 朝内</Option>
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.yAxisLabelShow} >
+                            <Option value={false}>朝外</Option>
+                            <Option value={true}> 朝内</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -225,59 +249,68 @@ const YAxisConfig = (props) => {
                         name="yAxisLabelRotate"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxisLabelShow} />
                     </Form.Item>
                     <Form.Item
                         label="与轴线间距"
                         name="yAxisLabelMargin"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxisLabelShow} />
                     </Form.Item>
                     <Form.Item
                         label="标签颜色"
                         name="yAxisLabelColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='yAxisLabelColor' color={config.yAxisLabelColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='yAxisLabelColor'
+                            disabled={!config.show || !config.yAxisLabelShow} color={config.yAxisLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体"
                         name="yAxisLabelFontFamily"
                         {...layoutLittle}
                     >
-                        <Input disabled={!config.show} />
+                        <Input disabled={!config.show || !config.yAxisLabelShow} />
                     </Form.Item>
                     <Form.Item
                         label="标签字体大小"
                         name="yAxisLabelFontSize"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxisLabelShow} />
                     </Form.Item>
 
                 </Panel>
                 <Panel header="分隔线" key="yAxisplitLine" className="site-collapse-custom-panel">
                     <Form.Item
+                        label="是否展示"
+                        name="yAxiSplitLineIsShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.yAxiSplitLineIsShow} ></Switch>
+                    </Form.Item>
+                    <Form.Item
                         label="分隔线颜色"
                         name="yAxisplitLineLineStyleColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='yAxisplitLineLineStyleColor' color={config.yAxisplitLineLineStyleColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='yAxisplitLineLineStyleColor'
+                            disabled={!config.show || !config.yAxiSplitLineIsShow} color={config.yAxisplitLineLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="分隔线宽度"
                         name="yAxisplitLineLineStyleWidth"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxiSplitLineIsShow} />
                     </Form.Item>
                     <Form.Item
                         label="分隔线类型"
                         name="yAxisplitLineLineStyleType"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.yAxiSplitLineIsShow} >
                             <Option value="solid">实线</Option>
                             <Option value="dashed"> 虚线</Option>
                             <Option value="dotted">点线</Option>
@@ -288,12 +321,9 @@ const YAxisConfig = (props) => {
                         name="yAxisplitLineLineStyleOpacity"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.yAxiSplitLineIsShow} />
                     </Form.Item>
                 </Panel>
-
-
-
             </Collapse>
         </Form>
     )

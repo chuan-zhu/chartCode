@@ -111,7 +111,8 @@ const BarConfig = (props) => {
                         name="barLabelColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='barLabelColor' color={config.barLabelColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='barLabelColor'
+                             color={config.barLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体大小"
@@ -141,7 +142,8 @@ const BarConfig = (props) => {
                         name="barLabelLineStyleColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='barLabelLineStyleColor' color={config.barLabelLineStyleColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='barLabelLineStyleColor'
+                            color={config.barLabelLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="引导线宽度"
@@ -168,7 +170,8 @@ const BarConfig = (props) => {
                         name="barItemStyleBorderColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='barItemStyleBorderColor' color={config.barItemStyleBorderColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='barItemStyleBorderColor'
+                             color={config.barItemStyleBorderColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="柱体边框宽度"

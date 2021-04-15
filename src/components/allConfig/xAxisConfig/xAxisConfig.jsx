@@ -3,7 +3,7 @@ import { Collapse, Form, Input, InputNumber, Switch, Select } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { axisTypetip, AxisMintip, AxisMAXtip } from '@utils/tipsUtils'
 import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
-import {formateFormData,deBounce} from '@utils/utils'
+import { formateFormData, deBounce } from '@utils/utils'
 
 const layout = {
     labelCol: { span: 8 },
@@ -30,11 +30,11 @@ const XAxisConfig = (props) => {
     /**
      * 表单变化，调用父组件派发方法
      */
-    const formChange =  deBounce(() => {
+    const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
         props.storeChange('xAxis', newFormValue);
-    },500)
+    }, 500)
     /**
      * 通过颜色选择器更改色值变量
      */
@@ -93,7 +93,8 @@ const XAxisConfig = (props) => {
                 label="轴名色号"
                 name="xAxisNameTextStyleColor"
             >
-                <ColorPickerSingle updateColor={updateColor} field='xAxisNameTextStyleColor' color={config.xAxisNameTextStyleColor}></ColorPickerSingle>
+                <ColorPickerSingle updateColor={updateColor} field='xAxisNameTextStyleColor'
+                    disabled={!config.show} color={config.xAxisNameTextStyleColor}></ColorPickerSingle>
             </Form.Item>
             <Form.Item
                 label="轴名字体"
@@ -151,32 +152,40 @@ const XAxisConfig = (props) => {
             >
                 <Panel header="坐标轴轴线" key="axisLine" className="site-collapse-custom-panel">
                     <Form.Item
+                        label="是否展示"
+                        name="xAxisLineShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.xAxisLineShow} ></Switch>
+                    </Form.Item>
+                    <Form.Item
                         label="轴线箭头"
                         name="xAxisLineSymbol"
                         {...layoutLittle}
                     >
-                        <Input disabled={!config.show} />
+                        <Input disabled={!config.show || !config.xAxisLineShow} />
                     </Form.Item>
                     <Form.Item
                         label="轴线颜色"
                         name="lineStylecolor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='lineStylecolor' color={config.lineStylecolor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='lineStylecolor'
+                            disabled={!config.show || !config.xAxisLineShow} color={config.lineStylecolor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="轴线宽度"
                         name="xAxisLineWidth"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxisLineShow} />
                     </Form.Item>
                     <Form.Item
                         label="轴线类型"
                         name="xAxisLineType"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.xAxisLineShow} >
                             <Option value="solid">实线</Option>
                             <Option value="dashed"> 虚线</Option>
                             <Option value="dotted">点线</Option>
@@ -187,18 +196,25 @@ const XAxisConfig = (props) => {
                         name="xAxisLineOpacity"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxisLineShow} />
                     </Form.Item>
                 </Panel>
                 <Panel header="坐标轴刻度" key="axisTick" className="site-collapse-custom-panel">
+                    <Form.Item
+                        label="是否展示"
+                        name="xAxisTickShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.xAxisTickShow} ></Switch>
+                    </Form.Item>
                     <Form.Item
                         label="刻度朝向"
                         name="xAxisTickInside"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
-                            <Option value={true}>朝外</Option>
-                            <Option value={false}> 朝内</Option>
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.xAxisTickShow} >
+                            <Option value={false}>朝外</Option>
+                            <Option value={true}> 朝内</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -206,18 +222,25 @@ const XAxisConfig = (props) => {
                         name="xAxisTickLength"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxisTickShow} />
                     </Form.Item>
                 </Panel>
                 <Panel header="坐标轴刻度标签" key="axisLabel" className="site-collapse-custom-panel">
+                    <Form.Item
+                        label="是否展示"
+                        name="xAxisLabelShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.xAxisLabelShow} ></Switch>
+                    </Form.Item>
                     <Form.Item
                         label="标签朝向"
                         name="xAxisLabelInside"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
-                            <Option value={true}>朝外</Option>
-                            <Option value={false}> 朝内</Option>
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.xAxisLabelShow} >
+                            <Option value={false}>朝外</Option>
+                            <Option value={true}> 朝内</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -225,59 +248,68 @@ const XAxisConfig = (props) => {
                         name="xAxisLabelRotate"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxisLabelShow} />
                     </Form.Item>
                     <Form.Item
                         label="与轴线间距"
                         name="xAxisLabelMargin"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxisLabelShow} />
                     </Form.Item>
                     <Form.Item
                         label="标签颜色"
                         name="xAxisLabelColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='xAxisLabelColor' color={config.xAxisLabelColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='xAxisLabelColor'
+                            disabled={!config.show || !config.xAxisLabelShow} color={config.xAxisLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体"
                         name="xAxisLabelFontFamily"
                         {...layoutLittle}
                     >
-                        <Input disabled={!config.show} />
+                        <Input disabled={!config.show || !config.xAxisLabelShow} />
                     </Form.Item>
                     <Form.Item
                         label="标签字体大小"
                         name="xAxisLabelFontSize"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxisLabelShow} />
                     </Form.Item>
 
                 </Panel>
                 <Panel header="分隔线" key="xAxiSplitLine" className="site-collapse-custom-panel">
                     <Form.Item
+                        label="是否展示"
+                        name="xAxiSplitLineShow"
+                        {...layoutLittle}
+                    >
+                        <Switch checked={config.xAxiSplitLineShow} ></Switch>
+                    </Form.Item>
+                    <Form.Item
                         label="分隔线颜色"
                         name="xAxiSplitLineLineStyleColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='xAxiSplitLineLineStyleColor' color={config.xAxiSplitLineLineStyleColor}></ColorPickerSingle>
+                        <ColorPickerSingle updateColor={updateColor} field='xAxiSplitLineLineStyleColor'
+                            disabled={!config.show || !config.xAxiSplitLineShow} color={config.xAxiSplitLineLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="分隔线宽度"
                         name="xAxiSplitLineLineStyleWidth"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxiSplitLineShow} />
                     </Form.Item>
                     <Form.Item
                         label="分隔线类型"
                         name="xAxiSplitLineLineStyleType"
                         {...layoutLittle}
                     >
-                        <Select style={{ width: 120 }} disabled={!config.show} >
+                        <Select style={{ width: 120 }} disabled={!config.show || !config.xAxiSplitLineShow} >
                             <Option value="solid">实线</Option>
                             <Option value="dashed"> 虚线</Option>
                             <Option value="dotted">点线</Option>
@@ -288,7 +320,7 @@ const XAxisConfig = (props) => {
                         name="xAxiSplitLineLineStyleOpacity"
                         {...layoutLittle}
                     >
-                        <InputNumber disabled={!config.show} />
+                        <InputNumber disabled={!config.show || !config.xAxiSplitLineShow} />
                     </Form.Item>
                 </Panel>
 
