@@ -2,7 +2,10 @@ import React, { Component, useState, useEffect } from 'react'
 import { Collapse, Form, Input, Button, Checkbox, InputNumber, Switch, Select, Col, Cascader, Tag, Tooltip } from 'antd';
 import ColorPicker from '../../colorPicker/colorPicker'
 import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
+import { SYSTEM_COLOR, SYSTEM_COLOR_LINEAR_START, SYSTEM_COLOR_LINEAR_END } from '@utils/constants'
 
+import { radialColortip } from '@utils/tipsUtils'
+import ColorSpan from './linearColorSpan'
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 14 },
@@ -17,67 +20,6 @@ const { Option } = Select;
  */
 const ColorConfig = (props) => {
   let config = props.config
-  // const color1 = [new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#7EAAF9" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#3F77DB" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#FEC368" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#DC8901" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#B6A1E5" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#8C6BD4" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#7CC6D1" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#388F98" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#BBDD86" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#7A9930" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#E89BDF" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#79337A" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#93DEB1" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#3D765A" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#E19ABF" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#891948" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#F49A9A" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#A42222" // 100% 处的颜色
-  // }], false), new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-  //     offset: 1,
-  //     color: "#6B6B6B" // 0% 处的颜色
-  // }, {
-  //     offset: 0,
-  //     color: "#2D2D2D" // 100% 处的颜色
-  // }], false)]
   const options = [
     {
       value: 'define',
@@ -114,6 +56,10 @@ const ColorConfig = (props) => {
    */
   const formChange = () => {
     let newFormValue = form.getFieldsValue(true)
+    if (newFormValue.colorType == "system,linear") {
+      newFormValue.linearColorStart = SYSTEM_COLOR_LINEAR_START[newFormValue.linearColorSeries]
+      newFormValue.linearColorEnd = SYSTEM_COLOR_LINEAR_END[newFormValue.linearColorSeries]
+    }
     Object.keys(newFormValue).forEach(item => {
       if (typeof (newFormValue[item]) == "string") {
         let isArr = newFormValue[item].indexOf(',')
@@ -122,6 +68,7 @@ const ColorConfig = (props) => {
         }
       }
     })
+
     props.storeChange('color', newFormValue);
   }
   const { colorType } = config
@@ -146,8 +93,17 @@ const ColorConfig = (props) => {
     handleChange(newFormValue[key], 'color')
     // props.storeChange('color', newFormValue);
   }
-
-
+  const systemColor = () => {
+    SYSTEM_COLOR.map(series => {
+      return <Option value={series}>
+        {
+          series.map(itemColor => {
+            return <Tag color={itemColor}></Tag>
+          })
+        }
+      </Option>
+    })
+  }
   return (
     <Form
       {...layout}
@@ -168,51 +124,86 @@ const ColorConfig = (props) => {
           label="色系选择"
           name="color"
         >
-          <Select defaultValue="lucy" style={{ width: 120 }} >
-            <Option value="jack">色系一</Option>
-            <Option value="lucy">色系二</Option>
-            <Option value="Yiminghe">色系三</Option>
+          <Select >
+            {
+              SYSTEM_COLOR.map(series => {
+                return <Option value={series}>
+                  {
+                    series.map(itemColor => {
+                      return <Tag color={itemColor}></Tag>
+                    })
+                  }
+                </Option>
+              })
+            }
           </Select>
         </Form.Item>
       }
       {
         // 使用系统默认的色系，纯下拉框选择
-        colorType[0] == 'system' && colorType[1] == 'linear' && <><Form.Item
-          label="渐变方向"
-          name="colorDirection"
-        >
-          <Select defaultValue="0,1,0,0" style={{ width: 120 }} >
-            <Option value="0,1,0,0">↓</Option>
-            <Option value="0,0,0,1">↑</Option>
-            <Option value="0,0,1,0">→</Option>
-            <Option value="1,0,0,0">←</Option>
-            <Option value="0,0,1,1">↗</Option>
-            <Option value="1,1,0,0">↙</Option>
-            <Option value="1,0,0,1">↖</Option>
-            <Option value="0,1,1,0">↘</Option>
-          </Select>
-        </Form.Item>
+        colorType[0] == 'system' && colorType[1] == 'linear' && <>
+
           <Form.Item
-            label="色系选择"
-            name="color3"
+            label="渐变类型"
+            name="linearType"
           >
-            <Select defaultValue="lucy" style={{ width: 120 }} >
-              <Option value="jack">色系一</Option>
-              <Option value="lucy">色系二</Option>
-              <Option value="Yiminghe">色系三</Option>
+            <Select style={{ width: 120 }} >
+              <Option value="linear">线性渐变</Option>
+              <Option value="radial">径向渐变</Option>
             </Select>
-          </Form.Item></>
+          </Form.Item>
+          {
+            config.linearType == 'linear' &&
+            <Form.Item
+              label="渐变方向"
+              name="linearColorDirection"
+            >
+              <Select defaultValue="0,0,0,1" style={{ width: 120 }} >
+                <Option value='0,0,0,1'>↑</Option>
+                <Option value="0,1,0,0">↓</Option>
+                <Option value="0,0,1,0">→</Option>
+                <Option value="1,0,0,0">←</Option>
+                <Option value="0,0,1,1">↗</Option>
+                <Option value="1,1,0,0">↙</Option>
+                <Option value="1,0,0,1">↖</Option>
+                <Option value="0,1,1,0">↘</Option>
+              </Select>
+            </Form.Item>
+          }
+
+          {
+            config.linearType == 'radial' &&
+            <Form.Item
+              label="渐变方向"
+              name="radialColorDirection"
+              tooltip={radialColortip}
+            >
+              <Input></Input>
+            </Form.Item>
+          }
+          <Form.Item
+            label="渐变色系"
+            name="linearColorSeries"
+          >
+            <Select onChange={console.log("dadasda")} >
+              {
+                SYSTEM_COLOR_LINEAR_START.map((series, i) => {
+                  return <Option value={i}>
+                    {
+                      <ColorSpan startColor={series} endColor={SYSTEM_COLOR_LINEAR_END[i]}></ColorSpan>
+                    }
+                  </Option>
+                })
+              }
+            </Select>
+          </Form.Item>
+        </>
       }
       {
         // 使用自定义的色系，调用颜色选择器配置
         colorType[0] == 'define' && colorType[1] == 'solid' && <> <Form.Item
           label="添加颜色"
-        // name="color"
         >
-          {/* <Select mode="tags" style={{ width: '100%' }}
-            value={ininVal()}
-            onChange={(value) => handleChange(value, 'color')} tagRender={tagRender}
-            tokenSeparators={[',']}></Select> */}
           <ColorPicker updateColor={updateColor} colors={config.color} disabled={!config.show} field='color'></ColorPicker>
         </Form.Item>
         </>
@@ -228,21 +219,34 @@ const ColorConfig = (props) => {
             <Option value="radial">径向渐变</Option>
           </Select>
         </Form.Item>
-          <Form.Item
-            label="渐变方向"
-            name="linearColorDirection"
-          >
-            <Select defaultValue="0,0,0,1" style={{ width: 120 }} >
-              <Option value='[0,0,0,1]'>↑</Option>
-              <Option value="0,1,0,0">↓</Option>
-              <Option value="0,0,1,0">→</Option>
-              <Option value="1,0,0,0">←</Option>
-              <Option value="0,0,1,1">↗</Option>
-              <Option value="1,1,0,0">↙</Option>
-              <Option value="1,0,0,1">↖</Option>
-              <Option value="0,1,1,0">↘</Option>
-            </Select>
-          </Form.Item>
+          {
+            config.linearType == 'linear' &&
+            <Form.Item
+              label="渐变方向"
+              name="linearColorDirection"
+            >
+              <Select defaultValue="0,0,0,1" style={{ width: 120 }} >
+                <Option value='0,0,0,1'>↑</Option>
+                <Option value="0,1,0,0">↓</Option>
+                <Option value="0,0,1,0">→</Option>
+                <Option value="1,0,0,0">←</Option>
+                <Option value="0,0,1,1">↗</Option>
+                <Option value="1,1,0,0">↙</Option>
+                <Option value="1,0,0,1">↖</Option>
+                <Option value="0,1,1,0">↘</Option>
+              </Select>
+            </Form.Item>
+          }
+          {
+            config.linearType == 'radial' &&
+            <Form.Item
+              label="渐变方向"
+              name="radialColorDirection"
+              tooltip={radialColortip}
+            >
+              <Input></Input>
+            </Form.Item>
+          }
           <Form.Item
             label="渐变色起"
             name="linearColorStart"
@@ -257,15 +261,6 @@ const ColorConfig = (props) => {
           </Form.Item>
         </>
       }
-      <Form.Item
-        label="x轴位置"
-        name="xAxisPosition"
-      >
-        <Select style={{ width: 120 }} disabled={!config.show} >
-          <Option value="top">顶部</Option>
-          <Option value="bottom">底部</Option>
-        </Select>
-      </Form.Item>
     </Form>
   )
 }

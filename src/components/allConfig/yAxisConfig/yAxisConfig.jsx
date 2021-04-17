@@ -81,7 +81,7 @@ const YAxisConfig = (props) => {
                 <Input disabled={!config.show} />
             </Form.Item>
             <Form.Item
-                label="轴名位置。"
+                label="轴名位置"
                 name="yAxisNameLocation"
             >
                 <Select style={{ width: 120 }} disabled={!config.show} >

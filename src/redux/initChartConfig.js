@@ -154,8 +154,10 @@ export const color_config = {
     color:["#6F9CEB", "#FEC368"],
     linearType:'linear',
     linearColorDirection:'0,0,0,1',
+    radialColorDirection:'0.5,0.5,1',
     linearColorStart:["#7EAAF9","#FEC368","#B6A1E5","#7CC6D1"],
-    linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"]
+    linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"],
+    linearColorSeries: 0
 }
 export const tooltip_config = {
     show: true,

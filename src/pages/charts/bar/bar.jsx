@@ -249,7 +249,7 @@ const Bar = () => {
                     })
                 } else {
                     linearColorStart.forEach((item, index) => {
-                        let colorItem = new echarts.graphic.RadialGradient(...color.linearColorDirection, [{
+                        let colorItem = new echarts.graphic.RadialGradient(...color.radialColorDirection, [{
                             offset: 1,
                             color: linearColorStart[index] // 0% 处的颜色
                         }, {
