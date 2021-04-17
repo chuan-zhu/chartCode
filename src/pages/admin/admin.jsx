@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import LeftNav from '../../components/left-nav'
 import Home from '../home/home'
 import Bar from '../charts/bar/bar'
-import Line from '../charts/line'
+import Line from '../charts/line/line'
 import Pie from '../charts/pie'
 import NotFound from '../not-found/not-found'
 

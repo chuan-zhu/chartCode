@@ -127,6 +127,28 @@ export const yAxis_config = {
     yAxisplitLineLineStyleType: 'dashed',
     yAxisplitLineLineStyleOpacity: 1
 }
+
+export const color_config = {
+    colorType:["define", "solid"],
+    color:["#6F9CEB", "#FEC368"],
+    linearType:'linear',
+    linearColorDirection:'0,0,0,1',
+    radialColorDirection:'0.5,0.5,1',
+    linearColorStart:["#7EAAF9","#FEC368","#B6A1E5","#7CC6D1"],
+    linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"],
+    linearColorSeries: 0
+}
+export const tooltip_config = {
+    show: true,
+    trigger : 'item',
+    triggerOn : 'mousemove',
+    formatterType:"string",//模板字符串  回调函数
+    formatter :'{a}<br />{b}:{c}',
+    backgroundColor :'rgba(250,250,250,0.7)',
+    borderColor : '#333',
+    borderWidth:null,
+    padding : 5
+}
 export const bar_config = {
     barName: '',
     barLegendHoverLink: true,
@@ -149,24 +171,25 @@ export const bar_config = {
     barWidth: null,
     barMinHeight: null,
 }
-export const color_config = {
-    colorType:["define", "solid"],
-    color:["#6F9CEB", "#FEC368"],
-    linearType:'linear',
-    linearColorDirection:'0,0,0,1',
-    radialColorDirection:'0.5,0.5,1',
-    linearColorStart:["#7EAAF9","#FEC368","#B6A1E5","#7CC6D1"],
-    linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"],
-    linearColorSeries: 0
-}
-export const tooltip_config = {
-    show: true,
-    trigger : 'item',
-    triggerOn : 'mousemove',
-    formatterType:"string",//模板字符串  回调函数
-    formatter :'{a}<br />{b}:{c}',
-    backgroundColor :'rgba(250,250,250,0.7)',
-    borderColor : '#333',
-    borderWidth:null,
-    padding : 5
+export const line_config = {
+    barName: '',
+    barLegendHoverLink: true,
+    barLabelShow: true,
+    barLabelPosition: 'inside',
+    barLabelDistance: 5,
+    barLabelRotate: 0,
+    barLabelOffset: [10, 30],
+    barLabelColor: "#fff",
+    barLabelFontSize: 12,
+    barLabelLineShow: false,
+    barLabelLineSmooth: true,
+    barLabelLineStyleColor: "blue",
+    barLabelLineStyleWidth: 1,
+    barLabelLineStyleYype: 'solid',
+    barItemStyleColor: null,
+    barItemStyleBorderColor: '#000',
+    barItemStyleBorderWidth: 1,
+    barBorderRadius:[15, 5, 10, 0],
+    barWidth: null,
+    barMinHeight: null,
 }

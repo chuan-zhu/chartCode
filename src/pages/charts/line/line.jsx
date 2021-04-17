@@ -1,17 +1,15 @@
 import React, { Component, useState } from 'react'
 import { Row, Col, Button, Drawer } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons';
-import BarConfig from './barConfig'
+import LineConfig from './lineConfig'
 import Canvans from '@components/canvas/canvas'
 import CodeBoard from '@components/codeBoard/codeBoard'
 import { useSelector } from 'react-redux'
 import * as echarts from 'echarts'
-import './bar.css'
-const Bar = () => {
-    let { allConfig } = useSelector((state) => ({ allConfig: state }));
-    console.log(allConfig)
-    
-    let { config: { title, legend, grid, xAxis, yAxis, bar, color, tooltip } } = useSelector((state) => ({ config: state.barConfig, }));
+import './line.css'
+const Line = () => {
+
+    let { config: { title, legend, grid, xAxis, yAxis, line, color, tooltip } } = useSelector((state) => ({ config: state.lineConfig, }));
     // 不可编辑的数组
     const data = [{
         name: "销量",
@@ -19,7 +17,7 @@ const Bar = () => {
     },
     {
         name: "库存",
-        value: [5, 20, 36, 10, 10, 20]
+        value: [15, 12, 34, 45, 25, 37]
     }
     ]
     const getOption = () => {
@@ -198,35 +196,35 @@ const Bar = () => {
             data.forEach(item => {
                 let seriesItem = {
                     name: item.name,
-                    type: 'bar',
-                    legendHoverLink: bar.barLegendHoverLink,
+                    type: 'line',
+                    legendHoverLink: line.lineLegendHoverLink,
                     label: {
-                        show: bar.barLabelShow,
-                        position: bar.barLabelPosition,
-                        distance: bar.barLabelDistance,
-                        rotate: bar.barLabelRotate,
-                        offset: bar.barLabelOffset,
-                        color: bar.barLabelColor,
-                        fontSize: bar.barLabelFontSize,
+                        show: line.lineLabelShow,
+                        position: line.lineLabelPosition,
+                        distance: line.lineLabelDistance,
+                        rotate: line.lineLabelRotate,
+                        offset: line.lineLabelOffset,
+                        color: line.lineLabelColor,
+                        fontSize: line.lineLabelFontSize,
                     },
                     labelLine: {
-                        show: bar.barLabelLineShow,
-                        smooth: bar.barLabelLineSmooth,
+                        show: line.lineLabelLineShow,
+                        smooth: line.lineLabelLineSmooth,
                         lineStyle: {
-                            color: bar.barLabelLineStyleColor,
-                            width: bar.barLabelLineStyleWidth,
-                            type: bar.barLabelLineStyleYype,
+                            color: line.lineLabelLineStyleColor,
+                            width: line.lineLabelLineStyleWidth,
+                            type: line.lineLabelLineStyleYype,
                         }
 
                     },
                     itemStyle: {
-                        color: bar.barItemStyleColor,
-                        borderColor: bar.barItemStyleBorderColor,
-                        borderWidth: bar.barItemStyleBorderWidth,
-                        borderRadius: bar.barBorderRadius,
+                        color: line.lineItemStyleColor,
+                        borderColor: line.lineItemStyleBorderColor,
+                        borderWidth: line.lineItemStyleBorderWidth,
+                        borderRadius: line.lineBorderRadius,
                     },
-                    barWidth: bar.barWidth,
-                    barMinHeight: bar.barMinHeight,
+                    lineWidth: line.lineWidth,
+                    lineMinHeight: line.lineMinHeight,
                     data: item.value
                 }
                 seriesArr.push(seriesItem)
@@ -299,13 +297,13 @@ const Bar = () => {
     return (
         <>
             <Row className="graph-wrap">
-                <Col span={17} className="graph-part bar-part" >
-                    <div id="bar">
+                <Col span={17} className="graph-part line-part" >
+                    <div id="line">
                         <Canvans option={option}></Canvans>
                     </div>
                 </Col>
                 <Col span={7} className="graph-part">
-                    <BarConfig></BarConfig>
+                    <LineConfig></LineConfig>
                 </Col>
             </Row>
             <Row style={{ height: '50px', borderTop: '1px solid #1890ff' }} align="middle">
@@ -327,4 +325,4 @@ const Bar = () => {
 
 }
 
-export default Bar
+export default Line

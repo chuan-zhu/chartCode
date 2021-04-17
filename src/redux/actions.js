@@ -8,7 +8,6 @@ import {
   RECEIVE_USER,
   SHOW_ERROR_MSG,
   RESET_USER,
-  TITLE_CONFIG
 } from './action-types'
 import storageUtils from "../utils/storageUtils";
 
@@ -48,8 +47,4 @@ export const login = (username, password) => {
 
 
 
-/*
-标题修改action
- */
-export const setTitle = (titleConfig) => ({ type: TITLE_CONFIG, titleConfig })
 

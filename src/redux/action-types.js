@@ -8,12 +8,8 @@ export const RESET_USER = 'reset_user' // 重置用户信息
 
 
 
-
-
-export const TITLE_CONFIG = 'title_config'
-export const LEGEND_CONFIG = 'legend_config'
-
 export const CONFIG = 'config'
+export const LINE_CONFIG = 'line_config'
 
 
 

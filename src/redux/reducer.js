@@ -12,14 +12,14 @@ import {
   RECEIVE_USER,
   SHOW_ERROR_MSG,
   RESET_USER,
-  TITLE_CONFIG,
-  LEGEND_CONFIG,
-  CONFIG
+  
+  CONFIG,
+  LINE_CONFIG
 } from './action-types'
 
 import {
-  title_config, legend_config, grid_config,
-  xAxis_config, yAxis_config, bar_config, color_config, tooltip_config
+  title_config, legend_config, grid_config, xAxis_config, yAxis_config, color_config, tooltip_config,
+  bar_config, line_config
 } from './initChartConfig'
 
 const initHeadTitle = ''
@@ -53,18 +53,16 @@ function user(state = initUser, action) {
   }
 }
 
-//
-let titleConfigs = { ...title_config }
 // const barConfigObj = Object.assign(titleConfigs, legend_config,grid_config,xAxis_config,yAxis_config)
 const barConfigObj = {
-  title: title_config,
-  legend: legend_config,
-  grid: grid_config,
-  xAxis: xAxis_config,
-  yAxis: yAxis_config,
-  bar: bar_config,
-  color: color_config,
-  tooltip: tooltip_config
+  title: { ...title_config },
+  legend: { ...legend_config },
+  grid: { ...grid_config },
+  xAxis: { ...xAxis_config },
+  yAxis: { ...yAxis_config },
+  color: { ...color_config },
+  tooltip: { ...tooltip_config },
+  bar: { ...bar_config },
 }
 function barConfig(state = barConfigObj, action) {
   switch (action.type) {
@@ -74,7 +72,24 @@ function barConfig(state = barConfigObj, action) {
       return state
   }
 }
-
+const lineConfigObj = {
+  title: { ...title_config },
+  legend: { ...legend_config },
+  grid: { ...grid_config },
+  xAxis: { ...xAxis_config },
+  yAxis: { ...yAxis_config },
+  color: { ...color_config },
+  tooltip: { ...tooltip_config },
+  line: { ...line_config },
+}
+function lineConfig(state = lineConfigObj, action) {
+  switch (action.type) {
+    case LINE_CONFIG:
+      return action.payload
+    default:
+      return state
+  }
+ } 
 /*
 向外默认暴露的是合并产生的总的reducer函数
 管理的总的state的结构:
@@ -86,7 +101,8 @@ function barConfig(state = barConfigObj, action) {
 export default combineReducers({
   headTitle,
   user,
-  barConfig
+  barConfig,
+  lineConfig
 })
 
 
