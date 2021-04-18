@@ -19,7 +19,7 @@ const { Panel } = Collapse;
 
 const LineAllConfig = (props) => {
     let { config } = useSelector((state) => ({ config: state.lineConfig, }));
-    console.log(config)
+    console.log("全部配置",config)
     let dispatch = useDispatch(); //取得派发方法
     /**
      * 是否展示点击回调
@@ -101,7 +101,7 @@ const LineAllConfig = (props) => {
                 <YAxisConfig config={config.yAxis} storeChange={storeChange}></YAxisConfig>
 
             </Panel>
-            <Panel header="柱图配置" key="line" className="site-collapse-custom-panel"
+            <Panel header="线图配置" key="line" className="site-collapse-custom-panel"
 
             >
                 <LineConfig config={config.line} storeChange={storeChange}></LineConfig>

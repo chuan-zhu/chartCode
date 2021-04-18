@@ -172,24 +172,56 @@ export const bar_config = {
     barMinHeight: null,
 }
 export const line_config = {
-    barName: '',
-    barLegendHoverLink: true,
-    barLabelShow: true,
-    barLabelPosition: 'inside',
-    barLabelDistance: 5,
-    barLabelRotate: 0,
-    barLabelOffset: [10, 30],
-    barLabelColor: "#fff",
-    barLabelFontSize: 12,
-    barLabelLineShow: false,
-    barLabelLineSmooth: true,
-    barLabelLineStyleColor: "blue",
-    barLabelLineStyleWidth: 1,
-    barLabelLineStyleYype: 'solid',
-    barItemStyleColor: null,
-    barItemStyleBorderColor: '#000',
-    barItemStyleBorderWidth: 1,
-    barBorderRadius:[15, 5, 10, 0],
-    barWidth: null,
-    barMinHeight: null,
+    lineName: '',
+    lineLegendHoverLink: true,
+    lineShowSymbol:true,
+    lineSymbol:'emptyCircle',
+    lineSymbolSize:10,
+    lineSymbolRotate:0,
+    lineSymbolOffset:[0,0],
+
+
+
+
+    lineLabelShow: true,
+    lineLabelPosition: 'top',
+    lineLabelDistance: 5,
+    lineLabelRotate: 0,
+    lineLabelOffset: [0, 0],
+    lineLabelFormatter:'{c}',
+    lineLabelColor: "#fff",
+    lineLabelFontSize: 12,
+
+    lineEndLabelShow:false,
+    lineEndLabelDistance: 5,
+    lineEndLabelRotate: 0,
+    lineEndLabelOffset: [0, 0],
+    lineEndLabelFormatter:'{c}',
+    lineEndLabelColor: "#000",
+    lineEndLabelFontSize: 12,
+
+    lineLabelLineShow: false,
+    lineLabelLineShowAbove: false,
+    lineLabelLineSmooth: false,
+    lineLabelLineStyleColor: "blue",
+    lineLabelLineStyleWidth: 1,
+    lineLabelLineStyleType: 'solid',
+    
+    // lineItemStyleBorderColor: '#000',
+    lineItemStyleBorderWidth: 1,
+    lineItemStyleBorderType:'solid',
+    
+    lineStyleWidth:2,
+    lineStyleType:'solid',
+    lineStyleOpacity:1,
+
+    lineAreaStyleColor:'#fff',
+    lineAreaStyleOrigin :'auto',
+    lineAreaStyleOpacity:0,
+
+    lineEmphasisScale:true,
+    lineEmphasisFocus:'none',
+    lineEmphasisBlurScope:'coordinateSystem',
+
+
 }

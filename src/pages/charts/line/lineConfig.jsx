@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Tabs } from 'antd';
 import BaseConfig from '@components/baseConfig/baseConfig'
 import LineAllConfig from './lineAllConfig'
-import './lineConfig.css'
 const { TabPane } = Tabs;
 // ant-tabs-nav
 export default class lineConfig extends Component {

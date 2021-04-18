@@ -24,6 +24,7 @@ const Bar = () => {
     ]
     const getOption = () => {
         const titleConfig = {
+            show: title.show,
             text: title.text,
             textStyle: {
                 color: title.titleTextColor,
@@ -299,8 +300,8 @@ const Bar = () => {
     return (
         <>
             <Row className="graph-wrap">
-                <Col span={17} className="graph-part bar-part" >
-                    <div id="bar">
+                <Col span={17} className="graph-part left-part" >
+                    <div id="bar" className="canvas_wrap">
                         <Canvans option={option}></Canvans>
                     </div>
                 </Col>

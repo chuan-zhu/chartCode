@@ -1,7 +1,7 @@
 import React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch, Select, } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { barPositiontip } from '@utils/tipsUtils'
+import { seriesLablePositiontip } from '@utils/tipsUtils'
 import { formateFormData, deBounce } from '@utils/utils'
 import ColorPickerSingle from '../../colorPicker/colorPickerSingle'
 const layout = {
@@ -81,7 +81,7 @@ const BarConfig = (props) => {
                         label="标签位置"
                         name="barLabelPosition"
                         {...layoutLittle}
-                        tooltip={barPositiontip}
+                        tooltip={seriesLablePositiontip}
                     >
                         <Input ></Input>
                     </Form.Item>

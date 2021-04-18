@@ -6,10 +6,10 @@ import Canvans from '@components/canvas/canvas'
 import CodeBoard from '@components/codeBoard/codeBoard'
 import { useSelector } from 'react-redux'
 import * as echarts from 'echarts'
-import './line.css'
 const Line = () => {
 
     let { config: { title, legend, grid, xAxis, yAxis, line, color, tooltip } } = useSelector((state) => ({ config: state.lineConfig, }));
+    console.log(title)
     // 不可编辑的数组
     const data = [{
         name: "销量",
@@ -22,6 +22,7 @@ const Line = () => {
     ]
     const getOption = () => {
         const titleConfig = {
+            show: title.show,
             text: title.text,
             textStyle: {
                 color: title.titleTextColor,
@@ -198,33 +199,63 @@ const Line = () => {
                     name: item.name,
                     type: 'line',
                     legendHoverLink: line.lineLegendHoverLink,
+
+                    symbol:line.lineSymbol,
+                    symbolSize:line.lineSymbolSize,
+                    symbolRotate:line.lineSymbolRotate,
+                    symbolOffset:line.lineSymbolOffset,
+                    showSymbol:line.lineShowSymbol,
+                
                     label: {
                         show: line.lineLabelShow,
                         position: line.lineLabelPosition,
                         distance: line.lineLabelDistance,
                         rotate: line.lineLabelRotate,
                         offset: line.lineLabelOffset,
+                        formatter:line.lineLabelFormatter,
                         color: line.lineLabelColor,
                         fontSize: line.lineLabelFontSize,
                     },
+                    endLabel: {
+                        show: line.lineEndLabelShow,
+                        distance: line.lineEndLabelDistance,
+                        rotate: line.lineEndLabelRotate,
+                        offset: line.lineEndLabelOffset,
+                        formatter:line.lineEndLabelFormatter,
+                        color: line.lineEndLabelColor,
+                        fontSize: line.lineEndLabelFontSize,
+                    },
                     labelLine: {
                         show: line.lineLabelLineShow,
+                        showAbove:line.lineLabelLineShowAbove,
                         smooth: line.lineLabelLineSmooth,
                         lineStyle: {
                             color: line.lineLabelLineStyleColor,
                             width: line.lineLabelLineStyleWidth,
-                            type: line.lineLabelLineStyleYype,
+                            type: line.lineLabelLineStyleType,
                         }
 
                     },
                     itemStyle: {
-                        color: line.lineItemStyleColor,
-                        borderColor: line.lineItemStyleBorderColor,
                         borderWidth: line.lineItemStyleBorderWidth,
-                        borderRadius: line.lineBorderRadius,
+                        borderType: line.lineItemStyleBorderType,
                     },
-                    lineWidth: line.lineWidth,
-                    lineMinHeight: line.lineMinHeight,
+                    lineStyle :{
+                        width:line.lineStyleWidth,
+                        type:line.lineStyleType,
+                        opacity:line.lineStyleOpacity
+                    },
+                    areaStyle :{
+                        color :line.lineAreaStyleColor,
+                        origin:line.lineAreaStyleOrigin,
+                        opacity:line.lineAreaStyleOpacity
+                    },
+                    emphasis:{
+                        scale:line.lineEmphasisScale,
+                        focus :line.lineEmphasisFocus,
+                        blurScope :line.lineEmphasisBlurScope,
+                    },
+                
                     data: item.value
                 }
                 seriesArr.push(seriesItem)
@@ -292,13 +323,12 @@ const Line = () => {
     }
     const option = removePropertyOfNull(getOption())
 
-
     let [showCode, setShowCode] = useState(false)
     return (
         <>
             <Row className="graph-wrap">
-                <Col span={17} className="graph-part line-part" >
-                    <div id="line">
+                <Col span={17} className="graph-part left-part" >
+                    <div id="line" className="canvas_wrap">
                         <Canvans option={option}></Canvans>
                     </div>
                 </Col>
