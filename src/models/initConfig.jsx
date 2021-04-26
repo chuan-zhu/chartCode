@@ -220,53 +220,63 @@ export const initLineConfig = {
 
 }
 export const initPieConfig = {
-    lineName: '',
-    lineLegendHoverLink: true,
-    lineShowSymbol:true,
-    lineSymbol:'emptyCircle',
-    lineSymbolSize:10,
-    lineSymbolRotate:0,
-    lineSymbolOffset:[0,0],
-
-    lineLabelShow: true,
-    lineLabelPosition: 'top',
-    lineLabelDistance: 5,
-    lineLabelRotate: 0,
-    lineLabelOffset: [0, 0],
-    lineLabelFormatter:'{c}',
-    lineLabelColor: "#fff",
-    lineLabelFontSize: 12,
-
-    lineEndLabelShow:false,
-    lineEndLabelDistance: 5,
-    lineEndLabelRotate: 0,
-    lineEndLabelOffset: [0, 0],
-    lineEndLabelFormatter:'{c}',
-    lineEndLabelColor: "#000",
-    lineEndLabelFontSize: 12,
-
-    lineLabelLineShow: false,
-    lineLabelLineShowAbove: false,
-    lineLabelLineSmooth: false,
-    lineLabelLineStyleColor: "blue",
-    lineLabelLineStyleWidth: 1,
-    lineLabelLineStyleType: 'solid',
+    legendHoverLink: true,
+    clockwise:true,
+    startAngle:90,
+    minAngle:0,
+    roseType:'radius' ,//'area'
+    avoidLabelOverlap :true,
+    left:'center',
+    top:'center',
+    // right:0,
+    // bottom:0,
+    // center:['50%', '50%'],
+    radius : [0, '45%'],
     
-    // lineItemStyleBorderColor: '#000',
-    lineItemStyleBorderWidth: 1,
-    lineItemStyleBorderType:'solid',
-    
-    lineStyleWidth:2,
-    lineStyleType:'solid',
-    lineStyleOpacity:1,
+    lableShow:true,
+    labelPosition : 'outside',//'inside'  'center'
+    labelFormatter:'{b}: {d}',
+    labelColor:'#FFF',
+    labelFontSize:12,
+    labelAlignTo:  'none'  ,//'labelLine','edge'    标签的对齐方式，仅当 position 值为 'outer' 时有效。
 
-    lineAreaStyleColor:'#fff',
-    lineAreaStyleOrigin :'auto',
-    lineAreaStyleOpacity:0,
+    labelLineShow:true,
+    length:null,
+    length2:null,
+    smooth:0,
+    labelLineLineStyleColor :"#000",
+    LabelLineStyleWidth: 1,
+    LabelLineStyleType: 'solid',
 
-    lineEmphasisScale:true,
-    lineEmphasisFocus:'none',
-    lineEmphasisBlurScope:'coordinateSystem',
+    itemStyleColor: '',
+    itemStyleBorderColor: 'red',
+    itemStyleBorderWidth: 1,
+    itemStyleBorderType:'solid',
+    itemStyleShadowBlur:10,
+    itemStyleShadowColor:'rgba(0, 0, 0, 0.5)',
+    itemStyleBorderRadius:[10, 20],
+
+    emphasisScale : true,
+    emphasisScaleSize : 10,
+    emphasisFocus:'none',//'self','series' 
+    emphasisLabelShow:true,
+    emphasisLabelColor:'#FFF',
+    emphasisLabelFontSize:16,
+
+    // lineStyleWidth:2,
+    // lineStyleType:'solid',
+    // lineStyleOpacity:1,
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

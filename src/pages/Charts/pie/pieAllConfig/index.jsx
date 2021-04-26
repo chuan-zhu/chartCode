@@ -4,10 +4,7 @@ import { CaretRightOutlined } from '@ant-design/icons';
 import _ from 'lodash'
 import TitleConfig from '@/components/AllConfig/TitleConfig'
 import LegendConfig from '@/components/AllConfig/LegendConfig'
-import GridConfig from '@/components/AllConfig/GridConfig'
-import XAxisConfig from '@/components/AllConfig/XAxisConfig'
-import YAxisConfig from '@/components/AllConfig/YAxisConfig'
-import LineConfig from '@/components/AllConfig/LineConfig'
+import PieConfig from '@/components/AllConfig/PieConfig'
 import ColorConfig from '@/components/AllConfig/ColorConfig'
 import TooltipConfig from '@/components/AllConfig/TooltipConfig'
 import { connect } from 'umi'
@@ -15,9 +12,9 @@ import style from './index.less'
 
 const { Panel } = Collapse;
 
-const LineAllConfig = ({ lineConfig, dispatch }) => {
-    console.log(lineConfig, dispatch)
-    let  config  = lineConfig
+const LineAllConfig = ({ pieConfig, dispatch }) => {
+    console.log(pieConfig, dispatch)
+    let  config  = pieConfig
     console.log(config)
     /**
      * 是否展示点击回调
@@ -30,7 +27,7 @@ const LineAllConfig = ({ lineConfig, dispatch }) => {
         let newLineConfig = _.cloneDeep(config)
         newLineConfig[key].show = checked
         dispatch({
-            type: 'lineConfig/update',
+            type: 'pieConfig/update',
             payload: newLineConfig
         });
     }
@@ -43,7 +40,7 @@ const LineAllConfig = ({ lineConfig, dispatch }) => {
         let newLineConfig = _.cloneDeep(config)
         newLineConfig[target] = targetVal
         dispatch({
-            type: 'lineConfig/update',
+            type: 'pieConfig/update',
             payload: newLineConfig
         });
     }
@@ -69,13 +66,7 @@ const LineAllConfig = ({ lineConfig, dispatch }) => {
                 }>
                 <LegendConfig config={config.legend} storeChange={storeChange} ></LegendConfig>
             </Panel>
-            <Panel header="网格" key="grid" className="site-collapse-custom-panel"
-                extra={
-                    <Switch size="small" defaultChecked={config.grid.show} onClick={(checked, e) => showConfig(checked, e, 'grid')} />
-                }
-            >
-                <GridConfig config={config.grid} storeChange={storeChange} ></GridConfig>
-            </Panel>
+            
             <Panel header="提示信息" key="tooltip" className="site-collapse-custom-panel"
              extra={
                 <Switch size="small" defaultChecked={config.tooltip.show} onClick={(checked, e) => showConfig(checked, e, 'tooltip')} />
@@ -83,26 +74,11 @@ const LineAllConfig = ({ lineConfig, dispatch }) => {
             >
                 <TooltipConfig config={config.tooltip} storeChange={storeChange}></TooltipConfig>
             </Panel>
-            <Panel header="x坐标轴" key="xAxis" className="site-collapse-custom-panel"
-                extra={
-                    <Switch size="small" defaultChecked={config.xAxis.show} onClick={(checked, e) => showConfig(checked, e, 'xAxis')} />
-                }
-            >
-                <XAxisConfig config={config.xAxis} storeChange={storeChange}></XAxisConfig>
-
-            </Panel>
-            <Panel header="y坐标轴" key="yAxis" className="site-collapse-custom-panel"
-                extra={
-                    <Switch size="small" defaultChecked={config.yAxis.show} onClick={(checked, e) => showConfig(checked, e, 'yAxis')} />
-                }
-            >
-                <YAxisConfig config={config.yAxis} storeChange={storeChange}></YAxisConfig>
-
-            </Panel>
-            <Panel header="线图配置" key="line" className="site-collapse-custom-panel"
+            
+            <Panel header="饼图配置" key="pie" className="site-collapse-custom-panel"
 
             >
-                <LineConfig config={config.line} storeChange={storeChange}></LineConfig>
+                <PieConfig config={config.pie} storeChange={storeChange}></PieConfig>
             </Panel>
             <Panel header="颜色配置" key="color" className="site-collapse-custom-panel"
 

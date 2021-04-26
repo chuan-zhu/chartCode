@@ -50,111 +50,144 @@ const PieConfig = (props) => {
             initialValues={config}
             onValuesChange={() => formChange()}
         >
-            <Form.Item
-                label="名称"
-                name="pieName"
-            >
-                <Input />
-            </Form.Item>
+
             <Form.Item
                 label="图例联动高亮"
-                name="pieLegendHoverLink"
+                name="legendHoverLink"
             >
-                <Switch checked={config.pieLegendHoverLink} ></Switch>
+                <Switch checked={config.legendHoverLink} ></Switch>
             </Form.Item>
-
+            <Form.Item
+                label="顺时针排布"
+                name="clockwise"
+            >
+                <Switch checked={config.clockwise} ></Switch>
+            </Form.Item>
+            <Form.Item
+                label="起始角度"
+                name="startAngle"
+            >
+                <InputNumber ></InputNumber>
+            </Form.Item>
+            <Form.Item
+                label="最小角度"
+                name="minAngle"
+            >
+                <InputNumber ></InputNumber>
+            </Form.Item>
+            <Form.Item
+                label="南丁格尔图"
+                name="roseType"
+            >
+                <Input ></Input>
+            </Form.Item>
+            <Form.Item
+                label="防止标签重叠策略"
+                name="avoidLabelOverlap"
+            >
+                <Switch checked={config.avoidLabelOverlap} ></Switch>
+            </Form.Item>
+            <Form.Item
+                label="半径"
+                name="radius"
+            >
+                <Input ></Input>
+            </Form.Item>
             <Collapse bordered={false}
                 defaultActiveKey={[]}
                 expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
                 className="site-collapse-custom-collapse"
                 ghost
             >
-                <Panel header="柱图标签" key="pieLabel" className="site-collapse-custom-panel">
+                <Panel header="饼图标签" key="pieLabel" className="site-collapse-custom-panel">
                     <Form.Item
                         label="标签展示"
-                        name="pieLabelShow"
+                        name="lableShow"
                         {...layoutLittle}
                     >
-                        <Switch checked={config.pieLabelShow} ></Switch>
+                        <Switch checked={config.lableShow} ></Switch>
                     </Form.Item>
                     <Form.Item
                         label="标签位置"
-                        name="pieLabelPosition"
+                        name="labelPosition"
                         {...layoutLittle}
-                        tooltip={seriesLablePositiontip}
+                    // tooltip={seriesLablePositiontip}
                     >
-                        <Input ></Input>
+                        <Select style={{ width: 120 }}  >
+                            <Option value='outside'>外部</Option>
+                            <Option value='inside'> 内部</Option>
+                            <Option value='center'> 居中</Option>
+                        </Select>
                     </Form.Item>
                     <Form.Item
-                        label="标签距离图形距离"
-                        name="pieLabelDistance"
+                        label="标签对齐方式"
+                        name="labelAlignTo"
                         {...layoutLittle}
+                    // tooltip={seriesLablePositiontip}
                     >
-                        <InputNumber ></InputNumber>
+                        <Select style={{ width: 120 }}  >
+                            <Option value='none'>默认值</Option>
+                            <Option value='labelLine'> 末端对齐</Option>
+                            <Option value='edge'>文字对齐</Option>
+                        </Select>
                     </Form.Item>
-                    <Form.Item
-                        label="标签旋转角度"
-                        name="pieLabelRotate"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="标签偏移"
-                        name="pieLabelOffset"
-                        {...layoutLittle}
-                    >
-                        <Input ></Input>
-                    </Form.Item>
+
                     <Form.Item
                         label="标签字体颜色"
-                        name="pieLabelColor"
+                        name="labelColor"
                         {...layoutLittle}
                     >
                         <ColorPickerSingle updateColor={updateColor} field='pieLabelColor'
-                             color={config.pieLabelColor}></ColorPickerSingle>
+                            color={config.pieLabelColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="标签字体大小"
-                        name="pieLabelFontSize"
+                        name="labelFontSize"
                         {...layoutLittle}
                     >
                         <InputNumber ></InputNumber>
+                    </Form.Item>
+                    <Form.Item
+                        label="标签内容"
+                        name="labelFormatter"
+                        {...layoutLittle}
+                    >
+                        <Input ></Input>
                     </Form.Item>
                 </Panel>
                 <Panel header="标签引导线" key="pieLabelLine" className="site-collapse-custom-panel">
                     <Form.Item
                         label="引导线展示"
-                        name="pieLabelLineShow"
+                        name="labelLineShow"
                         {...layoutLittle}
                     >
-                        <Switch checked={config.pieLabelLineShow} ></Switch>
+                        <Switch checked={config.labelLineShow} ></Switch>
                     </Form.Item>
                     <Form.Item
                         label="引导线平滑展示"
-                        name="pieLabelSmooth"
+                        name="smooth"
                         {...layoutLittle}
                     >
-                        <Switch checked={config.pieLabelSmooth} ></Switch>
+                        <InputNumber ></InputNumber>
                     </Form.Item>
                     <Form.Item
                         label="引导线颜色"
-                        name="pieLabelLineStyleColor"
+                        name="labelLineLineStyleColor"
                         {...layoutLittle}
                     >
                         <ColorPickerSingle updateColor={updateColor} field='pieLabelLineStyleColor'
-                            color={config.pieLabelLineStyleColor}></ColorPickerSingle>
+                            color={config.labelLineLineStyleColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
                         label="引导线宽度"
-                        name="pieLabelLineStyleWidth"
+                        name="LabelLineStyleWidth"
                         {...layoutLittle}
                     >
                         <InputNumber ></InputNumber>
                     </Form.Item>
                     <Form.Item
                         label="引导线类型"
-                        name="pieLabelLineStyleYype"
+                        name="LabelLineStyleType"
                         {...layoutLittle}
                     >
                         <Select style={{ width: 120 }}  >
@@ -163,46 +196,122 @@ const PieConfig = (props) => {
                             <Option value='dotted'> 点线</Option>
                         </Select>
                     </Form.Item>
-                </Panel>
-                <Panel header="柱子配置" key="pie" className="site-collapse-custom-panel">
                     <Form.Item
-                        label="柱体边框颜色"
-                        name="pieItemStyleBorderColor"
+                        label="引导线第一段长度"
+                        name="length"
+                        {...layoutLittle}
+                    >
+                        <InputNumber ></InputNumber>
+                    </Form.Item>
+                    <Form.Item
+                        label="引导线第二段长度"
+                        name="length2"
+                        {...layoutLittle}
+                    >
+                        <InputNumber ></InputNumber>
+                    </Form.Item>
+                </Panel>
+                <Panel header="扇形区块配置" key="pie" className="site-collapse-custom-panel">
+                    <Form.Item
+                        label="边框颜色"
+                        name="itemStyleBorderColor"
                         {...layoutLittle}
                     >
                         <ColorPickerSingle updateColor={updateColor} field='pieItemStyleBorderColor'
-                             color={config.pieItemStyleBorderColor}></ColorPickerSingle>
+                            color={config.itemStyleBorderColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
-                        label="柱体边框宽度"
-                        name="pieItemStyleBorderWidth"
+                        label="边框宽度"
+                        name="itemStyleBorderWidth"
                         {...layoutLittle}
                     >
                         <InputNumber ></InputNumber>
                     </Form.Item>
                     <Form.Item
-                        label="柱体宽度"
-                        name="pieWidth"
+                        label="边框类型"
+                        name="itemStyleBorderType"
+                        {...layoutLittle}
+                    >
+                        <Select style={{ width: 120 }}  >
+                            <Option value='solid'>实线</Option>
+                            <Option value='dashed'> 虚线</Option>
+                            <Option value='dotted'> 点线</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        label="阴影长度"
+                        name="itemStyleShadowBlur"
                         {...layoutLittle}
                     >
                         <InputNumber ></InputNumber>
                     </Form.Item>
                     <Form.Item
-                        label="柱体高度"
-                        name="pieMinHeight"
+                        label="阴影颜色"
+                        name="itemStyleShadowColor"
                         {...layoutLittle}
                     >
-                        <InputNumber ></InputNumber>
+                        <ColorPickerSingle updateColor={updateColor} field='pieItemStyleBorderColor'
+                            color={config.itemStyleShadowColor}></ColorPickerSingle>
                     </Form.Item>
                     <Form.Item
-                        label="柱体圆角"
-                        name="pieBorderRadius"
+                        label="内外圆角半径"
+                        name="itemStyleBorderRadius"
                         {...layoutLittle}
                     >
-                        <Input ></Input>
+                        <Input></Input>
                     </Form.Item>
-
                 </Panel>
+                <Panel header="高亮配置" key="emphasis" className="site-collapse-custom-panel">
+                    <Form.Item
+                        label="边框颜色"
+                        name="itemStyleBorderColor"
+                        {...layoutLittle}
+                    >
+                        <ColorPickerSingle updateColor={updateColor} field='pieItemStyleBorderColor'
+                            color={config.itemStyleBorderColor}></ColorPickerSingle>
+                    </Form.Item>
+                    <Form.Item
+                        label="边框宽度"
+                        name="itemStyleBorderWidth"
+                        {...layoutLittle}
+                    >
+                        <InputNumber ></InputNumber>
+                    </Form.Item>
+                    <Form.Item
+                        label="边框类型"
+                        name="itemStyleBorderType"
+                        {...layoutLittle}
+                    >
+                        <Select style={{ width: 120 }}  >
+                            <Option value='solid'>实线</Option>
+                            <Option value='dashed'> 虚线</Option>
+                            <Option value='dotted'> 点线</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        label="阴影长度"
+                        name="itemStyleShadowBlur"
+                        {...layoutLittle}
+                    >
+                        <InputNumber ></InputNumber>
+                    </Form.Item>
+                    <Form.Item
+                        label="阴影颜色"
+                        name="itemStyleShadowColor"
+                        {...layoutLittle}
+                    >
+                        <ColorPickerSingle updateColor={updateColor} field='pieItemStyleBorderColor'
+                            color={config.itemStyleShadowColor}></ColorPickerSingle>
+                    </Form.Item>
+                    <Form.Item
+                        label="内外圆角半径"
+                        name="itemStyleBorderRadius"
+                        {...layoutLittle}
+                    >
+                        <Input></Input>
+                    </Form.Item>
+                </Panel>
+            
             </Collapse>
         </Form>
     )

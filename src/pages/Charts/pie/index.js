@@ -14,12 +14,44 @@ const Pie = ({ pieConfig, dispatch }) => {
     console.log(title)
     // 不可编辑的数组
     const data = [{
-        name: "销量",
-        value: [5, 20, 36, 10, 10, 20]
+        name: "蔬菜类型",
+        data: [{
+            name: '西红柿',
+            value: 100
+        },
+        {
+            name: '菠菜',
+            value: 120
+        },
+        {
+            name: '香菇',
+            value: 130
+        },
+        {
+            name: '白菜',
+            value: 150
+        }
+        ]
     },
     {
-        name: "库存",
-        value: [15, 12, 34, 45, 25, 37]
+        name: "水果类型",
+        data: [{
+            name: '苹果',
+            value: 100
+        },
+        {
+            name: '香蕉',
+            value: 260
+        },
+        {
+            name: '菠萝',
+            value: 330
+        },
+        {
+            name: '百香果',
+            value: 250
+        }
+        ]
     }
     ]
     const getOption = () => {
@@ -63,14 +95,6 @@ const Pie = ({ pieConfig, dispatch }) => {
             },
             icon: legend.legendIcon
         }
-        const gridConfig = {
-            show: grid.show,
-            left: grid.gridLeft,
-            top: grid.gridTop,
-            right: grid.gridRight,
-            bottom: grid.gridBottom,
-            containLabel: grid.gridContainLabel
-        }
         const tooltipConfig = {
             show: tooltip.show,
             trigger: tooltip.trigger,
@@ -81,129 +105,66 @@ const Pie = ({ pieConfig, dispatch }) => {
             borderWidth: tooltip.borderWidth,
             padding: tooltip.padding,
         }
-        const xAxisConfig = {
-            show: xAxis.show,
-            position: xAxis.xAxisPosition,
-            type: xAxis.xAxisType,
-            name: xAxis.xAxisName,
-            location: xAxis.xAxisNameLocation,
-            nameTextStyle: {
-                color: xAxis.xAxisNameTextStyleColor,
-                fontFamily: xAxis.xAxisNameTextStyleFontFamily,
-                fontSize: xAxis.xAxisNameTextStyleFontSize,
-            },
-            nameGap: xAxis.xAxisNameGap,
-            nameRotate: xAxis.xAxisNameRotate,
-            inverse: xAxis.xAxisInverse,
-            min: xAxis.xAxisMin,
-            max: xAxis.xAxisMAX,
-            // 轴线
-            axisLine: {
-
-                show: xAxis.xAxisLineShow,
-                symbol: xAxis.xAxisLineSymbol,
-                lineStyle: {
-                    color: xAxis.lineStylecolor,
-                    width: xAxis.xAxisLineWidth,
-                    type: xAxis.xAxisLineType,
-                    opacity: xAxis.xAxisLineOpacity,
-                }
-            },
-            axisTick: {
-
-                // 刻度
-                show: xAxis.xAxisTickShow,
-                inside: xAxis.xAxisTickInside,
-                length: xAxis.xAxisTickLength,
-            },
-            axisLabel: {
-                show: xAxis.xAxisLabelShow,
-                // 刻度标签
-                inside: xAxis.xAxisLabelInside,
-                rotate: xAxis.xAxisLabelRotate,
-                margin: xAxis.xAxisLabelMargin,
-                color: xAxis.xAxisLabelColor,
-                fontFamily: xAxis.xAxisLabelFontFamily,
-                fontSize: xAxis.xAxisLabelFontSize,
-            },
-            splitLine: {
-
-                // 分割线
-                show: xAxis.xAxiSplitLineShow,
-                lineStyle: {
-
-                    color: xAxis.xAxiSplitLineLineStyleColor,
-                    width: xAxis.xAxiSplitLineLineStyleWidth,
-                    type: xAxis.xAxiSplitLineLineStyleType,
-                    opacity: xAxis.xAxiSplitLineLineStyleOpacity,
-                }
-            },
-            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-        }
-        const yAxisConfig = {
-            show: yAxis.show,
-            position: yAxis.yAxisPosition,
-            type: yAxis.yAxisType,
-            name: yAxis.yAxisName,
-            location: yAxis.yAxisNameLocation,
-            nameTextStyle: {
-                color: yAxis.yAxisNameTextStyleColor,
-                fontFamily: yAxis.yAxisNameTextStyleFontFamily,
-                fontSize: yAxis.yAxisNameTextStyleFontSize,
-            },
-            nameGap: yAxis.yAxisNameGap,
-            nameRotate: yAxis.yAxisNameRotate,
-            inverse: yAxis.yAxisInverse,
-            min: yAxis.yAxisMin,
-            max: yAxis.yAxisMAX,
-            // 轴线
-            axisLine: {
-                show: yAxis.yAxisLineShow,
-                symbol: yAxis.yAxisLineSymbol,
-                lineStyle: {
-                    color: yAxis.lineStylecolor,
-                    width: yAxis.yAxisLineWidth,
-                    type: yAxis.yAxisLineType,
-                    opacity: yAxis.yAxisLineOpacity,
-                }
-            },
-            axisTick: {
-                // 刻度
-                show: yAxis.yAxisTickShow,
-                inside: yAxis.yAxisTickInside,
-                length: yAxis.yAxisTickLength,
-            },
-            axisLabel: {
-                show: yAxis.yAxisLabelShow,
-                // 刻度标签
-                inside: yAxis.yAxisLabelInside,
-                rotate: yAxis.yAxisLabelRotate,
-                margin: yAxis.yAxisLabelMargin,
-                color: yAxis.yAxisLabelColor,
-                fontFamily: yAxis.yAxisLabelFontFamily,
-                fontSize: yAxis.yAxisLabelFontSize,
-            },
-            splitLine: {
-                // 分割线
-                show: yAxis.yAxiSplitLineIsShow,
-                lineStyle: {
-                    color: yAxis.yAxisplitLineLineStyleColor,
-                    width: yAxis.yAxisplitLineLineStyleWidth,
-                    type: yAxis.yAxisplitLineLineStyleType,
-                    opacity: yAxis.yAxisplitLineLineStyleOpacity,
-                }
-            },
-        }
         const seriesConfig = () => {
             let seriesArr = []
-            data.forEach(item => {
+            let countPart = data.length * 2
+            let averageLength = (100 / countPart).toFixed(2)
+            data.forEach((item, index) => {
+                let positionLeft = averageLength * (2 * index + 1)
                 let seriesItem = {
                     name: item.name,
-                    type: 'line',
-                    legendHoverLink: pie.lineLegendHoverLink,
-
-                    
-                    data: item.value
+                    type: 'pie',
+                    legendHoverLink: pie.legendHoverLink,
+                    clockwise: pie.clockwise,
+                    startAngle: pie.startAngle,
+                    minAngle: pie.minAngle,
+                    roseType: pie.roseType,
+                    avoidLabelOverlap: pie.avoidLabelOverlap,
+                    // left: pie.left: 'center',
+                    // top: pie.top: 'center',
+                    // right:0,
+                    // bottom:0,
+                    center: [positionLeft + '%', '50%'],
+                    radius: pie.radius,
+                    label: {
+                        show: pie.lableShow,
+                        position: pie.labelPosition,//'inside'  'center'
+                        formatter: pie.labelFormatter,
+                        color: pie.labelColor,
+                        fontSize: pie.labelFontSize,
+                        alignTo: pie.labelAlignTo,//'labelLine','edge'    标签的对齐方式，仅当 position 值为 'outer' 时有效。
+                    },
+                    labelLine: {
+                        show: pie.labelLineShow,
+                        length: pie.length,
+                        length2: pie.length2,
+                        smooth: pie.smooth,
+                        lineStyle: {
+                            color: pie.labelLineLineStyleColor,
+                            width: pie.LabelLineStyleWidth,
+                            type: pie.LabelLineStyleType,
+                        }
+                    },
+                    itemStyle: {
+                        color: pie.itemStyleColor,
+                        borderColor: pie.itemStyleBorderColor,
+                        borderWidth: pie.itemStyleBorderWidth,
+                        borderType: pie.itemStyleBorderType,
+                        shadowBlur: pie.itemStyleShadowBlur,
+                        shadowColor: pie.itemStyleShadowColor,
+                        borderRadius: pie.itemStyleBorderRadius,
+                    },
+                    emphasis: {
+                        scale: pie.emphasisScale,
+                        scaleSize: pie.emphasisScaleSize,
+                        focus: pie.emphasisFocus,//'self','series' 
+                        label: {
+                            show: pie.emphasisLabelShow,
+                            color: pie.emphasisLabelColor,
+                            fontSize: pie.emphasisLabelFontSize,
+                        },
+                    },
+                    data: item.data
                 }
                 seriesArr.push(seriesItem)
             })
@@ -249,9 +210,6 @@ const Pie = ({ pieConfig, dispatch }) => {
             title: titleConfig,
             tooltip: tooltipConfig,
             legend: legendConfig,
-            grid: gridConfig,
-            xAxis: xAxisConfig,
-            yAxis: yAxisConfig,
             series: seriesConfig(),
             color: colorConfig()
         }

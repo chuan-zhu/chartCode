@@ -59,7 +59,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      // content: initialState?.currentUser?.name,
+      content: '水印配置在layout配置',
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
@@ -81,6 +82,17 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
         </Link>,
       ]
       : [],
+    // 标题和图标配置
+    // menuHeaderRender:(logo, title) => (
+    //   <div
+    //     id="customize_menu_header"
+    //     onClick={() => {}}
+    //   >
+    //     {logo}
+    //     {title}
+    //   </div>
+    // ),
+    //菜单内容配置
     // menuItemRender:(...prop)=>{console.log('menuItemRender',prop)},
     // menuItemRender: (TWTProps, defaultDom) => {
     //   console.log('menuItemRender',JSON.stringify(TWTProps.icon) ,defaultDom)
@@ -90,6 +102,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     //     </Link>
     //   )
     // },
+    // 子菜单内容配置
     // subMenuItemRender: (TWTProps) => {
     //   return (
     //     <>

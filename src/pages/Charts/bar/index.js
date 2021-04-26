@@ -5,9 +5,10 @@ import { connect } from 'umi'
 import CodeBoard from '@/components/CodeBoard/'
 import Canvans from '@/components/Canvas/'
 import BarAllConfig from './barAllConfig/'
+import { PageContainer } from '@ant-design/pro-layout';
 
 import * as echarts from 'echarts'
-import './index.less'
+import styles from './index.less'
 const { TabPane } = Tabs;
 const Bar = ({ barConfig, dispatch }) => {
     console.log(barConfig, dispatch)
@@ -298,14 +299,14 @@ const Bar = ({ barConfig, dispatch }) => {
     console.log(option)
     let [showCode, setShowCode] = useState(false)
     return (
-        <div className="right_wrap">
-            <Row className='graph_wrap' >
-                <Col span={17} className='graph_part left_part' >
-                    <div id="bar" className='canvas_wrap'>
-                        <Canvans option={option}></Canvans>
-                    </div>
+        <>
+        {/* <PageContainer title={false}></PageContainer> */}
+        <div title={false} className={styles.right_wrap}  content={false} pageHeaderRender={undefined}>
+            <Row className={styles.graph_wrap} >
+                <Col span={17} className={styles.graph_part } >
+                    <Canvans option={option}></Canvans>
                 </Col>
-                <Col span={7} className='graph_part'>
+                <Col span={7} className={styles.config_part}>
                     <Tabs defaultActiveKey="2" centered>
                         <TabPane
                             tab={<span> 基础设置 </span>}
@@ -334,7 +335,7 @@ const Bar = ({ barConfig, dispatch }) => {
                 onClose={() => setShowCode(false)}
                 visible={showCode}
                 footer={
-                    <div className='btn_wrap'>  
+                    <div className='btn_wrap'>
                         <Button type="primary" icon={<SaveOutlined />} size='middle' >保存至数据库</Button>
                         <Button type="primary" icon={<DownloadOutlined />} size='middle' >导出文件</Button>
                     </div>
@@ -343,6 +344,7 @@ const Bar = ({ barConfig, dispatch }) => {
                 <CodeBoard option={option}></CodeBoard>
             </Drawer>
         </div>
+    </>
     )
 
 }
