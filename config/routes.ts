@@ -75,10 +75,10 @@
         component: './Charts/line',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/liquidfill',
         name: 'liquidFillConfig',
         icon: 'smile',
-        component: './Charts/line',
+        component: './Charts/liquidfill',
       },
       {
         path: '/Charts/line',
@@ -87,10 +87,10 @@
         component: './Charts/line',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/wordCloud',
         name: 'wordCloudConfig',
         icon: 'smile',
-        component: './Charts/line',
+        component: './Charts/wordCloud',
       },
       {
         path: '/Charts/line',

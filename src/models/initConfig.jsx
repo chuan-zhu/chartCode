@@ -236,7 +236,7 @@ export const initPieConfig = {
     lableShow:true,
     labelPosition : 'outside',//'inside'  'center'
     labelFormatter:'{b}: {d}',
-    labelColor:'#FFF',
+    labelColor:'#000',
     labelFontSize:12,
     labelAlignTo:  'none'  ,//'labelLine','edge'    标签的对齐方式，仅当 position 值为 'outer' 时有效。
 
@@ -278,6 +278,12 @@ export const initPieConfig = {
 
 
 
+}
+export const initLiquidfillConfig ={
+    show:true
+}
+export const initWordCloudConfig ={
+    show:true
 }
 
 

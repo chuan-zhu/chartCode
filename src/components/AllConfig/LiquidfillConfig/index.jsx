@@ -21,7 +21,7 @@ const { Option } = Select;
  * @param {*} props 父组件传递的参数，包含默认配置数据，配置修改回调方法
  * @returns 
  */
-const PieConfig = (props) => {
+const LiquidfillConfig = (props) => {
     let config = props.config
     console.log(props)
 
@@ -32,7 +32,7 @@ const PieConfig = (props) => {
     const formChange = deBounce(() => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue = formateFormData(newFormValue)
-        props.storeChange('pie', newFormValue);
+        props.storeChange('liquidfill', newFormValue);
     }, 500)
     /**
      * 通过颜色选择器更改色值变量
@@ -40,18 +40,23 @@ const PieConfig = (props) => {
     const updateColor = (field, Newcolors) => {
         let newFormValue = form.getFieldsValue(true)
         newFormValue[field] = Newcolors
-        props.storeChange('pie', newFormValue);
+        props.storeChange('liquidfill', newFormValue);
     }
     return (
         <Form
             {...layout}
-            name="pie"
+            name="liquidfill"
             form={form}
             initialValues={config}
             onValuesChange={() => formChange()}
         >
-
             <Form.Item
+                label="图例联动高亮"
+                name="show"
+            >
+                <Switch checked={config.show} ></Switch>
+            </Form.Item>
+            {/* <Form.Item
                 label="图例联动高亮"
                 name="legendHoverLink"
             >
@@ -99,7 +104,7 @@ const PieConfig = (props) => {
                 className="site-collapse-custom-collapse"
                 ghost
             >
-                <Panel header="饼图标签" key="pieLabel" className="site-collapse-custom-panel">
+                <Panel header="饼图标签" key="liquidfillLabel" className="site-collapse-custom-panel">
                     <Form.Item
                         label="标签展示"
                         name="lableShow"
@@ -155,7 +160,7 @@ const PieConfig = (props) => {
                         <Input ></Input>
                     </Form.Item>
                 </Panel>
-                <Panel header="标签引导线" key="pieLabelLine" className="site-collapse-custom-panel">
+                <Panel header="标签引导线" key="liquidfillLabelLine" className="site-collapse-custom-panel">
                     <Form.Item
                         label="引导线展示"
                         name="labelLineShow"
@@ -211,7 +216,7 @@ const PieConfig = (props) => {
                         <InputNumber ></InputNumber>
                     </Form.Item>
                 </Panel>
-                <Panel header="扇形区块配置" key="pie" className="site-collapse-custom-panel">
+                <Panel header="扇形区块配置" key="liquidfill" className="site-collapse-custom-panel">
                     <Form.Item
                         label="边框颜色"
                         name="itemStyleBorderColor"
@@ -288,7 +293,7 @@ const PieConfig = (props) => {
                         label="展示标签"
                         name="emphasisLabelShow"
                     >
-                         <Switch checked={config.emphasisLabelShow} ></Switch>
+                        <Switch checked={config.emphasisLabelShow} ></Switch>
                     </Form.Item>
                     <Form.Item
                         label="标签颜色"
@@ -345,9 +350,9 @@ const PieConfig = (props) => {
                     </Form.Item>
                 </Panel>
 
-            </Collapse>
+            </Collapse> */}
         </Form>
     )
 
 }
-export default PieConfig
+export default LiquidfillConfig
