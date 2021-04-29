@@ -112,7 +112,12 @@
       },
     ],
   },
-
+  {
+    name: 'person',
+    icon: 'table',
+    path: '/PersonCenter',
+    component: './PersonCenter/PersonCenter.js',
+  },
 
 
 

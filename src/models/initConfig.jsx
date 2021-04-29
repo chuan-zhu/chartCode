@@ -1,4 +1,4 @@
-export const initTitleConfig ={
+export const initTitleConfig = {
     show: true,
     text: '标题内容',
     titleTextColor: '#333',
@@ -127,25 +127,25 @@ export const initYAxisConfig = {
     yAxisplitLineLineStyleOpacity: 1
 }
 export const initColorConfig = {
-    colorType:["define", "solid"],
-    color:["#6F9CEB", "#FEC368"],
-    linearType:'linear',
-    linearColorDirection:'0,0,0,1',
-    radialColorDirection:'0.5,0.5,1',
-    linearColorStart:["#7EAAF9","#FEC368","#B6A1E5","#7CC6D1"],
-    linearColorEnd:["#3F77DB","#DC8901","#8C6BD4","#388F98"],
+    colorType: ["define", "solid"],
+    color: ["#6F9CEB", "#FEC368"],
+    linearType: 'linear',
+    linearColorDirection: '0,0,0,1',
+    radialColorDirection: '0.5,0.5,1',
+    linearColorStart: ["#7EAAF9", "#FEC368", "#B6A1E5", "#7CC6D1"],
+    linearColorEnd: ["#3F77DB", "#DC8901", "#8C6BD4", "#388F98"],
     linearColorSeries: 0
 }
 export const initTooltipConfig = {
     show: true,
-    trigger : 'item',
-    triggerOn : 'mousemove',
-    formatterType:"string",//模板字符串  回调函数
-    formatter :'{a}<br />{b}:{c}',
-    backgroundColor :'rgba(250,250,250,0.7)',
-    borderColor : '#333',
-    borderWidth:null,
-    padding : 5
+    trigger: 'item',
+    triggerOn: 'mousemove',
+    formatterType: "string",//模板字符串  回调函数
+    formatter: '{a}<br />{b}:{c}',
+    backgroundColor: 'rgba(250,250,250,0.7)',
+    borderColor: '#333',
+    borderWidth: null,
+    padding: 5
 }
 export const initBarConfig = {
     barName: '',
@@ -165,33 +165,33 @@ export const initBarConfig = {
     barItemStyleColor: null,
     barItemStyleBorderColor: '#000',
     barItemStyleBorderWidth: 1,
-    barBorderRadius:[15, 5, 10, 0],
+    barBorderRadius: [15, 5, 10, 0],
     barWidth: null,
     barMinHeight: null,
 }
 export const initLineConfig = {
     lineName: '',
     lineLegendHoverLink: true,
-    lineShowSymbol:true,
-    lineSymbol:'emptyCircle',
-    lineSymbolSize:10,
-    lineSymbolRotate:0,
-    lineSymbolOffset:[0,0],
+    lineShowSymbol: true,
+    lineSymbol: 'emptyCircle',
+    lineSymbolSize: 10,
+    lineSymbolRotate: 0,
+    lineSymbolOffset: [0, 0],
 
     lineLabelShow: true,
     lineLabelPosition: 'top',
     lineLabelDistance: 5,
     lineLabelRotate: 0,
     lineLabelOffset: [0, 0],
-    lineLabelFormatter:'{c}',
+    lineLabelFormatter: '{c}',
     lineLabelColor: "#fff",
     lineLabelFontSize: 12,
 
-    lineEndLabelShow:false,
+    lineEndLabelShow: false,
     lineEndLabelDistance: 5,
     lineEndLabelRotate: 0,
     lineEndLabelOffset: [0, 0],
-    lineEndLabelFormatter:'{c}',
+    lineEndLabelFormatter: '{c}',
     lineEndLabelColor: "#000",
     lineEndLabelFontSize: 12,
 
@@ -201,67 +201,67 @@ export const initLineConfig = {
     lineLabelLineStyleColor: "blue",
     lineLabelLineStyleWidth: 1,
     lineLabelLineStyleType: 'solid',
-    
+
     // lineItemStyleBorderColor: '#000',
     lineItemStyleBorderWidth: 1,
-    lineItemStyleBorderType:'solid',
-    
-    lineStyleWidth:2,
-    lineStyleType:'solid',
-    lineStyleOpacity:1,
+    lineItemStyleBorderType: 'solid',
 
-    lineAreaStyleColor:'#fff',
-    lineAreaStyleOrigin :'auto',
-    lineAreaStyleOpacity:0,
+    lineStyleWidth: 2,
+    lineStyleType: 'solid',
+    lineStyleOpacity: 1,
 
-    lineEmphasisScale:true,
-    lineEmphasisFocus:'none',
-    lineEmphasisBlurScope:'coordinateSystem',
+    lineAreaStyleColor: '#fff',
+    lineAreaStyleOrigin: 'auto',
+    lineAreaStyleOpacity: 0,
+
+    lineEmphasisScale: true,
+    lineEmphasisFocus: 'none',
+    lineEmphasisBlurScope: 'coordinateSystem',
 
 }
 export const initPieConfig = {
     legendHoverLink: true,
-    clockwise:true,
-    startAngle:90,
-    minAngle:0,
-    roseType:'radius' ,//'area'
-    avoidLabelOverlap :true,
-    left:'center',
-    top:'center',
+    clockwise: true,
+    startAngle: 90,
+    minAngle: 0,
+    roseType: 'radius',//'area'
+    avoidLabelOverlap: true,
+    left: 'center',
+    top: 'center',
     // right:0,
     // bottom:0,
     // center:['50%', '50%'],
-    radius : [0, '45%'],
-    
-    lableShow:true,
-    labelPosition : 'outside',//'inside'  'center'
-    labelFormatter:'{b}: {d}',
-    labelColor:'#000',
-    labelFontSize:12,
-    labelAlignTo:  'none'  ,//'labelLine','edge'    标签的对齐方式，仅当 position 值为 'outer' 时有效。
+    radius: [0, '45%'],
 
-    labelLineShow:true,
-    length:null,
-    length2:null,
-    smooth:0,
-    labelLineLineStyleColor :"#000",
+    lableShow: true,
+    labelPosition: 'outside',//'inside'  'center'
+    labelFormatter: '{b}: {d}',
+    labelColor: '#000',
+    labelFontSize: 12,
+    labelAlignTo: 'none',//'labelLine','edge'    标签的对齐方式，仅当 position 值为 'outer' 时有效。
+
+    labelLineShow: true,
+    length: null,
+    length2: null,
+    smooth: 0,
+    labelLineLineStyleColor: "#000",
     LabelLineStyleWidth: 1,
     LabelLineStyleType: 'solid',
 
     itemStyleColor: '',
     itemStyleBorderColor: 'red',
     itemStyleBorderWidth: 1,
-    itemStyleBorderType:'solid',
-    itemStyleShadowBlur:10,
-    itemStyleShadowColor:'rgba(0, 0, 0, 0.5)',
-    itemStyleBorderRadius:[10, 20],
+    itemStyleBorderType: 'solid',
+    itemStyleShadowBlur: 10,
+    itemStyleShadowColor: 'rgba(0, 0, 0, 0.5)',
+    itemStyleBorderRadius: [10, 20],
 
-    emphasisScale : true,
-    emphasisScaleSize : 10,
-    emphasisFocus:'none',//'self','series' 
-    emphasisLabelShow:true,
-    emphasisLabelColor:'#FFF',
-    emphasisLabelFontSize:16,
+    emphasisScale: true,
+    emphasisScaleSize: 10,
+    emphasisFocus: 'none',//'self','series' 
+    emphasisLabelShow: true,
+    emphasisLabelColor: '#FFF',
+    emphasisLabelFontSize: 16,
 
     // lineStyleWidth:2,
     // lineStyleType:'solid',
@@ -279,11 +279,27 @@ export const initPieConfig = {
 
 
 }
-export const initLiquidfillConfig ={
-    show:true
+export const initLiquidfillConfig = {
+    show: true
 }
-export const initWordCloudConfig ={
-    show:true
+export const initWordCloudConfig = {
+    show: true,
+    shape: 'circle',
+    left: 'center',
+    top: 'center',
+    width: '70%',
+    height: '80%',
+    sizeRange: [12, 60],
+    rotationRange: [-90, 90],
+    rotationStep: 45,
+    gridSize: 8,
+    drawOutOfBound: false,
+    layoutAnimation: true,
+    textStyleFontFamily: 'sans-serif',
+    textStyleFontWeight: 'bold',
+    emphasisFocus: 'self',
+    emphasisTextStyleShadowBlur: 10,
+    emphasisTextStyleShadowColor: '#333',
 }
 
 

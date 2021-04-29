@@ -281,7 +281,7 @@ const LineConfig = (props) => {
                         </Select>
                     </Form.Item>
                 </Panel>
-                <Panel header="折线拐点标志配置" key="line" className="site-collapse-custom-panel">
+                <Panel header="折线拐点标志配置" key="lineItemStyle" className="site-collapse-custom-panel">
                     {/* <Form.Item
                         label="边框颜色"
                         name="lineItemStyleBorderColor"

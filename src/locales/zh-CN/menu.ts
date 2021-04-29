@@ -62,4 +62,5 @@ export default {
   'menu.chartConfig.funnelConfig':'漏斗图配置',
   'menu.chartConfig.gaugeConfig':'仪表盘配置',
   
+  'menu.person':'个人中心'
 };

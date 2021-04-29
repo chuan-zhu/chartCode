@@ -11,7 +11,7 @@ import './index.less'
 const WordCloud = ({ wordCloudConfig, dispatch }) => {
     // return (<div>asdadas</div>)
     console.log(wordCloudConfig)
-    let { title, legend, grid, xAxis, yAxis, wordCloud, color, tooltip } = wordCloudConfig
+    let { title, wordCloud, color, tooltip } = wordCloudConfig
     console.log(title)
     // 不可编辑的数组
     const data = [{
@@ -57,25 +57,6 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
             right: title.titleRight,
             bottom: title.titleBottom
         }
-        const legendConfig = {
-            data: ['销量', '库存'],
-            show: legend.show,
-            left: legend.legendLeft,
-            top: legend.legendTop,
-            right: legend.legendRight,
-            bottom: legend.legendBottom,
-            orient: legend.legendOrient,
-            itemGap: legend.legendItemGap,
-            itemWidth: legend.legendItemWidth,
-            itemHeight: legend.legendItemHeight,
-            selectedMode: legend.legendSelectedMode,
-            textStyle: {
-                color: legend.legendTextColor,
-                fontFamily: legend.legendFontFamily,
-                fontSize: legend.legendFontSize,
-            },
-            icon: legend.legendIcon
-        }
         const tooltipConfig = {
             show: tooltip.show,
             trigger: tooltip.trigger,
@@ -86,49 +67,67 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
             borderWidth: tooltip.borderWidth,
             padding: tooltip.padding,
         }
+        var JosnList = [
+            { name: "龙头镇", value: "111" },
+            { name: "大埔镇", value: "222" },
+            { name: "太平镇", value: "458" },
+            { name: "沙埔镇", value: "445" },
+            { name: "东泉镇", value: "456" },
+            { name: "凤山镇", value: "647" },
+            { name: "a", value: "189" },
+            { name: "s", value: "864" },
+            { name: "阿萨德", value: "652" },
+            { name: "为", value: "458" },
+            { name: "嗯嗯", value: "445" },
+            { name: "发给", value: "456" },
+            { name: "让他", value: "647" },
+            { name: "和好", value: "189" },
+            { name: "儿童", value: "864" },
+            { name: "医院", value: "652" },
+            { name: "看看", value: "458" },
+            { name: "微博", value: "445" },
+            { name: "你吗", value: "456" },
+            { name: "熊是", value: "647" },
+            { name: "爱宠", value: "189" },
+            { name: "阿沙文", value: "864" },
+            { name: "确认单", value: "652" },
+
+        ];
         const seriesConfig = () => {
-            let seriesArr = []
-            data.forEach((item, index) => {
-                let seriesItem = {
-                    name: item.name,
-                    type: 'wordCloud',
-                    shape: 'circle',
-                    left: 'center',
-                    top: 'center',
-                    width: '70%',
-                    height: '80%',
-                    sizeRange: [12, 60],
-                    rotationRange: [-90, 90],
-                    rotationStep: 45,
-                    gridSize: 8,
-                    drawOutOfBound: false,
-                    layoutAnimation: true,
+            let seriesItem = {
+                type: 'wordCloud',
+                shape: wordCloud.shape,
+                left: wordCloud.left,
+                top: wordCloud.top,
+                width: wordCloud.width,
+                height: wordCloud.height,
+                sizeRange: wordCloud.sizeRange,
+                rotationRange:wordCloud.rotationRange,
+                rotationStep: wordCloud.rotationStep,
+                gridSize: wordCloud.gridSize,
+                drawOutOfBound: wordCloud.drawOutOfBound,
+                layoutAnimation: wordCloud.layoutAnimation,
+                textStyle: {
+                    fontFamily: wordCloud.textStyleFontFamily,
+                    fontWeight: wordCloud.textStyleFontWeight,
+                    color: function () {
+                        return 'rgb(' + [
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                    }
+                },
+                emphasis: {
+                    focus: wordCloud.emphasisFocus,
                     textStyle: {
-                        fontFamily: 'sans-serif',
-                        fontWeight: 'bold',
-                        color: function () {
-                            // Random color
-                            return 'rgb(' + [
-                                Math.round(Math.random() * 160),
-                                Math.round(Math.random() * 160),
-                                Math.round(Math.random() * 160)
-                            ].join(',') + ')';
-                        }
-                    },
-                    emphasis: {
-                        focus: 'self',
-            
-                        textStyle: {
-                            shadowBlur: 10,
-                            shadowColor: '#333'
-                        }
-                    },
-                    data:['敖德萨所多撒多','asda','啊实打实',312312,'rrrrrrrrrrrr','vvvvvvvv','grgrgrg','thththt','yjyjyjyy','jyjyjjy']
-                    
-                }
-                seriesArr.push(seriesItem)
-            })
-            return seriesArr
+                        shadowBlur:wordCloud.emphasisTextStyleShadowBlur,
+                        shadowColor: wordCloud.emphasisTextStyleShadowColor
+                    }
+                },
+                data: JosnList
+            }
+            return seriesItem
         }
         const colorConfig = () => {
             // 渐变色配置（线性渐变 linear，径向渐变  radial ）
@@ -165,11 +164,9 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
                 return color.color
             }
         }
-        colorConfig()
         return {
             title: titleConfig,
             tooltip: tooltipConfig,
-            legend: legendConfig,
             series: seriesConfig(),
             color: colorConfig()
         }

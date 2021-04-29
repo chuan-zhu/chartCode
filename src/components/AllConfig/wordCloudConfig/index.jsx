@@ -1,7 +1,7 @@
 import React from 'react'
 import { Collapse, Form, Input, InputNumber, Switch, Select, } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { seriesLablePositiontip } from '@/utils/utils.tipsConstant'
+import { lefttip,toptip  } from '@/utils/utils.tipsConstant'
 import { formateFormData, deBounce } from '@/utils/utils'
 import ColorPickerSingle from '@/components/ColorPickSingle/'
 const layout = {
@@ -52,51 +52,76 @@ const WordCloudConfig = (props) => {
         >
             <Form.Item
                 label="图例联动高亮"
-                name="show"
+                name="shape"
             >
-                <Switch checked={config.show} ></Switch>
-            </Form.Item>
-            {/* <Form.Item
-                label="图例联动高亮"
-                name="legendHoverLink"
-            >
-                <Switch checked={config.legendHoverLink} ></Switch>
-            </Form.Item>
-            <Form.Item
-                label="顺时针排布"
-                name="clockwise"
-            >
-                <Switch checked={config.clockwise} ></Switch>
+                <Select style={{ width: 120 }}  >
+                    <Option value='circle'>圆形</Option>
+                    <Option value='inside'> 三角形</Option>
+                    <Option value='center'> 菱形</Option>
+                    <Option value='center'> 矩形</Option>
+                </Select>
             </Form.Item>
             <Form.Item
-                label="起始角度"
-                name="startAngle"
+                label="左侧位置"
+                name="left"
+                tooltip={lefttip}
             >
-                <InputNumber ></InputNumber>
+                <Input   />
             </Form.Item>
             <Form.Item
-                label="最小角度"
-                name="minAngle"
+                label="上方位置"
+                name="top"
+                tooltip={toptip}
             >
-                <InputNumber ></InputNumber>
+                <Input  />
             </Form.Item>
             <Form.Item
-                label="南丁格尔图"
-                name="roseType"
+                label="宽度"
+                name="width"
             >
-                <Input ></Input>
+                <Input />
             </Form.Item>
             <Form.Item
-                label="防止标签重叠策略"
-                name="avoidLabelOverlap"
+                label="高度"
+                name="height"
             >
-                <Switch checked={config.avoidLabelOverlap} ></Switch>
+                <Input />
             </Form.Item>
             <Form.Item
-                label="半径"
-                name="radius"
+                label="文本大小区间范围"
+                name="sizeRange"
             >
-                <Input ></Input>
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="旋转角度区间范围"
+                name="rotationRange"
+            >
+                <Input />
+            </Form.Item>
+            <Form.Item
+                label="旋转角度大小"
+                name="rotationStep"
+            >
+                <InputNumber />
+            </Form.Item>
+            <Form.Item
+                label="网格大小"
+                name="gridSize"
+            >
+                <InputNumber />
+            </Form.Item>
+            <Form.Item
+                label="超出画布之外绘制"
+                name="drawOutOfBound"
+            >
+                <Switch checked={config.drawOutOfBound} ></Switch>
+            </Form.Item>
+            <Form.Item
+                label="布局动画"
+                name="layoutAnimation"
+            >
+                <Switch checked={config.layoutAnimation} ></Switch>
             </Form.Item>
             <Collapse bordered={false}
                 defaultActiveKey={[]}
@@ -104,253 +129,47 @@ const WordCloudConfig = (props) => {
                 className="site-collapse-custom-collapse"
                 ghost
             >
-                <Panel header="饼图标签" key="wordCloudLabel" className="site-collapse-custom-panel">
+                <Panel header="标签" key="wordCloudLabel" className="site-collapse-custom-panel">
                     <Form.Item
-                        label="标签展示"
-                        name="lableShow"
+                        label="标签字体"
+                        name="textStyleFontFamily"
                         {...layoutLittle}
                     >
-                        <Switch checked={config.lableShow} ></Switch>
+                        <Input ></Input>
                     </Form.Item>
                     <Form.Item
-                        label="标签位置"
-                        name="labelPosition"
-                        {...layoutLittle}
-                    // tooltip={seriesLablePositiontip}
-                    >
-                        <Select style={{ width: 120 }}  >
-                            <Option value='outside'>外部</Option>
-                            <Option value='inside'> 内部</Option>
-                            <Option value='center'> 居中</Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="标签对齐方式"
-                        name="labelAlignTo"
-                        {...layoutLittle}
-                    // tooltip={seriesLablePositiontip}
-                    >
-                        <Select style={{ width: 120 }}  >
-                            <Option value='none'>默认值</Option>
-                            <Option value='labelLine'> 末端对齐</Option>
-                            <Option value='edge'>文字对齐</Option>
-                        </Select>
-                    </Form.Item>
-
-                    <Form.Item
-                        label="标签字体颜色"
-                        name="labelColor"
-                        {...layoutLittle}
-                    >
-                        <ColorPickerSingle updateColor={updateColor} field='labelColor'
-                            color={config.labelColor}></ColorPickerSingle>
-                    </Form.Item>
-                    <Form.Item
-                        label="标签字体大小"
-                        name="labelFontSize"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="标签内容"
-                        name="labelFormatter"
+                        label="标签加粗"
+                        name="textStyleFontWeight"
                         {...layoutLittle}
                     >
                         <Input ></Input>
                     </Form.Item>
                 </Panel>
-                <Panel header="标签引导线" key="wordCloudLabelLine" className="site-collapse-custom-panel">
+                <Panel header="高亮" key="emphasis" className="site-collapse-custom-panel">
                     <Form.Item
-                        label="引导线展示"
-                        name="labelLineShow"
-                        {...layoutLittle}
-                    >
-                        <Switch checked={config.labelLineShow} ></Switch>
-                    </Form.Item>
-                    <Form.Item
-                        label="引导线平滑展示"
-                        name="smooth"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="引导线颜色"
-                        name="labelLineLineStyleColor"
-                        {...layoutLittle}
-                    >
-                        <ColorPickerSingle updateColor={updateColor} field='labelLineLineStyleColor'
-                            color={config.labelLineLineStyleColor}></ColorPickerSingle>
-                    </Form.Item>
-                    <Form.Item
-                        label="引导线宽度"
-                        name="LabelLineStyleWidth"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="引导线类型"
-                        name="LabelLineStyleType"
-                        {...layoutLittle}
-                    >
-                        <Select style={{ width: 120 }}  >
-                            <Option value='solid'>实线</Option>
-                            <Option value='dashed'> 虚线</Option>
-                            <Option value='dotted'> 点线</Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="引导线第一段长度"
-                        name="length"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="引导线第二段长度"
-                        name="length2"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                </Panel>
-                <Panel header="扇形区块配置" key="wordCloud" className="site-collapse-custom-panel">
-                    <Form.Item
-                        label="边框颜色"
-                        name="itemStyleBorderColor"
-                        {...layoutLittle}
-                    >
-                        <ColorPickerSingle updateColor={updateColor} field='itemStyleBorderColor'
-                            color={config.itemStyleBorderColor}></ColorPickerSingle>
-                    </Form.Item>
-                    <Form.Item
-                        label="边框宽度"
-                        name="itemStyleBorderWidth"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="边框类型"
-                        name="itemStyleBorderType"
-                        {...layoutLittle}
-                    >
-                        <Select style={{ width: 120 }}  >
-                            <Option value='solid'>实线</Option>
-                            <Option value='dashed'> 虚线</Option>
-                            <Option value='dotted'> 点线</Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="阴影长度"
-                        name="itemStyleShadowBlur"
-                        {...layoutLittle}
-                    >
-                        <InputNumber ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="阴影颜色"
-                        name="itemStyleShadowColor"
-                        {...layoutLittle}
-                    >
-                        <ColorPickerSingle updateColor={updateColor} field='itemStyleShadowColor'
-                            color={config.itemStyleShadowColor}></ColorPickerSingle>
-                    </Form.Item>
-                    <Form.Item
-                        label="内外圆角半径"
-                        name="itemStyleBorderRadius"
-                        {...layoutLittle}
-                    >
-                        <Input></Input>
-                    </Form.Item>
-                </Panel>
-                <Panel header="高亮配置" key="emphasis" className="site-collapse-custom-panel">
-                    <Form.Item
-                        label="放大效果"
-                        name="emphasisScale"
-                    >
-                        <Switch checked={config.emphasisScale} ></Switch>
-                    </Form.Item>
-                    <Form.Item
-                        label="放大尺寸"
-                        name="emphasisScaleSize"
-                    >
-                        <InputNumber  ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="聚焦效果"
+                        label="高亮内容"
                         name="emphasisFocus"
-                    >
-                        <Select style={{ width: 120 }}  >
-                            <Option value='none'>不淡出</Option>
-                            <Option value='self'>聚焦当前数据</Option>
-                            <Option value='series'>聚焦当前系列</Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="展示标签"
-                        name="emphasisLabelShow"
-                    >
-                        <Switch checked={config.emphasisLabelShow} ></Switch>
-                    </Form.Item>
-                    <Form.Item
-                        label="标签颜色"
-                        name="emphasisLabelColor"
-                    >
-                        <ColorPickerSingle updateColor={updateColor} field='emphasisLabelColor'
-                            color={config.emphasisLabelColor}></ColorPickerSingle>
-                    </Form.Item>
-                    <Form.Item
-                        label="标签大小"
-                        name="emphasisLabelFontSize"
-                    >
-                        <InputNumber  ></InputNumber>
-                    </Form.Item>
-                    <Form.Item
-                        label="边框宽度"
-                        name="itemStyleBorderWidth"
                         {...layoutLittle}
                     >
-                        <InputNumber ></InputNumber>
+                        <Input ></Input>
                     </Form.Item>
                     <Form.Item
-                        label="边框类型"
-                        name="itemStyleBorderType"
-                        {...layoutLittle}
-                    >
-                        <Select style={{ width: 120 }}  >
-                            <Option value='solid'>实线</Option>
-                            <Option value='dashed'> 虚线</Option>
-                            <Option value='dotted'> 点线</Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="阴影长度"
-                        name="itemStyleShadowBlur"
+                        label="阴影大小"
+                        name="emphasisTextStyleShadowBlur"
                         {...layoutLittle}
                     >
                         <InputNumber ></InputNumber>
                     </Form.Item>
                     <Form.Item
                         label="阴影颜色"
-                        name="itemStyleShadowColor"
+                        name="emphasisTextStyleShadowColor"
                         {...layoutLittle}
                     >
-                        <ColorPickerSingle updateColor={updateColor} field='itemStyleShadowColor'
-                            color={config.itemStyleShadowColor}></ColorPickerSingle>
-                    </Form.Item>
-                    <Form.Item
-                        label="内外圆角半径"
-                        name="itemStyleBorderRadius"
-                        {...layoutLittle}
-                    >
-                        <Input></Input>
+                        <ColorPickerSingle updateColor={updateColor} field='emphasisTextStyleShadowColor'
+                            color={config.emphasisTextStyleShadowColor}></ColorPickerSingle>
                     </Form.Item>
                 </Panel>
-
-            </Collapse> */}
+            </Collapse>
         </Form>
     )
 

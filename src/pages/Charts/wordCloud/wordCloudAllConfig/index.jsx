@@ -3,7 +3,6 @@ import { Collapse,Switch } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import _ from 'lodash'
 import TitleConfig from '@/components/AllConfig/TitleConfig'
-import LegendConfig from '@/components/AllConfig/LegendConfig'
 import WordCloudConfig from '@/components/AllConfig/wordCloudConfig'
 import ColorConfig from '@/components/AllConfig/ColorConfig'
 import TooltipConfig from '@/components/AllConfig/TooltipConfig'
@@ -59,14 +58,6 @@ const LineAllConfig = ({ wordCloudConfig, dispatch }) => {
             }>
                 <TitleConfig config={config.title} storeChange={storeChange} ></TitleConfig>
             </Panel>
-
-             <Panel header="图例" key="legend" className="site-collapse-custom-panel"
-                extra={
-                    <Switch size="small" defaultChecked={config.legend.show} onClick={(checked, e) => showConfig(checked, e, 'legend')} />
-                }>
-                <LegendConfig config={config.legend} storeChange={storeChange} ></LegendConfig>
-            </Panel>
-            
             <Panel header="提示信息" key="tooltip" className="site-collapse-custom-panel"
              extra={
                 <Switch size="small" defaultChecked={config.tooltip.show} onClick={(checked, e) => showConfig(checked, e, 'tooltip')} />
@@ -75,7 +66,7 @@ const LineAllConfig = ({ wordCloudConfig, dispatch }) => {
                 <TooltipConfig config={config.tooltip} storeChange={storeChange}></TooltipConfig>
             </Panel>
             
-            <Panel header="水球图配置" key="wordCloud" className="site-collapse-custom-panel"
+            <Panel header="词云图配置" key="wordCloud" className="site-collapse-custom-panel"
 
             >
                 <WordCloudConfig config={config.wordCloud} storeChange={storeChange}></WordCloudConfig>
