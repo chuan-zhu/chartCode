@@ -30,9 +30,9 @@ const PersonHome = ({ articleList: { list, projectList } }) => {
                         <List.Item
                             key={item.href}
                             actions={[
-                                <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-                                <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-                                <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                                <IconText icon={StarOutlined} text={(Math.random()*100).toFixed(0)} key="list-vertical-star-o" />,
+                                <IconText icon={LikeOutlined} text={(Math.random()*100).toFixed(0)} key="list-vertical-like-o" />,
+                                <IconText icon={MessageOutlined} text={(Math.random()*100).toFixed(0)} key="list-vertical-message" />,
                             ]}
                         >
                             <List.Item.Meta

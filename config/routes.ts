@@ -69,7 +69,7 @@
         component: './Charts/pie',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/scatter',
         name: 'ScatterConfig',
         icon: 'smile',
         component: './Charts/line',
@@ -81,7 +81,7 @@
         component: './Charts/liquidfill',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/map',
         name: 'mapConfig',
         icon: 'smile',
         component: './Charts/line',
@@ -93,19 +93,19 @@
         component: './Charts/wordCloud',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/radar',
         name: 'radarConfig',
         icon: 'smile',
-        component: './Charts/line',
+        component: './Charts/radar',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/funnel',
         name: 'funnelConfig',
         icon: 'smile',
         component: './Charts/line',
       },
       {
-        path: '/Charts/line',
+        path: '/Charts/gauge',
         name: 'gaugeConfig',
         icon: 'smile',
         component: './Charts/line',

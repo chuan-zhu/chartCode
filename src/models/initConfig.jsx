@@ -280,7 +280,19 @@ export const initPieConfig = {
 
 }
 export const initLiquidfillConfig = {
-    show: true
+    show: true,
+    radius: '40%',
+
+    itemStyleOpacity: 0.6,
+    outlineBorderDistance: 0,
+    outlineItemStyleBorderWidth: 2,
+    outlineItemStyleBorderColor: 'red',
+
+    labelTextStyleFontSize: 12,
+    labelTextStyleColor: 'red', //波浪上文本颜色
+    labelTextStyleInsideColor: '#fff', //波浪内部字体颜色
+    labelTextStyleAlign: 'center',
+
 }
 export const initWordCloudConfig = {
     show: true,
@@ -300,6 +312,62 @@ export const initWordCloudConfig = {
     emphasisFocus: 'self',
     emphasisTextStyleShadowBlur: 10,
     emphasisTextStyleShadowColor: '#333',
+}
+export const initRadarConfig = {
+    center: ['50%', '50%'],
+    radius: '75%',
+    startAngle: 90,
+    splitNumber: 5,
+    shape: 'polygon',//'polygon' 和 'circle'。
+    nameShow: true,
+    nameColor: '#333', 
+    nameFontSize: 12,
+
+    nameGap: 15,
+
+    axisLineShow: true,
+    axisLineSymbol: 'none',
+    axisLineSymbolSize: [10, 15],
+    axisLineSymbolOffset: [0, 0],
+    axisLineLineStyleColor: '#333',
+    axisLineLineStyleWidth: 1,
+    axisLineLineStyleType: 'solid',
+    axisLineLineStyleCap: 'butt',
+    axisLineLineStyleShadowColor: '#000',
+    axisLineLineStyleOpacity: 1,
+
+    axisTickShow: true,
+    axisTickLength: 5,
+    axisTickLineStyleColor: "red",
+    axisTickLineStyleWidth: 1,
+    axisTickLineStyleType: 'solid',
+    axisTickLineStyleCap: 'butt',
+    axisTickLineStyleShadowColor: '#000',
+    axisTickLineStyleOpacity: 1,
+
+    axisLabelShow: true,
+    axisLabelRotate: 0,
+    axisLabelMargin: 8,
+    axisLabelShowMinLabel: null,
+    axisLabelShowMaxLabel: null,
+    axisLabelColor: '#eee',
+    axisLabelFontSize: 12,
+    axisLabelAlign: null,
+    axisLabelVerticalAlign: null,
+
+    splitLineShow: true,
+    splitLineLineStyleColor: ['#ccc'],
+    splitLineLineStyleWidth: 1,
+    splitLineLineStyleType: 'solid',
+    splitLineLineStyleCap: 'butt',
+    splitLineLineStyleOpacity: 1,
+
+    splitAreaShow: true,
+    splitAreaAreaStyleColor: ['rgba(250,250,250,0.3)', 'rgba(200,200,200,0.3)'],
+    splitAreaAreaStyleShadowBlur: 0,
+    splitAreaAreaStyleShadowColor: null,
+    splitAreaAreaStyleOopacity: 1,
+
 }
 
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Collapse,Switch } from 'antd';
+import { Collapse, Switch } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
 import _ from 'lodash'
 import TitleConfig from '@/components/AllConfig/TitleConfig'
 import LegendConfig from '@/components/AllConfig/LegendConfig'
-import LiquidfillConfig from '@/components/AllConfig/LiquidfillConfig'
+import RadarConfig from '@/components/AllConfig/RadarConfig'
 import ColorConfig from '@/components/AllConfig/ColorConfig'
 import TooltipConfig from '@/components/AllConfig/TooltipConfig'
 import { connect } from 'umi'
@@ -12,9 +12,9 @@ import style from './index.less'
 
 const { Panel } = Collapse;
 
-const LiquidfillAllConfig = ({ liquidfillConfig, dispatch }) => {
-    console.log(liquidfillConfig, dispatch)
-    let  config  = liquidfillConfig
+const RadarAllConfig = ({ radarConfig, dispatch }) => {
+    console.log(radarConfig, dispatch)
+    let config = radarConfig
     console.log(config)
     /**
      * 是否展示点击回调
@@ -24,11 +24,11 @@ const LiquidfillAllConfig = ({ liquidfillConfig, dispatch }) => {
      */
     const showConfig = (checked, e, key) => {
         e.stopPropagation();//阻止冒泡
-        let newLiquidfillConfig = _.cloneDeep(config)
-        newLiquidfillConfig[key].show = checked
+        let newRadarConfig = _.cloneDeep(config)
+        newRadarConfig[key].show = checked
         dispatch({
-            type: 'liquidfillConfig/update',
-            payload: newLiquidfillConfig
+            type: 'radarConfig/update',
+            payload: newRadarConfig
         });
     }
 
@@ -37,11 +37,11 @@ const LiquidfillAllConfig = ({ liquidfillConfig, dispatch }) => {
      */
     const storeChange = (target, targetVal) => {
         // console.log(this.arguments)
-        let newLiquidfillConfig = _.cloneDeep(config)
-        newLiquidfillConfig[target] = targetVal
+        let newRadarConfig = _.cloneDeep(config)
+        newRadarConfig[target] = targetVal
         dispatch({
-            type: 'liquidfillConfig/update',
-            payload: newLiquidfillConfig
+            type: 'radarConfig/update',
+            payload: newRadarConfig
         });
     }
     return (
@@ -54,31 +54,31 @@ const LiquidfillAllConfig = ({ liquidfillConfig, dispatch }) => {
             ghost
         >
             <Panel header="标题配置" key="title" className="site-collapse-custom-panel"
-            extra={
-                <Switch size="small" defaultChecked={config.title.show} onClick={(checked, e) => showConfig(checked, e, 'title')} />
-            }>
+                extra={
+                    <Switch size="small" defaultChecked={config.title.show} onClick={(checked, e) => showConfig(checked, e, 'title')} />
+                }>
                 <TitleConfig config={config.title} storeChange={storeChange} ></TitleConfig>
             </Panel>
 
-             <Panel header="图例" key="legend" className="site-collapse-custom-panel"
+            <Panel header="图例" key="legend" className="site-collapse-custom-panel"
                 extra={
                     <Switch size="small" defaultChecked={config.legend.show} onClick={(checked, e) => showConfig(checked, e, 'legend')} />
                 }>
                 <LegendConfig config={config.legend} storeChange={storeChange} ></LegendConfig>
             </Panel>
-            
+
             <Panel header="提示信息" key="tooltip" className="site-collapse-custom-panel"
-             extra={
-                <Switch size="small" defaultChecked={config.tooltip.show} onClick={(checked, e) => showConfig(checked, e, 'tooltip')} />
-            }
+                extra={
+                    <Switch size="small" defaultChecked={config.tooltip.show} onClick={(checked, e) => showConfig(checked, e, 'tooltip')} />
+                }
             >
                 <TooltipConfig config={config.tooltip} storeChange={storeChange}></TooltipConfig>
             </Panel>
-            
-            <Panel header="水球图配置" key="liquidfill" className="site-collapse-custom-panel"
+
+            <Panel header="雷达图配置" key="radar" className="site-collapse-custom-panel"
 
             >
-                <LiquidfillConfig config={config.liquidfill} storeChange={storeChange}></LiquidfillConfig>
+                <RadarConfig config={config.radar} storeChange={storeChange}></RadarConfig>
             </Panel>
             <Panel header="颜色配置" key="color" className="site-collapse-custom-panel"
 
@@ -92,5 +92,5 @@ const LiquidfillAllConfig = ({ liquidfillConfig, dispatch }) => {
 const mapStateToProps = (state) => {
     return state
 }
-export default connect(mapStateToProps)(LiquidfillAllConfig) 
+export default connect(mapStateToProps)(RadarAllConfig)
 

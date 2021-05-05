@@ -92,11 +92,15 @@ const articleModel = {
         projectList:[
             {
                 title:'图表配置',
-                description:['Antd','umi','Dva','react']
+                description:['Antd','umi','Dva','react','echarts']
             },
             {
                 title:'艺术品电商WebApp',
                 description:['Vant-UI','Swiper','Vue','webpack']
+            },
+            {
+                title:'小程序',
+                description:['WXML']
             }
         ]
     },

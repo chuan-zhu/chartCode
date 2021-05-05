@@ -4,14 +4,14 @@ import { DownloadOutlined, SaveOutlined } from '@ant-design/icons';
 import { connect } from 'umi'
 import CodeBoard from '@/components/CodeBoard/'
 import Canvans from '@/components/Canvas/'
-import LiquidfillAllConfig from './liquidfillAllConfig'
+import RadarAllConfig from './radarAllConfig'
 
 import * as echarts from 'echarts'
 import './index.less'
-const Liquidfill = ({ liquidfillConfig, dispatch }) => {
+const Radar = ({ radarConfig, dispatch }) => {
     // return (<div>asdadas</div>)
-    console.log(liquidfillConfig)
-    let { title, legend, grid, xAxis, yAxis, liquidfill, color, tooltip } = liquidfillConfig
+    console.log(radarConfig)
+    let { title, legend, radar, color, tooltip } = radarConfig
     console.log(title)
     // 不可编辑的数组
     const data = [{
@@ -106,6 +106,83 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
             borderWidth: tooltip.borderWidth,
             padding: tooltip.padding,
         }
+        const radarConfig = {
+            center: radar.center,
+            radius: radar.radius,
+            startAngle: radar.startAngle,
+            splitNumber: radar.splitNumber,
+            shape: radar.shape,//'polygon' 和 'circle'。
+            name: {
+                nameShow: radar.nameShow,
+                nameColor: radar.nameColor,
+                nameFontSize: radar.nameFontSize,
+            },
+            nameGap: radar.nameGap,
+            axisLine: {
+                show: radar.axisLineShow,
+                symbol: radar.axisLineSymbol,
+                symbolSize: radar.axisLineSymbolSize,
+                symbolOffset: radar.axisLineSymbolOffset,
+                lineStyle: {
+                    color: radar.axisLineLineStyleColor,
+                    width: radar.axisLineLineStyleWidth,
+                    type: radar.axisLineLineStyleType,
+                    cap: radar.axisLineLineStyleCap,
+                    shadowColor: radar.axisLineLineStyleShadowColor,
+                    opacity: radar.axisLineLineStyleOpacity,
+                },
+            },
+            axisTick: {
+                show: radar.axisTickShow,
+                length: radar.axisTickLength,
+                lineStyle: {
+                    color: radar.axisTickLineStyleColor,
+                    width: radar.axisTickLineStyleWidth,
+                    type: radar.axisTickLineStyleType,
+                    cap: radar.axisTickLineStyleCap,
+                    shadowColor: radar.axisTickLineStyleShadowColor,
+                    opacity: radar.axisTickLineStyleOpacity,
+                },
+            },
+            axisLabel: {
+                show: radar.axisLabelShow,
+                rotate: radar.axisLabelRotate,
+                margin: radar.axisLabelMargin,
+                showMinLabel: radar.axisLabelShowMinLabel,
+                showMaxLabel: radar.axisLabelShowMaxLabel,
+                color: radar.axisLabelColor,
+                fontSize: radar.axisLabelFontSize,
+                align: radar.axisLabelAlign,
+                verticalAlign: radar.axisLabelVerticalAlign,
+            },
+            splitLine: {
+                show: radar.splitLineShow,
+                lineStyle: {
+                    color: radar.splitLineLineStyleColor,
+                    width: radar.splitLineLineStyleWidth,
+                    type: radar.splitLineLineStyleType,
+                    cap: radar.splitLineLineStyleCap,
+                    opacity: radar.splitLineLineStyleOpacity,
+                },
+                splitArea: {
+                    show: radar.splitAreaShow,
+                    areaStyle: {
+                        color: radar.splitAreaAreaStyleColor,
+                        shadowBlur: radar.splitAreaAreaStyleShadowBlur,
+                        shadowColor: radar.splitAreaAreaStyleShadowColor,
+                        opacity: radar.splitAreaAreaStyleOopacity,
+                    },
+                }
+            },
+            indicator: [
+                { name: '销售（Sales）', max: 6500},
+                { name: '管理（Administration）', max: 16000},
+                { name: '信息技术（Information Technology）', max: 30000},
+                { name: '客服（Customer Support）', max: 38000},
+                { name: '研发（Development）', max: 52000},
+                { name: '市场（Marketing）', max: 25000}
+            ]
+        }
         const seriesConfig = () => {
             let seriesArr = []
             let countPart = data.length * 2
@@ -118,17 +195,17 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
 
                     center: [positionLeft + '%', '50%'],
                     data: [0.5, 0.4, 0.3],
-                    radius: liquidfill.radius,
+                    radius: radar.RADIUS,
                     // 水球颜色
                     // color: [waveColor[0][index], waveColor[1][index]],
                     itemStyle: {
-                        opacity: liquidfill.itemStyleOpacity
+                        opacity: 0.6
                     },
                     outline: {
-                        borderDistance: liquidfill.outlineBorderDistance,
+                        borderDistance: 0,
                         itemStyle: {
-                            borderWidth: liquidfill.outlineItemStyleBorderWidth,
-                            borderColor: liquidfill.outlineItemStyleBorderColor,
+                            borderWidth: 2,
+                            borderColor: 'red',
                         },
                     },
                     label: {
@@ -138,12 +215,13 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
                             //     return dataArr[seriesIndex].name + '\n\n' + (value * 100).toFixed(2) + '%'
                             // },
                             textStyle: {
-                                fontSize: liquidfill.labelTextStyleFontSize,
-                                color: liquidfill.labelTextStyleColor,
-                                insideColor: liquidfill.labelTextStyleInsideColor, //波浪内部字体颜色
-                                align: liquidfill.labelTextStyleAlign,
+                                fontSize: 12,
+                                // color: color[index], //波浪上文本颜色
+                                color: 'blue',
+                                // insideColor: color[index], //波浪内部字体颜色
+                                align: 'center',
                             },
-                            // position: liquidfill.LABLE_POSITION
+                            // position: radar.LABLE_POSITION
                         }
                     },
                 }
@@ -186,12 +264,25 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
                 return color.color
             }
         }
-        colorConfig()
         return {
             title: titleConfig,
             tooltip: tooltipConfig,
             legend: legendConfig,
-            series: seriesConfig(),
+            radar: radarConfig,
+            series: [{
+                name: '预算 vs 开销（Budget vs spending）',
+                type: 'radar',
+                data: [
+                    {
+                        value: [4200, 3000, 20000, 35000, 50000, 18000],
+                        name: '预算分配（Allocated Budget）'
+                    },
+                    {
+                        value: [5000, 14000, 28000, 26000, 42000, 21000],
+                        name: '实际开销（Actual Spending）'
+                    }
+                ]
+            }],
             color: colorConfig()
         }
     }
@@ -214,12 +305,12 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
         <div className="right_wrap">
             <Row className="graph_wrap">
                 <Col span={17} className="graph_part left_part" >
-                    <div id="liquidfill" className="canvas_wrap">
+                    <div id="radar" className="canvas_wrap">
                         <Canvans option={option}></Canvans>
                     </div>
                 </Col>
                 <Col span={7} className="graph_part">
-                    <LiquidfillAllConfig></LiquidfillAllConfig>
+                    <RadarAllConfig></RadarAllConfig>
                 </Col>
             </Row>
             <Row style={{ height: '50px', borderTop: '1px solid #1890ff' }} align="middle">
@@ -243,5 +334,5 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
 const mapStateToProps = (state) => {
     return state
 }
-export default connect(mapStateToProps)(Liquidfill)
+export default connect(mapStateToProps)(Radar)
 
