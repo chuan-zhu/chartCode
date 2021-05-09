@@ -75,7 +75,7 @@ const MapAllConfig = ({ mapConfig, dispatch }) => {
                 <TooltipConfig config={config.tooltip} storeChange={storeChange}></TooltipConfig>
             </Panel>
 
-            <Panel header="雷达图配置" key="map" className="site-collapse-custom-panel"
+            {/* <Panel header="雷达图配置" key="map" className="site-collapse-custom-panel"
 
             >
                 <MapConfig config={config.map} storeChange={storeChange}></MapConfig>
@@ -84,7 +84,7 @@ const MapAllConfig = ({ mapConfig, dispatch }) => {
 
             >
                 <ColorConfig config={config.color} storeChange={storeChange}></ColorConfig>
-            </Panel>
+            </Panel> */}
         </Collapse>
     )
 

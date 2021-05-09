@@ -68,12 +68,12 @@
         icon: 'smile',
         component: './Charts/pie',
       },
-      {
-        path: '/Charts/scatter',
-        name: 'ScatterConfig',
-        icon: 'smile',
-        component: './Charts/line',
-      },
+      // {
+      //   path: '/Charts/scatter',
+      //   name: 'ScatterConfig',
+      //   icon: 'smile',
+      //   component: './Charts/line',
+      // },
       {
         path: '/Charts/liquidfill',
         name: 'liquidFillConfig',
@@ -98,18 +98,18 @@
         icon: 'smile',
         component: './Charts/radar',
       },
-      {
-        path: '/Charts/funnel',
-        name: 'funnelConfig',
-        icon: 'smile',
-        component: './Charts/line',
-      },
-      {
-        path: '/Charts/gauge',
-        name: 'gaugeConfig',
-        icon: 'smile',
-        component: './Charts/line',
-      },
+      // {
+      //   path: '/Charts/funnel',
+      //   name: 'funnelConfig',
+      //   icon: 'smile',
+      //   component: './Charts/line',
+      // },
+      // {
+      //   path: '/Charts/gauge',
+      //   name: 'gaugeConfig',
+      //   icon: 'smile',
+      //   component: './Charts/line',
+      // },
     ],
   },
   {

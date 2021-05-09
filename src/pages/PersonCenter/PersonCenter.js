@@ -4,9 +4,9 @@ import { UserOutlined } from '@ant-design/icons'
 import PersonHome from './components/PersonHome'
 import PersonInfo from './components/PersonInfo'
 import { PageContainer } from '@ant-design/pro-layout';
-
+import styles from './PersonCenter.css'
 const PersonCenter = () => {
-    return (<PageContainer title={false}>
+    return (<PageContainer title={false} className={styles.personCenter}>
         <Row gutter={[24, 24]}>
             <Col span={7}>
                 <PersonInfo></PersonInfo>
