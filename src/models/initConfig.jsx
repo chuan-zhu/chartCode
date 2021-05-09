@@ -369,6 +369,12 @@ export const initRadarConfig = {
     splitAreaAreaStyleOopacity: 1,
 
 }
+export const initMapConfig = {
+    
+}
+export const initGeoConfig = {
+    
+}
 
 
 

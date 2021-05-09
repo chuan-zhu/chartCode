@@ -84,7 +84,7 @@
         path: '/Charts/map',
         name: 'mapConfig',
         icon: 'smile',
-        component: './Charts/line',
+        component: './Charts/map',
       },
       {
         path: '/Charts/wordCloud',

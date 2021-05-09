@@ -11,7 +11,7 @@ export type canvasProps = {
 const Canvans:FC<canvasProps> = (props) => {
   console.log(props)
   return (
-  <ReactEcharts className={styles.canvas} option={props.option}></ReactEcharts>
+  <ReactEcharts className={styles.canvas} option={props.option} lazyUpdate={true}></ReactEcharts>
 )};
 
 export default Canvans;
