@@ -10,19 +10,20 @@ import { PageContainer } from '@ant-design/pro-layout';
 import * as echarts from 'echarts'
 import styles from './index.less'
 const { TabPane } = Tabs;
-const Bar = ({ barConfig, dispatch }) => {
-    console.log(barConfig, dispatch)
+const Bar = ({ barConfig, dispatch,dataSet }) => {
+    console.log(barConfig, dispatch,dataSet)
     let { title, legend, grid, xAxis, yAxis, bar, color, tooltip } = barConfig;
-    // 不可编辑的数组
-    const data = [{
-        name: "销量",
-        value: [5, 20, 36, 10, 10, 20]
-    },
-    {
-        name: "库存",
-        value: [5, 20, 36, 10, 10, 20]
-    }
-    ]
+    const {dataSource} = dataSet
+    // 图表数据处理
+    let data = []
+    let legendData = []
+    dataSource.forEach(item =>{
+        data.push({
+            name:item.name,
+            value:item.data
+        })
+        legendData.push(item.name)
+    })
     const getOption = () => {
         const titleConfig = {
             show: title.show,
@@ -46,7 +47,7 @@ const Bar = ({ barConfig, dispatch }) => {
             bottom: title.titleBottom
         }
         const legendConfig = {
-            data: ['销量', '库存'],
+            data: legendData,
             show: legend.show,
             left: legend.legendLeft,
             top: legend.legendTop,

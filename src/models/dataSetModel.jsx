@@ -40,7 +40,7 @@ const dataSetModel = {
                 }]
             }
         ],
-        editTarget:0,
+        editTarget: 0,
     },
     reducers: {
         // 更新配置

@@ -8,53 +8,22 @@ import RadarAllConfig from './radarAllConfig'
 
 import * as echarts from 'echarts'
 import './index.less'
-const Radar = ({ radarConfig, dispatch }) => {
+const Radar = ({ radarConfig, dispatch, dataSet }) => {
     // return (<div>asdadas</div>)
     console.log(radarConfig)
     let { title, legend, radar, color, tooltip } = radarConfig
     console.log(title)
-    // 不可编辑的数组
-    const data = [{
-        name: "蔬菜类型",
-        data: [{
-            name: '西红柿',
-            value: 100
-        },
-        {
-            name: '菠菜',
-            value: 120
-        },
-        {
-            name: '香菇',
-            value: 130
-        },
-        {
-            name: '白菜',
-            value: 150
-        }
-        ]
-    },
-    {
-        name: "水果类型",
-        data: [{
-            name: '苹果',
-            value: 100
-        },
-        {
-            name: '香蕉',
-            value: 260
-        },
-        {
-            name: '菠萝',
-            value: 330
-        },
-        {
-            name: '百香果',
-            value: 250
-        }
-        ]
-    }
-    ]
+    const { dataSource } = dataSet
+    // 图表数据处理
+    let data = []
+    let legendData = []
+    dataSource.forEach(item => {
+        data.push({
+            name: item.name,
+            data: item.data
+        })
+        legendData.push(item.name)
+    })
     const getOption = () => {
         const titleConfig = {
             show: title.show,
@@ -175,59 +144,13 @@ const Radar = ({ radarConfig, dispatch }) => {
                 }
             },
             indicator: [
-                { name: '销售（Sales）', max: 6500},
-                { name: '管理（Administration）', max: 16000},
-                { name: '信息技术（Information Technology）', max: 30000},
-                { name: '客服（Customer Support）', max: 38000},
-                { name: '研发（Development）', max: 52000},
-                { name: '市场（Marketing）', max: 25000}
+                { name: '销售（Sales）', },
+                { name: '管理（Administration）', },
+                { name: '信息技术（Information Technology）' },
+                { name: '客服（Customer Support）', },
+                { name: '研发（Development）', },
+                { name: '市场（Marketing）', }
             ]
-        }
-        const seriesConfig = () => {
-            let seriesArr = []
-            let countPart = data.length * 2
-            let averageLength = (100 / countPart).toFixed(2)
-            data.forEach((item, index) => {
-                let positionLeft = averageLength * (2 * index + 1)
-                let seriesItem = {
-                    name: item.name,
-                    type: 'liquidFill',
-
-                    center: [positionLeft + '%', '50%'],
-                    data: [0.5, 0.4, 0.3],
-                    radius: radar.RADIUS,
-                    // 水球颜色
-                    // color: [waveColor[0][index], waveColor[1][index]],
-                    itemStyle: {
-                        opacity: 0.6
-                    },
-                    outline: {
-                        borderDistance: 0,
-                        itemStyle: {
-                            borderWidth: 2,
-                            borderColor: 'red',
-                        },
-                    },
-                    label: {
-                        normal: {
-                            // formatter: function (params) {
-                            //     const { seriesIndex, value } = params
-                            //     return dataArr[seriesIndex].name + '\n\n' + (value * 100).toFixed(2) + '%'
-                            // },
-                            textStyle: {
-                                fontSize: 12,
-                                // color: color[index], //波浪上文本颜色
-                                color: 'blue',
-                                // insideColor: color[index], //波浪内部字体颜色
-                                align: 'center',
-                            },
-                            // position: radar.LABLE_POSITION
-                        }
-                    },
-                }
-                seriesArr.push(seriesItem)
-            })
-            return seriesArr
         }
         const colorConfig = () => {
             // 渐变色配置（线性渐变 linear，径向渐变  radial ）

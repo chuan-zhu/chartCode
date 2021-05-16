@@ -8,53 +8,22 @@ import LiquidfillAllConfig from './liquidfillAllConfig'
 
 import * as echarts from 'echarts'
 import './index.less'
-const Liquidfill = ({ liquidfillConfig, dispatch }) => {
+const Liquidfill = ({ liquidfillConfig, dispatch,dataSet }) => {
     // return (<div>asdadas</div>)
     console.log(liquidfillConfig)
     let { title, legend, grid, xAxis, yAxis, liquidfill, color, tooltip } = liquidfillConfig
     console.log(title)
-    // 不可编辑的数组
-    const data = [{
-        name: "蔬菜类型",
-        data: [{
-            name: '西红柿',
-            value: 100
-        },
-        {
-            name: '菠菜',
-            value: 120
-        },
-        {
-            name: '香菇',
-            value: 130
-        },
-        {
-            name: '白菜',
-            value: 150
-        }
-        ]
-    },
-    {
-        name: "水果类型",
-        data: [{
-            name: '苹果',
-            value: 100
-        },
-        {
-            name: '香蕉',
-            value: 260
-        },
-        {
-            name: '菠萝',
-            value: 330
-        },
-        {
-            name: '百香果',
-            value: 250
-        }
-        ]
-    }
-    ]
+    const {dataSource} = dataSet
+    // 图表数据处理
+    let data = []
+    let legendData = []
+    dataSource.forEach(item =>{
+        data.push({
+            name:item.name,
+            data:item.data
+        })
+        legendData.push(item.name)
+    })
     const getOption = () => {
         const titleConfig = {
             show: title.show,
@@ -78,7 +47,7 @@ const Liquidfill = ({ liquidfillConfig, dispatch }) => {
             bottom: title.titleBottom
         }
         const legendConfig = {
-            data: ['销量', '库存'],
+            data: legendData,
             show: legend.show,
             left: legend.legendLeft,
             top: legend.legendTop,

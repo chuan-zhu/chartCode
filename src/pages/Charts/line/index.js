@@ -8,20 +8,21 @@ import LineAllConfig from './lineAllConfig'
 
 import * as echarts from 'echarts'
 import './index.less'
-const Line = ({ lineConfig, dispatch }) => {
+const Line = ({ lineConfig, dispatch,dataSet }) => {
 console.log(lineConfig)
     let { title, legend, grid, xAxis, yAxis, line, color, tooltip }  = lineConfig
     console.log(title)
-    // 不可编辑的数组
-    const data = [{
-        name: "销量",
-        value: [5, 20, 36, 10, 10, 20]
-    },
-    {
-        name: "库存",
-        value: [15, 12, 34, 45, 25, 37]
-    }
-    ]
+    const {dataSource} = dataSet
+    // 图表数据处理
+    let data = []
+    let legendData = []
+    dataSource.forEach(item =>{
+        data.push({
+            name:item.name,
+            value:item.data
+        })
+        legendData.push(item.name)
+    })
     const getOption = () => {
         const titleConfig = {
             show: title.show,
@@ -45,7 +46,7 @@ console.log(lineConfig)
             bottom: title.titleBottom
         }
         const legendConfig = {
-            data: ['销量', '库存'],
+            data: legendData,
             show: legend.show,
             left: legend.legendLeft,
             top: legend.legendTop,

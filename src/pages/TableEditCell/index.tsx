@@ -226,6 +226,17 @@ class TableEdit extends React.Component {
     message.success('保存成功！');
     this.setState({ isModalVisible: false })
   }
+  /**
+   *全部数据保存
+   */
+  saveAllData = ()=>{
+    const dataSource = this.state.dataSource;
+    this.props.dispatch({
+      type: 'dataSet/update',
+      payload: { dataSource: dataSource }
+    })
+    message.success('保存成功！');
+  }
   render() {
     const { dataSource, isModalVisible } = this.state;
     const { editTarget } = this.props.dataSet
@@ -258,7 +269,7 @@ class TableEdit extends React.Component {
             <Button onClick={this.handleAdd} icon={<PlusOutlined />} type="primary" style={{ marginBottom: 16 }}>
               添加新数据
         </Button>
-            <Button onClick={this.handleAdd} icon={<SaveOutlined />} type="primary" style={{ marginBottom: 16 }}>
+            <Button onClick={this.saveAllData} icon={<SaveOutlined />} type="primary" style={{ marginBottom: 16 }}>
               保存
         </Button>
           </Space>
