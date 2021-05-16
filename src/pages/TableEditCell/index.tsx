@@ -1,15 +1,14 @@
 import styles from './index.less';
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Table, Input, Button, Form, Modal ,Space} from 'antd';
-import { EditOutlined } from '@ant-design/icons'
-import DataEdit from './components/DataEdit'
-
+import { Table, Input, Button, Form, Modal, Space, message } from 'antd';
+import { EditOutlined, PlusOutlined, DeleteOutlined, SaveOutlined } from '@ant-design/icons'
+import DataEdit from './components/DataEdit.jsx'
+import { connect } from 'umi'
 const EditableContext = React.createContext<any>();
 
 interface Item {
   key: string;
   name: string;
-  age: string;
 }
 
 interface EditableRowProps {
@@ -102,65 +101,108 @@ class TableEdit extends React.Component {
     super(props);
     this.columns = [
       {
-        title: 'name',
+        title: '名称',
         dataIndex: 'name',
         width: '40%',
         editable: true,
       },
       {
-        title: 'age',
-        dataIndex: 'age',
-        width: '40%',
-      },
-      {
-        title: 'operation',
+        title: '操作',
         dataIndex: 'operation',
         width: '20%',
         render: (text, record) =>
           this.state.dataSource.length >= 1 ? (
-            <Button icon={<EditOutlined />} onClick={() => this.handleEdit(record.key)}>编辑</Button>
+            <Space>
+              <Button icon={<EditOutlined />} onClick={() => this.handleEdit(record.key)}>编辑</Button>
+              <Button icon={<DeleteOutlined />} onClick={() => this.handleDel(record.key)}>删除</Button>
+            </Space>
           ) : null,
       },
     ];
-
+    const { dataSet, dispatch } = props
     this.state = {
-      dataSource: [
-        {
-          key: '0',
-          name: 'Edward King 0',
-          age: '32',
-        },
-        {
-          key: '1',
-          name: 'Edward King 1',
-          age: '32',
-        },
-      ],
-      count: 2,
-      isModalVisible: false
+      dataSource: dataSet.dataSource,
+      count: 1,
+      isModalVisible: false,
     };
   }
+
   /**
-   * 
+   * 编辑所在数据
    * @param key 
    */
   handleEdit = key => {
-    this.setState({ isModalVisible: true });
+    this.setState({ isModalVisible: true, });
+    this.props.dispatch({
+      type: 'dataSet/update',
+      payload: { editTarget: key }
+    })
   };
 
+  /**
+   * 删除当前行数据
+   * @param key 
+   */
+  handleDel = (key) => {
+    const { count, dataSource } = this.state;
+    const newData = dataSource.filter(item => item.key !== key)
+    this.setState({
+      dataSource: newData,
+      count: count - 1,
+    });
+  }
+  /**
+   * 新增一行数据
+   */
   handleAdd = () => {
     const { count, dataSource } = this.state;
+    const unitData = [{
+      key: '0',
+      name: '毛衣',
+      value: (Math.random() * 100).toFixed(0),
+    },
+    {
+      key: '1',
+      name: '裤子',
+      value: (Math.random() * 100).toFixed(0),
+    },
+    {
+      key: '2',
+      name: '羽绒服',
+      value: (Math.random() * 100).toFixed(0),
+    },
+    {
+      key: '3',
+      name: '帽子',
+      value: (Math.random() * 100).toFixed(0),
+    },
+    {
+      key: '4',
+      name: '短裙',
+      value: (Math.random() * 100).toFixed(0),
+    },
+    {
+      key: '5',
+      name: '风衣',
+      value: (Math.random() * 100).toFixed(0),
+    }]
+    if (count > 3) {
+      message.warning('数据项添加过多！建议不超过4组数据');
+    }
     const newData = {
       key: count,
-      name: `Edward King ${count}`,
-      age: 32,
+      name: `2021年${count}组销售情况`,
+      data: unitData
     };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
     });
   };
-
+  /**
+   * 保存数据
+   * @param row 
+   */
   handleSave = row => {
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
@@ -171,9 +213,22 @@ class TableEdit extends React.Component {
     });
     this.setState({ dataSource: newData });
   };
-
+  /**
+   * 系列数据项保存
+   */
+  saveSeriesData = (newData) => {
+    const { editTarget } = this.props.dataSet
+    const { dataSource } = this.state;
+    dataSource[editTarget].data = newData
+    this.setState({
+      dataSource
+    })
+    message.success('保存成功！');
+    this.setState({ isModalVisible: false })
+  }
   render() {
     const { dataSource, isModalVisible } = this.state;
+    const { editTarget } = this.props.dataSet
     const components = {
       body: {
         row: EditableRow,
@@ -195,29 +250,39 @@ class TableEdit extends React.Component {
         }),
       };
     });
+    // console.log(dataSource[editTarget])
     return (
-      <div>
-        <Space>
-        <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-          添加新数据
+      <div className={styles.container}>
+        <div id="components-table-demo-edit-cell">
+          <Space>
+            <Button onClick={this.handleAdd} icon={<PlusOutlined />} type="primary" style={{ marginBottom: 16 }}>
+              添加新数据
         </Button>
-        <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-          保存
+            <Button onClick={this.handleAdd} icon={<SaveOutlined />} type="primary" style={{ marginBottom: 16 }}>
+              保存
         </Button>
-        </Space>
-        <Table
-          components={components}
-          rowClassName={() => 'editable-row'}
-          bordered
-          dataSource={dataSource}
-          columns={columns}
-        />
-        <Modal title="编辑数据" visible={isModalVisible} onOk={() => this.setState({ isModalVisible: false })} onCancel={() => this.setState({ isModalVisible: false })}>
-          <DataEdit></DataEdit>
-        </Modal>
+          </Space>
+          <Table
+            components={components}
+            rowClassName={() => 'editable-row'}
+            bordered
+            dataSource={dataSource}
+            columns={columns}
+          />
+          <Modal title="编辑数据"
+            className={styles.modal}
+            visible={isModalVisible}
+            footer={null}
+            onOk={() => this.setState({ isModalVisible: false })}
+            onCancel={() => this.setState({ isModalVisible: false })}>
+            <DataEdit seriesData={dataSource[editTarget]} saveSeriesData={(newSeriesData) => this.saveSeriesData(newSeriesData)}></DataEdit>
+          </Modal>
+        </div>
       </div>
     );
   }
 }
-
-export default () => <div className={styles.container}><div id="components-table-demo-edit-cell"><TableEdit /></div></div>;
+const mapStateToProps = (state) => {
+  return state
+}
+export default connect(mapStateToProps)(TableEdit)
