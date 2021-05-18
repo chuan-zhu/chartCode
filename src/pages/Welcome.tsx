@@ -16,7 +16,7 @@ const CodePreview: React.FC = ({ children }) => (
 export default (): React.ReactNode => {
   const intl = useIntl();
   return (
-    <PageContainer>
+    <PageContainer className="a">
       <h2>初始化数据</h2>
       <TableEditCell />
     </PageContainer>

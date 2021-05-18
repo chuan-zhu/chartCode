@@ -128,7 +128,7 @@ export const initYAxisConfig = {
 }
 export const initColorConfig = {
     colorType: ["define", "solid"],
-    color: ["#6F9CEB", "#FEC368"],
+    color: ["#5FACFC",'#22C2DA','#D4EC5A','#FFB64D','#D05B7E','#FFE167'],
     linearType: 'linear',
     linearColorDirection: '0,0,0,1',
     radialColorDirection: '0.5,0.5,1',
@@ -266,18 +266,6 @@ export const initPieConfig = {
     // lineStyleWidth:2,
     // lineStyleType:'solid',
     // lineStyleOpacity:1,
-
-
-
-
-
-
-
-
-
-
-
-
 }
 export const initLiquidfillConfig = {
     show: true,

@@ -13,9 +13,7 @@ import style from './index.less'
 const { Panel } = Collapse;
 
 const RadarAllConfig = ({ radarConfig, dispatch }) => {
-    console.log(radarConfig, dispatch)
     let config = radarConfig
-    console.log(config)
     /**
      * 是否展示点击回调
      * @param {*} checked 

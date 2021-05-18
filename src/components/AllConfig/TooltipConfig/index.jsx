@@ -16,8 +16,6 @@ const { Option } = Select;
  */
 const TooltipConfig = (props) => {
     let config = props.config
-    console.log(props)
-
     const [form] = Form.useForm();
     /**
      * 表单变化，调用父组件派发方法

@@ -16,9 +16,7 @@ import style from './index.less'
 const { Panel } = Collapse;
 
 const BarAllConfig = ({ barConfig, dispatch }) => {
-    console.log(barConfig, dispatch)
     let  config  = barConfig
-    console.log(config)
     /**
      * 是否展示点击回调
      * @param {*} checked 

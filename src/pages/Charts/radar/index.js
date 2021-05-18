@@ -9,10 +9,8 @@ import RadarAllConfig from './radarAllConfig'
 import * as echarts from 'echarts'
 import './index.less'
 const Radar = ({ radarConfig, dispatch, dataSet }) => {
-    // return (<div>asdadas</div>)
-    console.log(radarConfig)
+    console.log('radarConfig',radarConfig)
     let { title, legend, radar, color, tooltip } = radarConfig
-    console.log(title)
     const { dataSource } = dataSet
     // 图表数据处理
     let data = []

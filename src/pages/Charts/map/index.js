@@ -11,9 +11,8 @@ import * as echarts from 'echarts'
 import './index.less'
 const Map = ({ mapConfig, dispatch }) => {
     // return (<div>asdadas</div>)
-    console.log(mapConfig)
+    console.log('mapConfig',mapConfig)
     let { title, legend, map, color, tooltip } = mapConfig
-    console.log(title)
     // 不可编辑的数组
     const data = [{
         name: "蔬菜类型",

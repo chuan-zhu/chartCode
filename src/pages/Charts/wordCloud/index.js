@@ -12,7 +12,6 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
     // return (<div>asdadas</div>)
     console.log(wordCloudConfig)
     let { title, wordCloud, color, tooltip } = wordCloudConfig
-    console.log(title)
     // 不可编辑的数组
     const data = [{
         name: "蔬菜类型",

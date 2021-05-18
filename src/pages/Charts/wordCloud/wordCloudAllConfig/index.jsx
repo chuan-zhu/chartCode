@@ -12,9 +12,7 @@ import style from './index.less'
 const { Panel } = Collapse;
 
 const LineAllConfig = ({ wordCloudConfig, dispatch }) => {
-    console.log(wordCloudConfig, dispatch)
     let  config  = wordCloudConfig
-    console.log(config)
     /**
      * 是否展示点击回调
      * @param {*} checked 

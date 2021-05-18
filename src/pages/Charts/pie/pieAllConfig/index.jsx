@@ -13,9 +13,7 @@ import style from './index.less'
 const { Panel } = Collapse;
 
 const LineAllConfig = ({ pieConfig, dispatch }) => {
-    console.log(pieConfig, dispatch)
     let  config  = pieConfig
-    console.log(config)
     /**
      * 是否展示点击回调
      * @param {*} checked 

@@ -13,9 +13,7 @@ import style from './index.less'
 const { Panel } = Collapse;
 
 const LiquidfillAllConfig = ({ liquidfillConfig, dispatch }) => {
-    console.log(liquidfillConfig, dispatch)
     let  config  = liquidfillConfig
-    console.log(config)
     /**
      * 是否展示点击回调
      * @param {*} checked 

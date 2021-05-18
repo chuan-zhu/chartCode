@@ -9,10 +9,8 @@ import LiquidfillAllConfig from './liquidfillAllConfig'
 import * as echarts from 'echarts'
 import './index.less'
 const Liquidfill = ({ liquidfillConfig, dispatch,dataSet }) => {
-    // return (<div>asdadas</div>)
-    console.log(liquidfillConfig)
+    console.log('liquidfillConfig',liquidfillConfig)
     let { title, legend, grid, xAxis, yAxis, liquidfill, color, tooltip } = liquidfillConfig
-    console.log(title)
     const {dataSource} = dataSet
     // 图表数据处理
     let data = []

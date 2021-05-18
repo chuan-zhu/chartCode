@@ -8,18 +8,17 @@ import LineAllConfig from './lineAllConfig'
 
 import * as echarts from 'echarts'
 import './index.less'
-const Line = ({ lineConfig, dispatch,dataSet }) => {
-console.log(lineConfig)
-    let { title, legend, grid, xAxis, yAxis, line, color, tooltip }  = lineConfig
-    console.log(title)
-    const {dataSource} = dataSet
+const Line = ({ lineConfig, dispatch, dataSet }) => {
+    console.log('lineConfig', lineConfig)
+    let { title, legend, grid, xAxis, yAxis, line, color, tooltip } = lineConfig
+    const { dataSource } = dataSet
     // 图表数据处理
     let data = []
     let legendData = []
-    dataSource.forEach(item =>{
+    dataSource.forEach(item => {
         data.push({
-            name:item.name,
-            value:item.data
+            name: item.name,
+            value: item.data
         })
         legendData.push(item.name)
     })
@@ -203,19 +202,19 @@ console.log(lineConfig)
                     type: 'line',
                     legendHoverLink: line.lineLegendHoverLink,
 
-                    symbol:line.lineSymbol,
-                    symbolSize:line.lineSymbolSize,
-                    symbolRotate:line.lineSymbolRotate,
-                    symbolOffset:line.lineSymbolOffset,
-                    showSymbol:line.lineShowSymbol,
-                
+                    symbol: line.lineSymbol,
+                    symbolSize: line.lineSymbolSize,
+                    symbolRotate: line.lineSymbolRotate,
+                    symbolOffset: line.lineSymbolOffset,
+                    showSymbol: line.lineShowSymbol,
+
                     label: {
                         show: line.lineLabelShow,
                         position: line.lineLabelPosition,
                         distance: line.lineLabelDistance,
                         rotate: line.lineLabelRotate,
                         offset: line.lineLabelOffset,
-                        formatter:line.lineLabelFormatter,
+                        formatter: line.lineLabelFormatter,
                         color: line.lineLabelColor,
                         fontSize: line.lineLabelFontSize,
                     },
@@ -224,13 +223,13 @@ console.log(lineConfig)
                         distance: line.lineEndLabelDistance,
                         rotate: line.lineEndLabelRotate,
                         offset: line.lineEndLabelOffset,
-                        formatter:line.lineEndLabelFormatter,
+                        formatter: line.lineEndLabelFormatter,
                         color: line.lineEndLabelColor,
                         fontSize: line.lineEndLabelFontSize,
                     },
                     labelLine: {
                         show: line.lineLabelLineShow,
-                        showAbove:line.lineLabelLineShowAbove,
+                        showAbove: line.lineLabelLineShowAbove,
                         smooth: line.lineLabelLineSmooth,
                         lineStyle: {
                             color: line.lineLabelLineStyleColor,
@@ -243,22 +242,22 @@ console.log(lineConfig)
                         borderWidth: line.lineItemStyleBorderWidth,
                         borderType: line.lineItemStyleBorderType,
                     },
-                    lineStyle :{
-                        width:line.lineStyleWidth,
-                        type:line.lineStyleType,
-                        opacity:line.lineStyleOpacity
+                    lineStyle: {
+                        width: line.lineStyleWidth,
+                        type: line.lineStyleType,
+                        opacity: line.lineStyleOpacity
                     },
-                    areaStyle :{
-                        color :line.lineAreaStyleColor,
-                        origin:line.lineAreaStyleOrigin,
-                        opacity:line.lineAreaStyleOpacity
+                    areaStyle: {
+                        color: line.lineAreaStyleColor,
+                        origin: line.lineAreaStyleOrigin,
+                        opacity: line.lineAreaStyleOpacity
                     },
-                    emphasis:{
-                        scale:line.lineEmphasisScale,
-                        focus :line.lineEmphasisFocus,
-                        blurScope :line.lineEmphasisBlurScope,
+                    emphasis: {
+                        scale: line.lineEmphasisScale,
+                        focus: line.lineEmphasisFocus,
+                        blurScope: line.lineEmphasisBlurScope,
                     },
-                
+
                     data: item.value
                 }
                 seriesArr.push(seriesItem)
@@ -359,6 +358,6 @@ console.log(lineConfig)
 }
 const mapStateToProps = (state) => {
     return state
-} 
+}
 export default connect(mapStateToProps)(Line)
 

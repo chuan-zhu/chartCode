@@ -9,9 +9,8 @@ import PieAllConfig from './pieAllConfig'
 import * as echarts from 'echarts'
 import './index.less'
 const Pie = ({ pieConfig, dispatch, dataSet }) => {
-    console.log(pieConfig)
+    console.log('pieConfig',pieConfig)
     let { title, legend, grid, xAxis, yAxis, pie, color, tooltip } = pieConfig
-    console.log(title)
     const { dataSource } = dataSet
     // 图表数据处理
     let data = []

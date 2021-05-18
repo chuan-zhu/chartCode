@@ -11,7 +11,6 @@ import styles from './index.less'
  * @returns 
  */
 const ColorPicker = (props) => {
-    console.log('color', props)
     // 是否展示颜色选择器
     const [showPicker, setShowPicker] = useState(false)
     //当前选中的颜色
@@ -63,17 +62,16 @@ const ColorPicker = (props) => {
     return (<>
         {
             // 标签展示
-            tags.map((item,index) => {
+            tags.map((item, index) => {
                 return <Tag
                     className="edit-tag"
                     key={index}
                     closable={true}
                     onClose={() => handleDelete(item)}
                     color={item}
+                    style={{ display: 'inline-block' }}
                 >
-                    <span >
-                        {item}
-                    </span>
+                    {item}
                 </Tag>
             })
         }
@@ -91,15 +89,6 @@ const ColorPicker = (props) => {
                     <SketchPicker color={color} disableAlpha={true} onChangeComplete={handleChange}></SketchPicker>
                 </div>
             }
-
-
-
-
-
-
-
-
-
         </div>
     </>
     )

@@ -11,7 +11,7 @@ import * as echarts from 'echarts'
 import styles from './index.less'
 const { TabPane } = Tabs;
 const Bar = ({ barConfig, dispatch,dataSet }) => {
-    console.log(barConfig, dispatch,dataSet)
+    // console.log(barConfig, dispatch,dataSet)
     let { title, legend, grid, xAxis, yAxis, bar, color, tooltip } = barConfig;
     const {dataSource} = dataSet
     // 图表数据处理
@@ -296,8 +296,6 @@ const Bar = ({ barConfig, dispatch,dataSet }) => {
         return obj;
     }
     const option = removePropertyOfNull(getOption())
-
-    console.log(option)
     let [showCode, setShowCode] = useState(false)
     return (
         <>

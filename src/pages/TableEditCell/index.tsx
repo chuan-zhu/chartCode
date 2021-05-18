@@ -198,6 +198,11 @@ class TableEdit extends React.Component {
       dataSource: [...dataSource, newData],
       count: count + 1,
     });
+    this.props.dispatch({
+      type: 'dataSet/update',
+      payload: { dataSource: [...dataSource, newData] }
+    })
+    message.success("添加成功")
   };
   /**
    * 保存数据
@@ -225,6 +230,7 @@ class TableEdit extends React.Component {
     })
     message.success('保存成功！');
     this.setState({ isModalVisible: false })
+    this.saveAllData()
   }
   /**
    *全部数据保存
@@ -235,7 +241,7 @@ class TableEdit extends React.Component {
       type: 'dataSet/update',
       payload: { dataSource: dataSource }
     })
-    message.success('保存成功！');
+    // message.success('保存成功！');
   }
   render() {
     const { dataSource, isModalVisible } = this.state;
