@@ -7,7 +7,6 @@ import Canvans from '@/components/Canvas/'
 import LiquidfillAllConfig from './liquidfillAllConfig'
 
 import * as echarts from 'echarts'
-import './index.less'
 const Liquidfill = ({ liquidfillConfig, dispatch,dataSet }) => {
     console.log('liquidfillConfig',liquidfillConfig)
     let { title, legend, grid, xAxis, yAxis, liquidfill, color, tooltip } = liquidfillConfig

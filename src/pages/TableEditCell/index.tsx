@@ -150,6 +150,11 @@ class TableEdit extends React.Component {
       dataSource: newData,
       count: count - 1,
     });
+    this.props.dispatch({
+      type: 'dataSet/update',
+      payload: { dataSource: newData }
+    })
+    message.success("删除成功")
   }
   /**
    * 新增一行数据

@@ -7,7 +7,6 @@ import Canvans from '@/components/Canvas/'
 import WordCloudAllConfig from './wordCloudAllConfig'
 
 import * as echarts from 'echarts'
-import './index.less'
 const WordCloud = ({ wordCloudConfig, dispatch }) => {
     // return (<div>asdadas</div>)
     console.log(wordCloudConfig)

@@ -5,11 +5,11 @@ import { connect } from 'umi'
 import CodeBoard from '@/components/CodeBoard/'
 import Canvans from '@/components/Canvas/'
 import RadarAllConfig from './radarAllConfig'
-
+import RadarBaseConfig from './radarBaseConfig'
 import * as echarts from 'echarts'
-import './index.less'
+const { TabPane } = Tabs;
 const Radar = ({ radarConfig, dispatch, dataSet }) => {
-    console.log('radarConfig',radarConfig)
+    console.log('radarConfig', radarConfig)
     let { title, legend, radar, color, tooltip } = radarConfig
     const { dataSource } = dataSet
     // 图表数据处理
@@ -231,7 +231,20 @@ const Radar = ({ radarConfig, dispatch, dataSet }) => {
                     </div>
                 </Col>
                 <Col span={7} className="graph_part">
-                    <RadarAllConfig></RadarAllConfig>
+                    <Tabs defaultActiveKey="2" centered>
+                        <TabPane
+                            tab={<span> 数据设置 </span>}
+                            key="1"
+                        >
+                            <RadarBaseConfig></RadarBaseConfig>
+                        </TabPane>
+                        <TabPane
+                            tab={<span> 详细设置 </span>}
+                            key="2"
+                        >
+                            <RadarAllConfig></RadarAllConfig>
+                        </TabPane>
+                    </Tabs>
                 </Col>
             </Row>
             <Row style={{ height: '50px', borderTop: '1px solid #1890ff' }} align="middle">

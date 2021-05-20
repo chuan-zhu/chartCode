@@ -7,7 +7,6 @@ import Canvans from '@/components/Canvas/'
 import LineAllConfig from './lineAllConfig'
 
 import * as echarts from 'echarts'
-import './index.less'
 const Line = ({ lineConfig, dispatch, dataSet }) => {
     console.log('lineConfig', lineConfig)
     let { title, legend, grid, xAxis, yAxis, line, color, tooltip } = lineConfig

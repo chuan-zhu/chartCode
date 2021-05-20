@@ -7,7 +7,6 @@ import Canvans from '@/components/Canvas/'
 import PieAllConfig from './pieAllConfig'
 
 import * as echarts from 'echarts'
-import './index.less'
 const Pie = ({ pieConfig, dispatch, dataSet }) => {
     console.log('pieConfig',pieConfig)
     let { title, legend, grid, xAxis, yAxis, pie, color, tooltip } = pieConfig

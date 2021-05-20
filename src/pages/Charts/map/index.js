@@ -8,7 +8,6 @@ import MapAllConfig from './mapAllConfig'
 // import * as MapJson from './china'
 require('./china.js')
 import * as echarts from 'echarts'
-import './index.less'
 const Map = ({ mapConfig, dispatch }) => {
     // return (<div>asdadas</div>)
     console.log('mapConfig',mapConfig)
