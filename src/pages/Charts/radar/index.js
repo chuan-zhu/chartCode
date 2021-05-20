@@ -8,19 +8,18 @@ import RadarAllConfig from './radarAllConfig'
 import RadarBaseConfig from './radarBaseConfig'
 import * as echarts from 'echarts'
 const { TabPane } = Tabs;
-const Radar = ({ radarConfig, dispatch, dataSet }) => {
+const Radar = ({ radarConfig, dispatch, }) => {
     console.log('radarConfig', radarConfig)
-    let { title, legend, radar, color, tooltip } = radarConfig
-    const { dataSource } = dataSet
-    // 图表数据处理
-    let data = []
+    let { title, legend, radar, color, tooltip, indicator, data } = radarConfig
+
     let legendData = []
-    dataSource.forEach(item => {
-        data.push({
-            name: item.name,
-            data: item.data
-        })
+    // 图表数据处理
+    data.forEach(item => {
         legendData.push(item.name)
+    })
+    let indicatorArr = []
+    indicator.forEach(item => {
+        indicatorArr.push({ name: item })
     })
     const getOption = () => {
         const titleConfig = {
@@ -45,7 +44,7 @@ const Radar = ({ radarConfig, dispatch, dataSet }) => {
             bottom: title.titleBottom
         }
         const legendConfig = {
-            data: ['销量', '库存'],
+            data: legendData,
             show: legend.show,
             left: legend.legendLeft,
             top: legend.legendTop,
@@ -141,14 +140,7 @@ const Radar = ({ radarConfig, dispatch, dataSet }) => {
                     },
                 }
             },
-            indicator: [
-                { name: '销售（Sales）', },
-                { name: '管理（Administration）', },
-                { name: '信息技术（Information Technology）' },
-                { name: '客服（Customer Support）', },
-                { name: '研发（Development）', },
-                { name: '市场（Marketing）', }
-            ]
+            indicator: indicatorArr
         }
         const colorConfig = () => {
             // 渐变色配置（线性渐变 linear，径向渐变  radial ）
@@ -193,16 +185,7 @@ const Radar = ({ radarConfig, dispatch, dataSet }) => {
             series: [{
                 name: '预算 vs 开销（Budget vs spending）',
                 type: 'radar',
-                data: [
-                    {
-                        value: [4200, 3000, 20000, 35000, 50000, 18000],
-                        name: '销量'
-                    },
-                    {
-                        value: [5000, 14000, 28000, 26000, 42000, 21000],
-                        name: '库存'
-                    }
-                ]
+                data: data
             }],
             color: colorConfig()
         }
