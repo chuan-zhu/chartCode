@@ -54,9 +54,12 @@ const WordCloudConfig = (props) => {
             >
                 <Select style={{ width: 120 }}  >
                     <Option value='circle'>圆形</Option>
-                    <Option value='inside'> 三角形</Option>
-                    <Option value='center'> 菱形</Option>
+                    <Option value='triangle'> 三角形</Option>
+                    <Option value='diamond'> 菱形</Option>
                     <Option value='center'> 矩形</Option>
+                    <Option value='cardioid'> 心脏曲线</Option>
+                    <Option value='pentagon'> 五角星</Option>
+                    <Option value='star'> 星形</Option>
                 </Select>
             </Form.Item>
             <Form.Item
@@ -144,12 +147,17 @@ const WordCloudConfig = (props) => {
                     </Form.Item>
                 </Panel>
                 <Panel header="高亮" key="emphasis" className="site-collapse-custom-panel">
-                    <Form.Item
-                        label="高亮内容"
+                    
+
+                <Form.Item
+                        label="聚焦效果"
                         name="emphasisFocus"
-                        {...layoutLittle}
                     >
-                        <Input ></Input>
+                        <Select style={{ width: 120 }}  >
+                            <Option value='none'>不淡出</Option>
+                            <Option value='self'>聚焦当前数据</Option>
+                            <Option value='series'>聚焦当前系列</Option>
+                        </Select>
                     </Form.Item>
                     <Form.Item
                         label="阴影大小"

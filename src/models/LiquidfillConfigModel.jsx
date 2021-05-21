@@ -1,8 +1,8 @@
 import {Reducer,Effect,Subscription } from 'umi'
-import {querySavewordCloudData} from '../services/chart-config'
-import {initTitleConfig,initLegendConfig,initGridConfig,initXAxisConfig,initYAxisConfig,initColorConfig,initTooltipConfig,initWordCloudConfig} from './initConfig'
-const wordCloudConfigModel = {
-    namespace:'wordCloudConfig',
+import {querySaveliquidfillData} from '../services/chart-config'
+import {initTitleConfig,initLegendConfig,initGridConfig,initXAxisConfig,initYAxisConfig,initColorConfig,initTooltipConfig,initLiquidfillConfig} from './initConfig'
+const liquidfillConfigModel = {
+    namespace:'liquidfillConfig',
     state:{
         title:{...initTitleConfig},
         legend:{...initLegendConfig},
@@ -11,7 +11,7 @@ const wordCloudConfigModel = {
         yAxis:{...initYAxisConfig},
         color:{...initColorConfig},
         tooltip:{...initTooltipConfig},
-        wordCloud:{...initWordCloudConfig}
+        liquidfill:{...initLiquidfillConfig},
     },
     reducers:{
         // 更新配置
@@ -34,7 +34,7 @@ const wordCloudConfigModel = {
     effects:{
         // *queryData({payload},{put,call}){
         //     // const data = [{cc:2312312,dd:'sdfsdf'}]
-        //     const data = yield call(querywordCloudData)
+        //     const data = yield call(queryliquidfillData)
         //     console.log(data)
         //     yield put({
         //         type:'save',
@@ -42,7 +42,7 @@ const wordCloudConfigModel = {
         //     })
         // },
         *querySaveConfig({payload},{put,call}){
-            const data = yield call(querySavewordCloudData)
+            const data = yield call(querySaveliquidfillData)
         }
     },
     // 用于订阅一个数据源，然后根据需要 dispatch 相应的 action
@@ -50,7 +50,7 @@ const wordCloudConfigModel = {
         setup({dispatch,history}){
             // dispatch(action)
             return history.listen(({pathname},action)=>{
-                if(pathname == '/echart/wordCloud'){
+                if(pathname == '/echart/liquidfill'){
                     // 这是同步的
                     // dispatch({
                     //     type:'getList'
@@ -64,4 +64,4 @@ const wordCloudConfigModel = {
         }
     }
 }
-export default wordCloudConfigModel
+export default liquidfillConfigModel

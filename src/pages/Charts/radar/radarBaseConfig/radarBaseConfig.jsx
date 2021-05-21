@@ -32,26 +32,33 @@ const RadarBaseConfig = ({ radarConfig, dispatch }) => {
     let initialValue = {
         indicator: indicator
     }
-    data.forEach(item => {
-        initialValue[item.name] = {
+    data.forEach((item,index) => {
+        initialValue[index] = {
             name: item.name,
             value: item.value
         }
     })
     form.setFieldsValue(initialValue)
-
-    const formChange = deBounce(() => {
+/**
+ * 表单内容更新回调
+ */
+    const formChange = deBounce((changedValues, allValues) => {
         let newFormValue = form.getFieldsValue(true)
-        // console.log('newFormValue', newFormValue)
-        let newData = []
-        Object.keys(newFormValue).forEach(key => {
-            if (key !== 'indicator') {
-                newData.push({
-                    value: newFormValue[key].value,
-                    name: key
-                })
+        let newData =_.cloneDeep(data)
+        const index =  Object.keys(changedValues)[0]
+        if(index !== 'indicator'){
+            //判断修改的类型是nama还是value
+            if(changedValues[index].name){
+                newData[index] = {
+                    ...newData[index],
+                    ...changedValues[index]
+                }
+            }else{
+                const changeIndex = changedValues[index].value.length - 1
+                const changeValue = changedValues[index].value[changeIndex]
+                newData[index].value[changeIndex] = changeValue
             }
-        })
+        }
         dispatch({
             type: 'radarConfig/update',
             payload: { ...radarConfig, indicator: newFormValue.indicator,data:newData }
@@ -65,11 +72,6 @@ const RadarBaseConfig = ({ radarConfig, dispatch }) => {
         data.forEach(item => {
             item.value.push(0)
         })
-        // console.log(data)
-        // dispatch({
-        //     type: 'radarConfig/update',
-        //     payload: { ...radarConfig, data: newData }
-        // });
     }
     /**
     * 删除维度
@@ -79,11 +81,6 @@ const RadarBaseConfig = ({ radarConfig, dispatch }) => {
         data.forEach(item => {
             item.value.splice(index, 1)
         })
-        // console.log(data)
-        // dispatch({
-        //     type: 'radarConfig/update',
-        //     payload: { ...radarConfig, data: newData }
-        // });
     }
     /**
      * 删除当前系列
@@ -133,7 +130,7 @@ const RadarBaseConfig = ({ radarConfig, dispatch }) => {
             {...formItemLayout}
             form={form}
             initialValues={formInitialValue()}
-            onValuesChange={() => formChange()}>
+            onValuesChange={(changedValues, allValues) => formChange(changedValues, allValues)}>
             <Collapse
                 className={styles.dataConfig}
                 bordered={false}
@@ -203,7 +200,7 @@ const RadarBaseConfig = ({ radarConfig, dispatch }) => {
                     </Form.List>
                 </Panel>
                 <Panel header="数据项" key="data" className="site-collapse-custom-panel">
-                    {data.map(series => {
+                    {data.map((series,index) => {
                         return <>
                             <Form.Item
                                 label={<> <MinusCircleOutlined
@@ -211,13 +208,13 @@ const RadarBaseConfig = ({ radarConfig, dispatch }) => {
                                     onClick={() => removeSeries(series.name)}
                                 />系列名</>
                                 }
-                                name={[series.name, 'name']}
+                                name={[index, 'name']}
                             >
                                 <Input></Input>
                             </Form.Item>
                             <Form.List
                                 initialValue={series.value}
-                                name={[series.name, "value"]}
+                                name={[index, "value"]}
                             >
                                 {(fields, { add, remove }, { errors }) => (
                                     <>

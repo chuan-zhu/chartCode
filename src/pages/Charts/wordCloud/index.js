@@ -5,34 +5,14 @@ import { connect } from 'umi'
 import CodeBoard from '@/components/CodeBoard/'
 import Canvans from '@/components/Canvas/'
 import WordCloudAllConfig from './wordCloudAllConfig'
-
+import WordCloudBaseConfig from './wordCloudBaseConfig'
 import * as echarts from 'echarts'
+const { TabPane } = Tabs;
 const WordCloud = ({ wordCloudConfig, dispatch }) => {
     // return (<div>asdadas</div>)
     console.log(wordCloudConfig)
-    let { title, wordCloud, color, tooltip } = wordCloudConfig
-    // 不可编辑的数组
-    const data = [{
-        name: "蔬菜类型",
-        data: [{
-            name: '西红柿',
-            value: 100
-        },
-        {
-            name: '菠菜',
-            value: 120
-        },
-        {
-            name: '香菇',
-            value: 130
-        },
-        {
-            name: '白菜',
-            value: 150
-        }
-        ]
-    }
-    ]
+    let { title, wordCloud, color, tooltip,data } = wordCloudConfig
+    
     const getOption = () => {
         const titleConfig = {
             show: title.show,
@@ -65,32 +45,6 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
             borderWidth: tooltip.borderWidth,
             padding: tooltip.padding,
         }
-        var JosnList = [
-            { name: "龙头镇", value: "111" },
-            { name: "大埔镇", value: "222" },
-            { name: "太平镇", value: "458" },
-            { name: "沙埔镇", value: "445" },
-            { name: "东泉镇", value: "456" },
-            { name: "凤山镇", value: "647" },
-            { name: "a", value: "189" },
-            { name: "s", value: "864" },
-            { name: "阿萨德", value: "652" },
-            { name: "为", value: "458" },
-            { name: "嗯嗯", value: "445" },
-            { name: "发给", value: "456" },
-            { name: "让他", value: "647" },
-            { name: "和好", value: "189" },
-            { name: "儿童", value: "864" },
-            { name: "医院", value: "652" },
-            { name: "看看", value: "458" },
-            { name: "微博", value: "445" },
-            { name: "你吗", value: "456" },
-            { name: "熊是", value: "647" },
-            { name: "爱宠", value: "189" },
-            { name: "阿沙文", value: "864" },
-            { name: "确认单", value: "652" },
-
-        ];
         const seriesConfig = () => {
             let seriesItem = {
                 type: 'wordCloud',
@@ -109,11 +63,9 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
                     fontFamily: wordCloud.textStyleFontFamily,
                     fontWeight: wordCloud.textStyleFontWeight,
                     color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160)
-                        ].join(',') + ')';
+                       const colorArr =  colorConfig()
+                       const randomIndex =  Math.floor(Math.random()*colorArr.length)
+                       return colorArr[randomIndex]
                     }
                 },
                 emphasis: {
@@ -123,7 +75,7 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
                         shadowColor: wordCloud.emphasisTextStyleShadowColor
                     }
                 },
-                data: JosnList
+                data: data
             }
             return seriesItem
         }
@@ -193,7 +145,20 @@ const WordCloud = ({ wordCloudConfig, dispatch }) => {
                     </div>
                 </Col>
                 <Col span={7} className="graph_part">
-                    <WordCloudAllConfig></WordCloudAllConfig>
+                    <Tabs defaultActiveKey="2" centered>
+                        <TabPane
+                            tab={<span> 数据设置 </span>}
+                            key="1"
+                        >
+                            <WordCloudBaseConfig></WordCloudBaseConfig>
+                        </TabPane>
+                        <TabPane
+                            tab={<span> 详细设置 </span>}
+                            key="2"
+                        >
+                            <WordCloudAllConfig></WordCloudAllConfig>
+                        </TabPane>
+                    </Tabs>
                 </Col>
             </Row>
             <Row style={{ height: '50px', borderTop: '1px solid #1890ff' }} align="middle">
