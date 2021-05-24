@@ -10,7 +10,7 @@ const Settings: LayoutSettings & {
   "contentWidth": "Fluid",
   "fixedHeader": true,
   "fixSiderbar": true,
-  "title": "目前是图表配置代码生成",
+  "title": "可视化代码生成工具",
   "pwa": false,
   "iconfontUrl": "",
   "menu": {

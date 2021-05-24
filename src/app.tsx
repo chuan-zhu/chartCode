@@ -72,14 +72,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     },
     links: isDev
       ? [
-        <Link to="/umi/plugin/openapi" target="_blank">
-          <LinkOutlined />
-          <span>openAPI 文档</span>
-        </Link>,
-        <Link to="/~docs">
-          <BookOutlined />
-          <span>业务组件文档</span>
-        </Link>,
+        // <Link to="/umi/plugin/openapi" target="_blank">
+        //   <LinkOutlined />
+        //   <span>openAPI 文档</span>
+        // </Link>,
+        // <Link to="/~docs">
+        //   <BookOutlined />
+        //   <span>业务组件文档</span>
+        // </Link>,
       ]
       : [],
     // 标题和图标配置

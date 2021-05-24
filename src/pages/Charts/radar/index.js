@@ -214,7 +214,7 @@ const Radar = ({ radarConfig, dispatch, }) => {
                     </div>
                 </Col>
                 <Col span={7} className="graph_part">
-                    <Tabs defaultActiveKey="2" centered>
+                    <Tabs defaultActiveKey="1" centered>
                         <TabPane
                             tab={<span> 数据设置 </span>}
                             key="1"

@@ -84,8 +84,8 @@ const Login: React.FC = () => {
         <div className={styles.top}>
           <div className={styles.header}>
             <Link to="/">
-              <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>Ant Design</span>
+              {/* <img alt="logo" className={styles.logo} src="/logo.svg" /> */}
+              <span className={styles.title}>可视化代码生成工具</span>
             </Link>
           </div>
           <div className={styles.desc}></div>
