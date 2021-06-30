@@ -72,6 +72,18 @@ yarn start
 - [√] 图表配置器（目前有柱图、线图、饼图、水球图、地图、词云图、雷达图）
 - [√] 个人中心
 
+## 部分截图
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/login.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/welcome.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/bar.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/line.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/pie.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/radar.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/ball.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/world.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/map.png)  
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/code.png) 
+   ![image](https://github.com/chuan-zhu/screenshots/blob/main/chartCode/person.png)  
 
 
 
